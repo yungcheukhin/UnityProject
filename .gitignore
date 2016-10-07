@@ -17,7 +17,7 @@ ExportedObj/
 *.pidb
 *.booproj
 *.svd
-
+*.
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -28,9 +28,14 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-FYP2016-2017/Library/metadata/00/00000000000000002000000000000000
-FYP2016-2017/Library/metadata/00/00000000000000002000000000000000
-FYP2016-2017/Library/metadata/00/00000000000000002000000000000000
-FYP2016-2017/Library/metadata/00/00000000000000005000000000000000
-FYP2016-2017/Library/metadata/00/00000000000000002000000000000000
-FYP2016-2017/Library/metadata/00/00000000000000002000000000000000
+
+FYP2016-2017/Library/metadata/00/00000000000000003000000000000000
+FYP2016-2017/Library/metadata/00/00000000000000004000000000000000
+FYP2016-2017/Library/metadata/00/00000000000000004100000000000000
+FYP2016-2017/Temp/UnityLockfile
+FYP2016-2017/Temp/ProcessJobs/e9a6970f79cd12d8b075e7d72f1b07cb.bakert
+FYP2016-2017/Library/shadercompiler-UnityShaderCompiler.exe0.log
+FYP2016-2017/Library/metadata
+FYP2016-2017/Library
+FYP2016-2017/Library/shadercompiler-UnityShaderCompiler.exe0.log
+FYP2016-2017/Library/metadata/7c/7cbab2be89b54486bbd23a6fe637d30e
