@@ -31,3 +31,4 @@ sysinfo.txt
 
 # include asset file
 !Assets\
+ProjectSettings/ProjectSettings.asset
