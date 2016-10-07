@@ -530,7 +530,7 @@ PlayerSettings:
   XboxOne::VR::enabledDevices: []
   iOS::VR::enabledDevices: []
   tvOS::VR::enabledDevices: []
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  cloudProjectId: 5e9ced2e-2022-45be-9bb1-066eff936bb9
+  projectName: UnityProject
+  organizationId: zoefish
   cloudEnabled: 0
