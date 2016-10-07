@@ -30,4 +30,4 @@ sysinfo.txt
 *.unitypackage
 
 # include asset file
-!FYP2016-2017\Assets\
+!Assets\
