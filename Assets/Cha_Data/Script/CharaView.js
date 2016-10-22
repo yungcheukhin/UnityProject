@@ -5,10 +5,10 @@ var animationSpeed:float =1.0;
 private var animationCount:uint;
 private var animationList:Array;
 function Start () {
-     print("animationGetCount:" + animation.GetClipCount());
-     print(animation.clip.name);
-     animationCount = animation.GetClipCount();
-     print(gameObject.animation);
+     print("animationGetCount:" + GetComponent.<Animation>().GetClipCount());
+     print(GetComponent.<Animation>().clip.name);
+     animationCount = GetComponent.<Animation>().GetClipCount();
+     print(gameObject.GetComponent.<Animation>());
      animationList = GetAnimationList();
 }
 
@@ -33,7 +33,7 @@ function OnGUI (){
      {
           var rect:Rect = Rect(15,margin + 20*i + buttonSpace*i, rectWidth,rectHeight);
           if(GUI.Button(rect,animationList[i].ToString())){
-               animation.CrossFade(animationList[i],0.01);
+               GetComponent.<Animation>().CrossFade(animationList[i],0.01);
           }
           i++;
      }
@@ -42,7 +42,7 @@ function OnGUI (){
 private function GetAnimationList():Array
 {
      var tmpArray = new Array();
-     for (var state : AnimationState in gameObject.animation)
+     for (var state : AnimationState in gameObject.GetComponent.<Animation>())
      {
           tmpArray.Add(state.name);
      }
