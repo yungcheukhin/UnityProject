@@ -511,6 +511,57 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9796017b74dcb4b429c5c71d887ec177, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &94816581 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100140, guid: 0d6446b00d81a9641a2eca08eb97949f, type: 3}
+  m_PrefabInternal: {fileID: 1035434537}
+--- !u!111 &94816582 stripped
+Animation:
+  m_PrefabParentObject: {fileID: 11100000, guid: 0d6446b00d81a9641a2eca08eb97949f,
+    type: 3}
+  m_PrefabInternal: {fileID: 1035434537}
+--- !u!114 &94816583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 94816581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f5b26b04d064d84aa800f129e8da921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputDelay: 0.1
+  forwardVel: 12
+  rotateVel: 100
+  anim: {fileID: 94816582}
+  death_animation: death
+  flip_animation: flip
+  idle_animation: idle
+  jump_animation: jump
+  kick_animation: kick
+  punch_animation: punch
+  run_animation: run
+  walk_animation: walk
+--- !u!4 &94816585 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400140, guid: 0d6446b00d81a9641a2eca08eb97949f, type: 3}
+  m_PrefabInternal: {fileID: 1035434537}
+--- !u!54 &94816587
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 94816581}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &102789325
 Prefab:
   m_ObjectHideFlags: 0
@@ -2817,6 +2868,7 @@ GameObject:
   - 92: {fileID: 498771130}
   - 124: {fileID: 498771129}
   - 81: {fileID: 498771128}
+  - 114: {fileID: 498771133}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2892,6 +2944,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &498771133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 498771127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f10781c7535734da2699d3e7426e39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 94816585}
+  lookSmooth: 0.09
+  offsetFromTarget: {x: 0, y: 4, z: -5}
+  xTilt: 10
 --- !u!1001 &505332292
 Prefab:
   m_ObjectHideFlags: 0
@@ -4817,6 +4884,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 13700000, guid: 0d6446b00d81a9641a2eca08eb97949f, type: 3}
       propertyPath: m_MotionVectors
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11100000, guid: 0d6446b00d81a9641a2eca08eb97949f, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
