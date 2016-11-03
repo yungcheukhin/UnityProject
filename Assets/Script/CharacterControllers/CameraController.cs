@@ -45,10 +45,13 @@ public class CameraController : MonoBehaviour {
         MovingToTarget();
 
         //roataing
+        LookAtTarget();
+        /*
         if (charController.haveInput)
             LookAtTarget();
         else
             LookAtMouse();
+            */
     }
 
     void MovingToTarget()
