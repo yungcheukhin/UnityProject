@@ -44,13 +44,8 @@ public class CameraController : MonoBehaviour {
         //moving
         MovingToTarget();
 
-        yaw += speedH * Input.GetAxis("Mouse X");
-        pitch -= speedV * Input.GetAxis("Mouse Y");
-
-        transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
-
         //roataing
-        //LookAtTarget();
+        LookAtTarget();
     }
 
     void MovingToTarget()
@@ -62,7 +57,11 @@ public class CameraController : MonoBehaviour {
 
     void LookAtTarget()
     {
+
+        yaw += speedH * Input.GetAxis("Mouse X");
+        pitch -= speedV * Input.GetAxis("Mouse Y");
         float eulerYAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, target.eulerAngles.y, ref rotateVel, lookSmooth);
+        //add some code to make the camera folllow the mouse movement as well
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x, eulerYAngle, 0);
 
     }

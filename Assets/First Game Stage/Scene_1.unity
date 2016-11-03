@@ -2959,6 +2959,10 @@ MonoBehaviour:
   lookSmooth: 0.09
   offsetFromTarget: {x: 0, y: 4, z: -5}
   xTilt: 10
+  yaw: 0
+  pitch: 0
+  speedH: 2
+  speedV: 2
 --- !u!1001 &505332292
 Prefab:
   m_ObjectHideFlags: 0
@@ -4890,6 +4894,14 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 0d6446b00d81a9641a2eca08eb97949f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c035abdb38dec9f478cc5e476361f714, type: 2}
+    - target: {fileID: 13700002, guid: 0d6446b00d81a9641a2eca08eb97949f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5d8ef28444742a74682ecc370cf613af, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d6446b00d81a9641a2eca08eb97949f, type: 3}
   m_IsPrefabParent: 0
