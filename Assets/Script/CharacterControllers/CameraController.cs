@@ -10,6 +10,12 @@ public class CameraController : MonoBehaviour {
     public float yaw = 0.0f;
     public float pitch = 0.0f;
 
+	public float yLimitMin = -20f;
+	public float yLimitMax = 80f;
+
+	float rotationXAxis = 0.0f;
+	float rotationYAxis = 0.0f;
+
     public float speedH = 2.0f;
     public float speedV = 2.0f;
     
@@ -21,6 +27,11 @@ public class CameraController : MonoBehaviour {
     void Awake()
     {
         SetCameraTarget(target);
+		Vector3 angles = transform.eulerAngles;
+		rotationXAxis = angles.x;
+		rotationYAxis = angles.y;
+
+
     }
 
     void SetCameraTarget(Transform t)
@@ -64,7 +75,7 @@ public class CameraController : MonoBehaviour {
     void LookAtTarget()
     {
         float eulerYAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, target.eulerAngles.y, ref rotateVel, lookSmooth);
-        //add some code to make the camera folllow the mouse movement as well
+        //add some code to make the camera follow the mouse movement as well
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x, eulerYAngle, 0);
 
     }
@@ -76,6 +87,12 @@ public class CameraController : MonoBehaviour {
         transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
     }
 
-
+	public static float ClampAngle(float angle, float min, float max){
+		if (angle < -360F)
+			angle += 360F;
+		if (angle > 360F)
+			angle -= 360F;
+		return Mathf.Clamp (angle, min, max);
+	}
 
 }
