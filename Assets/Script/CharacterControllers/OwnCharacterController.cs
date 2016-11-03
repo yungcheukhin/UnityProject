@@ -20,6 +20,7 @@ public class OwnCharacterController : MonoBehaviour {
     Quaternion targetRotation;
     Rigidbody rBody;
     float forwardInput, turnInput;
+    public bool haveInput = false;
     
     public Quaternion TargetRotation
     {
@@ -44,6 +45,7 @@ public class OwnCharacterController : MonoBehaviour {
     {
         forwardInput = Input.GetAxis("Vertical");
         turnInput = Input.GetAxis("Horizontal");
+        haveInput = Input.anyKey;
 
     }
 
