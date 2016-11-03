@@ -7,6 +7,12 @@ public class CameraController : MonoBehaviour {
     public float lookSmooth = 0.09f;
     public Vector3 offsetFromTarget = new Vector3(0, 4, -5);
     public float xTilt = 10;
+    public float yaw = 0.0f;
+    public float pitch = 0.0f;
+
+    public float speedH = 2.0f;
+    public float speedV = 2.0f;
+    
 
     Vector3 destination = Vector3.zero;
     OwnCharacterController charController;
@@ -37,8 +43,14 @@ public class CameraController : MonoBehaviour {
     {
         //moving
         MovingToTarget();
+
+        yaw += speedH * Input.GetAxis("Mouse X");
+        pitch -= speedV * Input.GetAxis("Mouse Y");
+
+        transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+
         //roataing
-        LookAtTarget();
+        //LookAtTarget();
     }
 
     void MovingToTarget()
