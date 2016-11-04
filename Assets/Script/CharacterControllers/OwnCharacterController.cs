@@ -30,7 +30,6 @@ public class OwnCharacterController : MonoBehaviour {
     void Awake()
     {
 
-
         targetRotation = transform.rotation;
         if (GetComponent<Rigidbody>())
             rBody = GetComponent<Rigidbody>();
@@ -80,13 +79,17 @@ public class OwnCharacterController : MonoBehaviour {
 
     void Turn()
     {   
+		//find where to apply this statement
+		transform.localEulerAngles = new Vector3 (Camera.main.transform.localEulerAngles.x, transform.localEulerAngles.y, transform.localEulerAngles.z);
+
+		//targetRotation = Camera.main.transform.localEulerAngles.x;
 		//transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (rBody), rotateVel * 2.0f * Time.deltaTime);
 		//transform.position += transform.rotation * Vector3.forward; 
         if(Mathf.Abs(turnInput) > inputDelay)
         {
             targetRotation *= Quaternion.AngleAxis(rotateVel * turnInput * Time.deltaTime, Vector3.up);
         }
-        transform.rotation = targetRotation;
+		transform.rotation = targetRotation + transform.localEulerAngles;
     }
 
 
