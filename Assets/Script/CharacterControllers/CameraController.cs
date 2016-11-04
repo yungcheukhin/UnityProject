@@ -10,15 +10,27 @@ public class CameraController : MonoBehaviour {
     public float yaw = 0.0f;
     public float pitch = 0.0f;
 
-	public float yLimitMin = -20f;
+	public float distance = -10f;
+	public float distMin = 0.5f;
+	public float distMax = 15f;
+
+	public float yLimitMin = 5.0f;
 	public float yLimitMax = 80f;
+
+	public float xSpeed = 120.0f;
+	public float ySpeed = 120.0f;
 
 	float rotationXAxis = 0.0f;
 	float rotationYAxis = 0.0f;
 
     public float speedH = 2.0f;
     public float speedV = 2.0f;
-    
+
+	float x = 0.0f;
+	float y = 0.0f;
+	float xyOffset = 0.02f;
+
+
 
     Vector3 destination = Vector3.zero;
     OwnCharacterController charController;
@@ -26,8 +38,11 @@ public class CameraController : MonoBehaviour {
 
     void Awake()
     {
-        SetCameraTarget(target);
 		Vector3 angles = transform.eulerAngles;
+		x = angles.x;
+		y = angles.y;
+
+        SetCameraTarget(target);
 		rotationXAxis = angles.x;
 		rotationYAxis = angles.y;
 
@@ -37,8 +52,9 @@ public class CameraController : MonoBehaviour {
     void SetCameraTarget(Transform t)
     {
         target = t;
-        if (target != null)
+        if (target)
         {
+			
             if (target.GetComponent<OwnCharacterController>())
             {
                 charController = target.GetComponent<OwnCharacterController>();
@@ -52,11 +68,14 @@ public class CameraController : MonoBehaviour {
 
     void LateUpdate()
     {
-        //moving
-        MovingToTarget();
+		MouseMovement(target);
 
         //roataing
-        LookAtTarget();
+        //LookAtTarget();
+
+		//moving
+		//MovingToTarget();
+
         /*
         if (charController.haveInput)
             LookAtTarget();
@@ -64,6 +83,32 @@ public class CameraController : MonoBehaviour {
             LookAtMouse();
             */
     }
+
+	void MouseMovement(Transform t){
+		//with rotation and position
+		if (t) {
+			x += Input.GetAxis("Mouse X") * xSpeed * distance * xyOffset;
+			y -= Input.GetAxis("Mouse Y") * ySpeed * xyOffset;
+
+			y = ClampAngle(y, yLimitMin, yLimitMax);
+
+			Quaternion rotation = Quaternion.Euler (y, x, 0);
+
+			distance = Mathf.Clamp (distance - Input.GetAxis ("Mouse ScrollWheel") * 5, distMin, distMax);
+
+			RaycastHit hit;
+			if (Physics.Linecast (t.position, transform.position, out hit)) {
+				distance -= hit.distance;
+			}
+
+			Vector3 negDist = new Vector3 (0.0f, 0.0f, -distance);
+			Vector3 position = rotation * negDist + t.position;
+
+			transform.rotation = rotation;
+			transform.position = position;
+		}
+
+	}
 
     void MovingToTarget()
     {
@@ -92,7 +137,7 @@ public class CameraController : MonoBehaviour {
 			angle += 360F;
 		if (angle > 360F)
 			angle -= 360F;
-		return Mathf.Clamp (angle, min, max);
+		return Mathf.Clamp(angle, min, max);
 	}
 
 }
