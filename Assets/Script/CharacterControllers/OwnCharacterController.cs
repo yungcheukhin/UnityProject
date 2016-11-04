@@ -65,6 +65,7 @@ public class OwnCharacterController : MonoBehaviour {
         if (Mathf.Abs(forwardInput) > inputDelay)
         {
             //move
+			//transform.forward = rBody.
             rBody.velocity = transform.forward * forwardInput * forwardVel;
         }
         else
@@ -79,6 +80,8 @@ public class OwnCharacterController : MonoBehaviour {
 
     void Turn()
     {   
+		//transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (rBody), rotateVel * 2.0f * Time.deltaTime);
+		//transform.position += transform.rotation * Vector3.forward; 
         if(Mathf.Abs(turnInput) > inputDelay)
         {
             targetRotation *= Quaternion.AngleAxis(rotateVel * turnInput * Time.deltaTime, Vector3.up);
