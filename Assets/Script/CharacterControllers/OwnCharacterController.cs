@@ -89,7 +89,7 @@ public class OwnCharacterController : MonoBehaviour {
         {
             targetRotation *= Quaternion.AngleAxis(rotateVel * turnInput * Time.deltaTime, Vector3.up);
         }
-		transform.rotation = targetRotation + transform.localEulerAngles;
+		transform.rotation = targetRotation;
     }
 
 
