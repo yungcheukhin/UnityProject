@@ -4,18 +4,20 @@ using System.Collections;
 public class CameraController : MonoBehaviour {
 
     public Transform target;
-    public float lookSmooth = 0.09f;
+    public float lookSmooth = 0.11f;
     public Vector3 offsetFromTarget = new Vector3(0, 4, -5);
     public float xTilt = 10;
     public float yaw = 0.0f;
     public float pitch = 0.0f;
 
-	public float distance = -10f;
-	public float distMin = 0.5f;
+	public float distance = 5f;
+	public float distMin = 2f;
 	public float distMax = 15f;
 
-	public float yLimitMin = 5.0f;
+	public float yLimitMin = 0.0f;
 	public float yLimitMax = 80f;
+	public float xLimitMin = -180f;
+	public float xLimitMax = 180f;
 
 	public float xSpeed = 120.0f;
 	public float ySpeed = 120.0f;
@@ -91,6 +93,7 @@ public class CameraController : MonoBehaviour {
 			y -= Input.GetAxis("Mouse Y") * ySpeed * xyOffset;
 
 			y = ClampAngle(y, yLimitMin, yLimitMax);
+			x = ClampAngle(x, xLimitMin, xLimitMax);
 
 			Quaternion rotation = Quaternion.Euler (y, x, 0);
 
