@@ -248,6 +248,15 @@ MonoBehaviour:
   xTilt: 10
   yaw: 0
   pitch: 0
+  distance: 5
+  distMin: 2
+  distMax: 15
+  yLimitMin: 0
+  yLimitMax: 80
+  xLimitMin: -180
+  xLimitMax: 180
+  xSpeed: 120
+  ySpeed: 120
   speedH: 2
   speedV: 2
 --- !u!1001 &518172742
@@ -298,8 +307,7 @@ Prefab:
   m_IsPrefabParent: 0
 --- !u!4 &518172743 stripped
 Transform:
-  m_PrefabParentObject: {fileID: 4000010600029668, guid: 073f8600bcc8a1949a81cf4f0d882b4b,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 518172742}
 --- !u!1001 &630254228
 Prefab:
@@ -353,8 +361,7 @@ Prefab:
   m_IsPrefabParent: 0
 --- !u!4 &630254229 stripped
 Transform:
-  m_PrefabParentObject: {fileID: 4000010600029668, guid: 073f8600bcc8a1949a81cf4f0d882b4b,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 630254228}
 --- !u!1 &736309831
 GameObject:
@@ -498,8 +505,7 @@ Prefab:
   m_IsPrefabParent: 0
 --- !u!4 &850124381 stripped
 Transform:
-  m_PrefabParentObject: {fileID: 4000010600029668, guid: 073f8600bcc8a1949a81cf4f0d882b4b,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 850124380}
 --- !u!1001 &1035434537
 Prefab:
@@ -640,7 +646,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1488476335}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb3d3f5b34db28f4e9f1d7d1b2264ead, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f034d650418144c9acffd99982fcfa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1536696186
@@ -790,6 +796,5 @@ Prefab:
   m_IsPrefabParent: 0
 --- !u!4 &1835303886 stripped
 Transform:
-  m_PrefabParentObject: {fileID: 4000010600029668, guid: 073f8600bcc8a1949a81cf4f0d882b4b,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 1835303885}
