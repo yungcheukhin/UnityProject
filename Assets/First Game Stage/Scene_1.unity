@@ -112,7 +112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputDelay: 0.1
-  forwardVel: 30
+  forwardVel: 2
+  runVel: 10
+  run_thershold: 80
   rotateVel: 100
   anim: {fileID: 94816582}
   death_animation: death

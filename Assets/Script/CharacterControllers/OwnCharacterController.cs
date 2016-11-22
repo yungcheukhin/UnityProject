@@ -4,7 +4,9 @@ using System.Collections;
 public class OwnCharacterController : MonoBehaviour {
 
     public float inputDelay = 0.1f; //perform better control with delay in input
-    public float forwardVel = 12;
+    public float forwardVel = 2.0f;
+    public float runVel = 8.5f;
+    public int run_thershold = 80;
     public float rotateVel = 100;   //determine how fast it turn
     public Animation anim;
     public string death_animation = "death",
@@ -20,6 +22,7 @@ public class OwnCharacterController : MonoBehaviour {
     Quaternion targetRotation;
     Rigidbody rBody;
     float forwardInput, turnInput;
+    int run_count = 0;
     public bool haveInput = false;
     
     public Quaternion TargetRotation
@@ -64,17 +67,27 @@ public class OwnCharacterController : MonoBehaviour {
         if (Mathf.Abs(forwardInput) > inputDelay)
         {
             //move
-			//transform.forward = rBody.
+            //transform.forward = rBody.
             rBody.velocity = transform.forward * forwardInput * forwardVel;
+            if (run_count > run_thershold)
+            {
+                rBody.velocity = transform.forward * forwardInput * runVel;
+                anim.CrossFade(run_animation);
+            }
+            else
+            {
+                rBody.velocity = transform.forward * forwardInput * (forwardVel+(runVel-forwardVel)/ run_thershold * run_count);
+                anim.CrossFade(walk_animation);
+                run_count++;
+            }
         }
         else
+        {
             //dont move
+            run_count = 0;
             rBody.velocity = Vector3.zero;
-
-        if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.1F)
-            anim.CrossFade(run_animation);
-        else
             anim.CrossFade(idle_animation);
+        }
     }
 
     void Turn()
