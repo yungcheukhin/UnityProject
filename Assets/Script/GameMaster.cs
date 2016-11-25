@@ -3,9 +3,9 @@ using System.Collections;
 
 public class GameMaster : MonoBehaviour {
 
-    static int currentHealth = 100;
+    
     public float offsetY = 40;
-    public float sizeX = 100;
+    public float sizeX  = 100;
     public float sizeY = 40;
 
     public Transform musicPrefab;
@@ -23,6 +23,7 @@ public class GameMaster : MonoBehaviour {
 
     void OnGUI()
     {
+        int currentHealth = GameObject.Find("MAX").GetComponent<CharacterHealth>().current_health;
         GUI.Box(new Rect(Screen.width / 2 - sizeX / 2, offsetY, sizeX, sizeY), "Health: " + currentHealth);
     }
 }
