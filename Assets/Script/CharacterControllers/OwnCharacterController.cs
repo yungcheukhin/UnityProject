@@ -23,7 +23,7 @@ public class OwnCharacterController : MonoBehaviour {
     float forwardInput, turnInput;
     private bool canRun = false;
     public bool haveInput = false;
-    
+    private MazeCell currentCell;
     public Quaternion TargetRotation
     {
         get { return targetRotation; }
@@ -69,6 +69,7 @@ public class OwnCharacterController : MonoBehaviour {
             //move
             //transform.forward = rBody.
             rBody.velocity = transform.forward * forwardInput * forwardVel;
+
             if (canRun)
             {
                 rBody.velocity = transform.forward * forwardInput * runVel;
@@ -103,5 +104,9 @@ public class OwnCharacterController : MonoBehaviour {
 		transform.rotation = targetRotation;
     }
 
-
+    public void SetLocation(MazeCell cell)
+    {
+        currentCell = cell;
+        transform.localPosition = cell.transform.localPosition;
+    }
 }

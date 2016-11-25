@@ -39,6 +39,8 @@ public class Maze : MonoBehaviour {
 		return cells[coordinates.x, coordinates.z];
 	}
 
+
+
 	public IEnumerator Generate () {
 		WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
 		cells = new MazeCell[size.x, size.z];

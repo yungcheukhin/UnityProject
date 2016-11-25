@@ -15,6 +15,7 @@ public class GameMaster : MonoBehaviour {
     ///////////////////////////maze variable//////////////////////////
     public Maze mazePrefab;
     public GameObject playerPrefab;
+    private OwnCharacterController player ;
     private Maze mazeInstance;
     private GameObject playerInstance;
     bool MapCreated = false;
@@ -37,7 +38,8 @@ public class GameMaster : MonoBehaviour {
     {
         if (!MapCreated && GameObject.FindGameObjectWithTag("MainCamera"))
         {
-            Destroy(GameObject.Find("DefaultCam"));
+            Destroy(GameObject.Find("Loading Scene"));
+
             MapCreated = true;
         }   //if maze finish generating, delete the camera
 
@@ -72,7 +74,8 @@ public class GameMaster : MonoBehaviour {
         mazeInstance = Instantiate(mazePrefab) as Maze;
         yield return StartCoroutine(mazeInstance.Generate());
         playerInstance = Instantiate(playerPrefab) as GameObject;
-        //playerInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
+        player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
+        player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
 
     }
 
