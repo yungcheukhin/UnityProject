@@ -126,18 +126,6 @@ MonoBehaviour:
   run_animation: run
   walk_animation: walk
   haveInput: 0
---- !u!114 &94816584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 94816581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61a2f219269cef04f9d28999862bf8b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  current_health: 100
 --- !u!4 &94816585 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400140, guid: 0d6446b00d81a9641a2eca08eb97949f, type: 3}
@@ -153,7 +141,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
@@ -629,7 +617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offsetY: 40
   sizeX: 80
-  sizeY: 40
+  sizeY: 25
   musicPrefab: {fileID: 4000010215273384, guid: ca555997b3da04d43aabb9212206f4f3,
     type: 2}
 --- !u!1 &1536696186
