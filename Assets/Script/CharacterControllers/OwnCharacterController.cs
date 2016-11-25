@@ -4,8 +4,8 @@ using System.Collections;
 public class OwnCharacterController : MonoBehaviour {
 
     public float inputDelay = 0.1f; //perform better control with delay in input
-    public float forwardVel = 2.0f;
-    public float runVel = 8.5f;
+    public float forwardVel = 0.8f;
+    public float runVel = 1.6f;
     public float rotateVel = 100;   //determine how fast it turn
     public Animation anim;
     public string death_animation = "death",
@@ -21,7 +21,7 @@ public class OwnCharacterController : MonoBehaviour {
     Quaternion targetRotation;
     Rigidbody rBody;
     float forwardInput, turnInput;
-    bool canRun = false;
+    private bool canRun = false;
     public bool haveInput = false;
     
     public Quaternion TargetRotation
@@ -46,7 +46,7 @@ public class OwnCharacterController : MonoBehaviour {
     {
         forwardInput = Input.GetAxis("Vertical");
         turnInput = Input.GetAxis("Horizontal");
-        canRun = Input.GetKeyDown("LeftShift");
+        canRun = Input.GetKey("left shift");
         haveInput = Input.anyKey;
 
     }

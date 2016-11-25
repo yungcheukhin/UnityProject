@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MM
   - Name
+  - LoadingCamera
   layers:
   - Default
   - TransparentFX
