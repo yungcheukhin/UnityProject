@@ -44,10 +44,12 @@ public class GameMaster : MonoBehaviour {
     private void CreateMaze()
     {
         mazeInstance = Instantiate(mazePrefab) as Maze;
+        StartCoroutine(mazeInstance.Generate());
     }   //generate Maze
 
     private void ResetMaze()
     {
+        StopAllCoroutines();
         Destroy(mazeInstance.gameObject);
         ResetMaze();
     }    //destory maze if it needa restart game
