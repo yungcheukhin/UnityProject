@@ -8,8 +8,13 @@ public class CharacterHealth : MonoBehaviour {
     {
         if (current_health <= 0)
         {
-            string current_scene = EditorSceneManager.GetActiveScene().name;
-            EditorSceneManager.LoadScene(current_scene);
+            restartLevel();
         }
 	}
+
+    public void restartLevel()
+    {
+        string current_scene = EditorSceneManager.GetActiveScene().name;
+        EditorSceneManager.LoadScene(current_scene);
+    }
 }
