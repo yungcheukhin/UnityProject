@@ -11,49 +11,51 @@ public class GameMaster : MonoBehaviour {
     public float sizeY = 40;
     public Transform musicPrefab;
     bool RestartFlag = false;   //true if the game needa restart
+
+    ///////////////////////////maze variable//////////////////////////
     public Maze mazePrefab;
+    public GameObject playerPrefab;
     private Maze mazeInstance;
+    private GameObject playerInstance;
+    bool MapCreated = false;
+    /////////////////////////////////End///////////////////////////////
 
     // Update is called once per frame
     private void Start ()
     {
-       if(!GameObject.FindGameObjectWithTag("MM"))
+        StartCoroutine(BeginGame());    //generate maze
+
+        if (!GameObject.FindGameObjectWithTag("MM"))
         {
             var mManger = Instantiate(musicPrefab, transform.position, Quaternion.identity);
             mManger.name = musicPrefab.name;
             DontDestroyOnLoad(mManger);
         }
-        CreateMaze();
 	}
     
     private void Update()
     {
+        if (!MapCreated && GameObject.FindGameObjectWithTag("MainCamera"))
+        {
+            Destroy(GameObject.Find("DefaultCam"));
+            MapCreated = true;
+        }   //if maze finish generating, delete the camera
+
         if (RestartFlag)
         {
-            ResetMaze();
             restartLevel();
         }
     } 
 
     void OnGUI()
     {
-        int currentHealth = GameObject.Find("MAX").GetComponent<CharacterHealth>().current_health;
-        GUI.Box(new Rect(Screen.width / 2 - sizeX / 2, offsetY, sizeX, sizeY), "Health: " + currentHealth);
+        if (MapCreated)
+        {
+            int currentHealth = GameObject.Find("MAX").GetComponent<CharacterHealth>().current_health;
+            GUI.Box(new Rect(Screen.width / 2 - sizeX / 2, offsetY, sizeX, sizeY), "Health: " + currentHealth);
+        }
     }
-
-    private void CreateMaze()
-    {
-        mazeInstance = Instantiate(mazePrefab) as Maze;
-        StartCoroutine(mazeInstance.Generate());
-    }   //generate Maze
-
-    private void ResetMaze()
-    {
-        StopAllCoroutines();
-        Destroy(mazeInstance.gameObject);
-        ResetMaze();
-    }    //destory maze if it needa restart game
-
+  
     public void setRestart()
     {
         RestartFlag = true;
@@ -63,6 +65,21 @@ public class GameMaster : MonoBehaviour {
     {
         string current_scene = EditorSceneManager.GetActiveScene().name;
         EditorSceneManager.LoadScene(current_scene);
+    }
+
+    private IEnumerator BeginGame()
+    {
+        mazeInstance = Instantiate(mazePrefab) as Maze;
+        yield return StartCoroutine(mazeInstance.Generate());
+        playerInstance = Instantiate(playerPrefab) as GameObject;
+        //playerInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
+
+    }
+
+    private void RestartGame()
+    {
+        StopAllCoroutines();
+        Destroy(mazeInstance.gameObject);
     }
 
 }

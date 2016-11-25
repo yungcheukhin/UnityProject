@@ -6,7 +6,6 @@ public class OwnCharacterController : MonoBehaviour {
     public float inputDelay = 0.1f; //perform better control with delay in input
     public float forwardVel = 2.0f;
     public float runVel = 8.5f;
-    public int run_thershold = 80;
     public float rotateVel = 100;   //determine how fast it turn
     public Animation anim;
     public string death_animation = "death",
@@ -22,7 +21,7 @@ public class OwnCharacterController : MonoBehaviour {
     Quaternion targetRotation;
     Rigidbody rBody;
     float forwardInput, turnInput;
-    int run_count = 0;
+    bool canRun = false;
     public bool haveInput = false;
     
     public Quaternion TargetRotation
@@ -47,6 +46,7 @@ public class OwnCharacterController : MonoBehaviour {
     {
         forwardInput = Input.GetAxis("Vertical");
         turnInput = Input.GetAxis("Horizontal");
+        canRun = Input.GetKeyDown("LeftShift");
         haveInput = Input.anyKey;
 
     }
@@ -69,22 +69,20 @@ public class OwnCharacterController : MonoBehaviour {
             //move
             //transform.forward = rBody.
             rBody.velocity = transform.forward * forwardInput * forwardVel;
-            if (run_count > run_thershold)
+            if (canRun)
             {
                 rBody.velocity = transform.forward * forwardInput * runVel;
                 anim.CrossFade(run_animation);
             }
             else
             {
-                rBody.velocity = transform.forward * forwardInput * (forwardVel+(runVel-forwardVel)/ run_thershold * run_count);
+                rBody.velocity = transform.forward * forwardInput * forwardVel;
                 anim.CrossFade(walk_animation);
-                run_count++;
             }
         }
         else
         {
             //dont move
-            run_count = 0;
             rBody.velocity = Vector3.zero;
             anim.CrossFade(idle_animation);
         }
