@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using UnityEditor.SceneManagement;
 using System.Collections;
+
 
 public class GameMaster : MonoBehaviour {
 
@@ -8,10 +10,12 @@ public class GameMaster : MonoBehaviour {
     public float sizeX  = 100;
     public float sizeY = 40;
     public Transform musicPrefab;
-    bool RestartFlag = false;   //true if the game 
+    bool RestartFlag = false;   //true if the game needa restart
+    public Maze mazePrefab;
+    private Maze mazeInstance;
 
-	// Update is called once per frame
-	private void Start ()
+    // Update is called once per frame
+    private void Start ()
     {
        if(!GameObject.FindGameObjectWithTag("MM"))
         {
@@ -24,7 +28,11 @@ public class GameMaster : MonoBehaviour {
     
     private void Update()
     {
-        
+        if (RestartFlag)
+        {
+            ResetMaze();
+            restartLevel();
+        }
     } 
 
     void OnGUI()
@@ -33,8 +41,26 @@ public class GameMaster : MonoBehaviour {
         GUI.Box(new Rect(Screen.width / 2 - sizeX / 2, offsetY, sizeX, sizeY), "Health: " + currentHealth);
     }
 
-    private void CreateMaze() { }   //generate Maze
-    private void ResetMaze() { }    //destory maze if it needa restart game
-    public void setRestart() { }    //
+    private void CreateMaze()
+    {
+        mazeInstance = Instantiate(mazePrefab) as Maze;
+    }   //generate Maze
+
+    private void ResetMaze()
+    {
+        Destroy(mazeInstance.gameObject);
+        ResetMaze();
+    }    //destory maze if it needa restart game
+
+    public void setRestart()
+    {
+        RestartFlag = true;
+    }    //command to restart game
+
+    public void restartLevel()
+    {
+        string current_scene = EditorSceneManager.GetActiveScene().name;
+        EditorSceneManager.LoadScene(current_scene);
+    }
 
 }
