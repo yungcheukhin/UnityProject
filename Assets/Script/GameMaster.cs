@@ -37,8 +37,9 @@ public class GameMaster : MonoBehaviour {
 
     void OnGUI()
     {
+        string player_name = PlayerPrefs.GetString("player_name");
         int currentHealth = GameObject.Find("MAX").GetComponent<CharacterHealth>().current_health;
-        GUI.Box(new Rect(Screen.width / 2 - sizeX / 2, offsetY, sizeX, sizeY), "Health: " + currentHealth);
+        GUI.Box(new Rect(Screen.width / 2 - sizeX / 2, offsetY, sizeX, sizeY), player_name + "\n" + "Health: " + currentHealth);
     }
 
     private void CreateMaze()
