@@ -65,7 +65,8 @@ public class OwnCharacterController : MonoBehaviour {
     {
         forwardInput = Input.GetAxis("Vertical");
         //turnInput = Input.GetAxis("Horizontal");
-		//turnInput = ClampAngle(turnInput, turnmin, turnmax);
+        //turnInput = ClampAngle(turnInput, turnmin, turnmax);
+        canRun = Input.GetKey("left shift");
         haveInput = Input.anyKey;
 
     }
