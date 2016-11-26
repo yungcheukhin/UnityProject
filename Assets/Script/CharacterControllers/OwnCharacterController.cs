@@ -5,9 +5,8 @@ public class OwnCharacterController : MonoBehaviour {
 	public GameObject camera;
 	private CharacterMotor motor;
     public float inputDelay = 0.1f; //perform better control with delay in input
-    public float forwardVel = 2.0f;
-    public float runVel = 8.5f;
-    public int run_thershold = 80;
+    public float forwardVel = 0.8f;
+    public float runVel = 1.6f;
     public float rotateVel = 100;   //determine how fast it turn
     public Animation anim;
     public string death_animation = "death",
@@ -28,8 +27,6 @@ public class OwnCharacterController : MonoBehaviour {
 	float turn =0F;
 
 	private static bool loggedInputInfo = false;
-	private MazeCell currentCell;
-
 	public float turnmin = -45.0f;
 	public float turnmax = 45.0f;
 	public float xLimitMin = -180f;
@@ -39,9 +36,11 @@ public class OwnCharacterController : MonoBehaviour {
     Quaternion targetRotation;
     Rigidbody rBody;
     float forwardInput, turnInput;
-    int run_count = 0;
+
+    private bool canRun = false;
     public bool haveInput = false;
-    
+    private MazeCell currentCell;
+
     public Quaternion TargetRotation
     {
         get { return targetRotation; }
@@ -121,28 +120,27 @@ public class OwnCharacterController : MonoBehaviour {
             //move
             //transform.forward = rBody.
             rBody.velocity = transform.forward * forwardInput * forwardVel;
-            if (run_count > run_thershold)
+
+            if (canRun)
             {
                 rBody.velocity = transform.forward * forwardInput * runVel;
                 anim.CrossFade(run_animation);
             }
             else
             {
-                rBody.velocity = transform.forward * forwardInput * (forwardVel+(runVel-forwardVel)/ run_thershold * run_count);
+                rBody.velocity = transform.forward * forwardInput * forwardVel;
                 anim.CrossFade(walk_animation);
-                run_count++;
             }
         }
         else
         {
             //dont move
-            run_count = 0;
             rBody.velocity = Vector3.zero;
             anim.CrossFade(idle_animation);
         }
     }
 
-	void Mouse_move(){
+    void Mouse_move(){
 
 	}
 
