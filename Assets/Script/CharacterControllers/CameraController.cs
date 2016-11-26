@@ -2,10 +2,13 @@
 using System.Collections;
 
 public class CameraController : MonoBehaviour {
+	public GameObject player;
+
+	private Vector3 offset;
 
     public Transform target;
     public float lookSmooth = 0.11f;
-    public Vector3 offsetFromTarget = new Vector3(0, 4, -5);
+    public Vector3 offsetFromTarget = new Vector3(0, 20, -5);
     public float xTilt = 10;
     public float yaw = 0.0f;
     public float pitch = 0.0f;
@@ -14,7 +17,7 @@ public class CameraController : MonoBehaviour {
 	public float distMin = 2f;
 	public float distMax = 15f;
 
-	public float yLimitMin = 0.0f;
+	public float yLimitMin = 5.0f;
 	public float yLimitMax = 80f;
 	public float xLimitMin = -180f;
 	public float xLimitMax = 180f;
@@ -32,6 +35,15 @@ public class CameraController : MonoBehaviour {
 	float y = 0.0f;
 	float xyOffset = 0.02f;
 
+	float height = 5.0f;
+	float heightDamping = 2.0f;
+	float rotationDamping = 3.0f;
+
+	float wantedHeight = 5.0f;
+	float wantedRotationAngle =0.0f;
+	float currentRotationAngle = 0.0f;
+	float currentRotation = 0.0f;
+	float currentHeight = 5.0f;
 
 
     Vector3 destination = Vector3.zero;
@@ -45,8 +57,9 @@ public class CameraController : MonoBehaviour {
 		y = angles.y;
 
         SetCameraTarget(target);
-		rotationXAxis = angles.x;
+		rotationXAxis = 0;
 		rotationYAxis = angles.y;
+		offset = transform.position - player.transform.position;
 
 
     }
@@ -56,7 +69,8 @@ public class CameraController : MonoBehaviour {
         target = t;
         if (target)
         {
-			
+			if (target.GetComponentInParent<OwnCharacterController> ()) {
+			}
             if (target.GetComponent<OwnCharacterController>())
             {
                 charController = target.GetComponent<OwnCharacterController>();
@@ -71,31 +85,38 @@ public class CameraController : MonoBehaviour {
     void LateUpdate()
     {
 		MouseMovement(target);
+		//target.a
+//		transform.position = player.transform.position + offset;
+//		wantedRotationAngle = target.eulerAngles.y;
+//		wantedHeight = target.position.y + height;
+//		currentRotationAngle = transform.eulerAngles.y;
+//
+//
+//		currentRotationAngle = Mathf.Lerp (currentRotationAngle, wantedRotationAngle, rotationDamping * Time.deltaTime);
+		currentHeight = transform.position.y;
+		currentHeight = Mathf.Lerp (currentHeight, wantedHeight, heightDamping * Time.deltaTime);
+//
+//		currentRotation = Quaternion.Euler(0, currentRotationAngle, 0);
+//
+//		//set camera posistion specific distance from target
+//		transform.position = target.position;
+//		transform.position -= currentRotation * Vector3.forward * distance;
+//
+//		transform.position.y = currentHeight;
+//		transform.LookAt (target);
 
-        //roataing
-        //LookAtTarget();
-
-		//moving
-		//MovingToTarget();
-
-        /*
-        if (charController.haveInput)
-            LookAtTarget();
-        else
-            LookAtMouse();
-            */
     }
 
 	void MouseMovement(Transform t){
 		//with rotation and position
 		if (t) {
-			x += Input.GetAxis("Mouse X") * xSpeed * distance * xyOffset;
+			//x += Input.GetAxis("Mouse X") * xSpeed * distance * xyOffset;
 			y -= Input.GetAxis("Mouse Y") * ySpeed * xyOffset;
 
 			y = ClampAngle(y, yLimitMin, yLimitMax);
-			x = ClampAngle(x, xLimitMin, xLimitMax);
+			//x = ClampAngle(x, xLimitMin, xLimitMax);
 
-			Quaternion rotation = Quaternion.Euler (y, x, 0);
+			Quaternion rotation = Quaternion.Euler (y, 0, 0);
 
 			distance = Mathf.Clamp (distance - Input.GetAxis ("Mouse ScrollWheel") * 5, distMin, distMax);
 
@@ -104,11 +125,12 @@ public class CameraController : MonoBehaviour {
 				distance -= hit.distance;
 			}
 
-			Vector3 negDist = new Vector3 (0.0f, 0.0f, -distance);
+			Vector3 negDist = new Vector3 (0.0f, 4.0f, -distance);
 			Vector3 position = rotation * negDist + t.position;
 
-			transform.rotation = rotation;
+			//transform.rotation = rotation;
 			transform.position = position;
+			//transform.position.x = 0;
 		}
 
 	}

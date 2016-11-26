@@ -31,8 +31,8 @@ public class MouseLookCharacterController : MonoBehaviour {
 		rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
 		
 		try {
-			rotationX += Input.GetAxis("Horizontal2") * Time.deltaTime * 300;
-			rotationY += Input.GetAxis("Vertical2") * Time.deltaTime * 300;
+			rotationX += Input.GetAxis("Horizontal") * Time.deltaTime * 300;
+			rotationY += Input.GetAxis("Vertical") * Time.deltaTime * 300;
 		}
 		catch (UnityException e) {
 			if (!loggedInputInfo) {
