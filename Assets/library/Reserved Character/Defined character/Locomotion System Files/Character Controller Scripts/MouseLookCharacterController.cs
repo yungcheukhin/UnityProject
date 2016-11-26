@@ -5,8 +5,8 @@ public class MouseLookCharacterController : MonoBehaviour {
 	
 	private CharacterMotor motor;
 	
-	public float sensitivityX = 15F;
-	public float sensitivityY = 15F;
+	public float sensitivityX = 30F;
+	public float sensitivityY = 30F;
 
 	private float rotationX = 0F;
 	private float rotationY = 0F;

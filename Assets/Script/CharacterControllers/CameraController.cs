@@ -31,6 +31,10 @@ public class CameraController : MonoBehaviour {
     public float speedH = 2.0f;
     public float speedV = 2.0f;
 
+	private float rotationY = 0F;
+	public float sensitivityCamY = 50F;
+	Quaternion rotate;
+
 	float x = 0.0f;
 	float y = 0.0f;
 	float xyOffset = 0.02f;
@@ -60,6 +64,7 @@ public class CameraController : MonoBehaviour {
 		rotationXAxis = 0;
 		rotationYAxis = angles.y;
 		offset = transform.position - player.transform.position;
+		Vector3 targetPostition = new Vector3( target.position.x, this.transform.position.y, target.position.z) ;
 
 
     }
@@ -84,26 +89,24 @@ public class CameraController : MonoBehaviour {
 
     void LateUpdate()
     {
-		MouseMovement(target);
-		//target.a
-//		transform.position = player.transform.position + offset;
-//		wantedRotationAngle = target.eulerAngles.y;
-//		wantedHeight = target.position.y + height;
-//		currentRotationAngle = transform.eulerAngles.y;
-//
-//
-//		currentRotationAngle = Mathf.Lerp (currentRotationAngle, wantedRotationAngle, rotationDamping * Time.deltaTime);
+		//MouseMovement(target);
+		rotationY += Input.GetAxis ("Mouse Y") * sensitivityCamY;
+		rotate *= Quaternion.AngleAxis(rotationY, Vector3.right);
+
+		transform.rotation = rotate;
+
 		currentHeight = transform.position.y;
 		currentHeight = Mathf.Lerp (currentHeight, wantedHeight, heightDamping * Time.deltaTime);
-//
-//		currentRotation = Quaternion.Euler(0, currentRotationAngle, 0);
-//
-//		//set camera posistion specific distance from target
-//		transform.position = target.position;
-//		transform.position -= currentRotation * Vector3.forward * distance;
+
 //
 //		transform.position.y = currentHeight;
 //		transform.LookAt (target);
+
+		//rotationY = ClampAngle(rotationY, yLimitMin, 10.0f);
+
+		Quaternion rotation = Quaternion.Euler (rotationY, 0, 0);
+
+		Quaternion yQuaternion = Quaternion.AngleAxis (rotationY, -Vector3.right);
 
     }
 

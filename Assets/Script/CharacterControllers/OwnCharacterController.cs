@@ -19,16 +19,16 @@ public class OwnCharacterController : MonoBehaviour {
         walk_animation = "walk";
     Vector3 Stand = new Vector3(0,0,0);
 
-	public float sensitivityX = 1.5F;
-	public float sensitivityY = 1.5F;
+	public float sensitivityX = 50F;
+	public float sensitivityY = 50F;
 
 	private float rotationX = 0F;
 	private float rotationY = 0F;
 	float turn =0F;
 
 	private static bool loggedInputInfo = false;
-	public float turnmin = -45.0f;
-	public float turnmax = 45.0f;
+	public float turnmin = -90.0f;
+	public float turnmax = 90.0f;
 	public float xLimitMin = -180f;
 	public float xLimitMax = 180f;
 
@@ -76,9 +76,6 @@ public class OwnCharacterController : MonoBehaviour {
 		
         GetInput();
 		rotationX += Input.GetAxis("Mouse X") * sensitivityX;
-		//rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-
-		//rotationX = ClampAngle(rotationX, turnmin, turnmax);
 
 		//Quaternion rotation = Quaternion.Euler (0, rotationX, 0);
 
@@ -105,7 +102,7 @@ public class OwnCharacterController : MonoBehaviour {
 		Turn();
 		//rotationX = Mathf.Repeat(rotationX, 360);
 		//transform.rotation = originalRotation * rotation * Vector3.forward;
-		//transform.rotation = Quaternion.Euler (originalRotation + rotation, 0, 0);
+
 
     }
 
@@ -149,16 +146,14 @@ public class OwnCharacterController : MonoBehaviour {
     {   
 		//find where to apply this statement
 		//transform.localEulerAngles = new Vector3 (Camera.main.transform.localEulerAngles.x, transform.localEulerAngles.y, transform.localEulerAngles.z);
-		//transform.position += Camera.main.transform.forward * Input.GetAxis ("Mouse X") * 0.04;
-		//targetRotation = new Vector3(Camera.current.transform.localEulerAngles.x
-		//transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (rBody), rotateVel * 2.0f * Time.deltaTime);
-		//transform.position += transform.rotation * Vector3.forward; 
-        if(Mathf.Abs(turnInput) > inputDelay)
-        {
+
+        //if(Mathf.Abs(turnInput) > inputDelay)
+        //{
 			turn = turnInput * Time.deltaTime;
-			turn = ClampAngle(turn, turnmin, turnmax); 
+			turn = Mathf.Clamp(turn, turnmin, turnmax); 
+			//turn *= rotateVel;
             targetRotation *= Quaternion.AngleAxis(turn, Vector3.up);
-        }
+        //}
 		transform.rotation = targetRotation;
     }
 
