@@ -7,7 +7,7 @@ public class OwnCharacterController : MonoBehaviour {
     public float inputDelay = 0.1f; //perform better control with delay in input
     public float forwardVel = 0.8f;
     public float runVel = 1.6f;
-    public float rotateVel = 100;   //determine how fast it turn
+    public float rotateVel = 80f;   //determine how fast it turn
     public Animation anim;
     public string death_animation = "death",
         flip_animation = "flip",
@@ -19,11 +19,15 @@ public class OwnCharacterController : MonoBehaviour {
         walk_animation = "walk";
     Vector3 Stand = new Vector3(0,0,0);
 
-	public float sensitivityX = 50F;
-	public float sensitivityY = 50F;
+	public float sensitivityX = 80F;
+	public float sensitivityY = 80F;
+	public float keyboardSensitivityX = 15F;
 
 	private float rotationX = 0F;
+	private float keyboardX = 0F;
+	private float mouseX = 0F;
 	private float rotationY = 0F;
+	private float finalRotate = 0F;
 	float turn =0F;
 
 	private static bool loggedInputInfo = false;
@@ -35,10 +39,11 @@ public class OwnCharacterController : MonoBehaviour {
 	Quaternion originalRotation;
     Quaternion targetRotation;
     Rigidbody rBody;
-    float forwardInput, turnInput;
+    float forwardInput, turnInput, keyboardTurn;
 
     private bool canRun = false;
     public bool haveInput = false;
+	private bool turnflag = false;
     private MazeCell currentCell;
 
     public Quaternion TargetRotation
@@ -66,7 +71,9 @@ public class OwnCharacterController : MonoBehaviour {
         forwardInput = Input.GetAxis("Vertical");
         //turnInput = Input.GetAxis("Horizontal");
         //turnInput = ClampAngle(turnInput, turnmin, turnmax);
+		//keyboardTurn = Input.GetAxis("Horizontal");
         canRun = Input.GetKey("left shift");
+		keyboardTurn = Input.GetAxis("Horizontal");
         haveInput = Input.anyKey;
 
     }
@@ -75,31 +82,60 @@ public class OwnCharacterController : MonoBehaviour {
     {
 		
         GetInput();
-		rotationX += Input.GetAxis("Mouse X") * sensitivityX;
+		mouseX = Input.GetAxis ("Mouse X");
+		rotationX += mouseX * sensitivityX;
+		turnflag = true;
 
 		//Quaternion rotation = Quaternion.Euler (0, rotationX, 0);
 
 		try {
-			rotationX += Input.GetAxis("Horizontal") * Time.deltaTime * rotateVel;
+			//keyboardTurn = Input.GetAxis("Horizontal");
+			if (Mathf.Abs (keyboardTurn) > inputDelay) {	
+				keyboardX += keyboardTurn * keyboardSensitivityX ;
+			} else {
+				//no keyboard input
+ 
+				//lock rotation of character
+                                                                                                                                       
+				keyboardX = 0f;
+				//rotationX = 0f;
+			}
+			//rotationX += keyboardTurn * Time.deltaTime * rotateVel;
 		//	rotationY += Input.GetAxis("Vertical") * Time.deltaTime * rotateVel;
 		}
 		catch (UnityException e) {
 			if (!loggedInputInfo) {
-				Debug.Log ("Hint: Setup axes \"Horizontal2\" and \"Vertical2\" to support aiming direction. This is optional.\nYou can map them to whichever keys or joystick axes you want to control aiming direction.\n"+e.StackTrace, this);
+				Debug.Log ("Hint: Setup axes \"Horizontal\" and \"MouseX\" to support aiming direction. This is optional.\nYou can map them to whichever keys or joystick axes you want to control aiming direction.\n"+e.StackTrace, this);
 				loggedInputInfo = true;
 			}
 		}
+
+
+
 		//rotationX = Mathf.Repeat(rotationX, 360);
 
 		rotationX = ClampAngle(rotationX, turnmin, turnmax);
+		keyboardX = ClampAngle(keyboardX, turnmin, turnmax);
 		//rotationY = Mathf.Clamp(rotationY, -85, 85);
+		finalRotate = rotationX + keyboardX;
 
 		Quaternion rotation = Quaternion.Euler (0, rotationX, 0);
 
-		Quaternion xQuaternion = Quaternion.AngleAxis (rotationX , Vector3.up);
-		Quaternion yQuaternion = Quaternion.AngleAxis (rotationY, -Vector3.right);
-		turnInput = rotationX;
-		Turn();
+//		Quaternion xQuaternion = Quaternion.AngleAxis (rotationX , Vector3.up);
+//		Quaternion yQuaternion = Quaternion.AngleAxis (rotationY, -Vector3.right);
+
+		turnInput = finalRotate;
+		//finalRotate = rotationX;
+//		if (turnflag) {
+//			Turn();
+//		}
+
+		turn = turnInput * Time.deltaTime;
+		turn = Mathf.Clamp(turn, turnmin, turnmax); 
+		//turn *= rotateVel;
+		targetRotation *= Quaternion.AngleAxis(turn, Vector3.up);
+		transform.rotation = targetRotation;
+
 		//rotationX = Mathf.Repeat(rotationX, 360);
 		//transform.rotation = originalRotation * rotation * Vector3.forward;
 
