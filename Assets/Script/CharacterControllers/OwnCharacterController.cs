@@ -7,7 +7,7 @@ public class OwnCharacterController : MonoBehaviour {
     public float inputDelay = 0.1f; //perform better control with delay in input
     public float forwardVel = 0.8f;
     public float runVel = 1.6f;
-    public float horizontalVel = 1.0f;
+    public float horizontalVel = 0.6f;
     public Animation anim;
     public string death_animation = "death",
         flip_animation = "flip",
@@ -19,12 +19,8 @@ public class OwnCharacterController : MonoBehaviour {
         walk_animation = "walk";
     Vector3 Stand = new Vector3(0,0,0);
 
-	public float sensitivityX = 8000000F;
-	public float sensitivityY = 80F;
-	public float keyboardSensitivityX = 80F;
-
+	public float sensitivityX = 10f;
 	private float rotationX = 0F;
-	private float keyboardX = 0F;
 	private float mouseX = 0F;
 	private float oldMouseX = 0F;
 	private float mouseDelta = 0F;
@@ -35,8 +31,6 @@ public class OwnCharacterController : MonoBehaviour {
 	private static bool loggedInputInfo = false;
 	public float turnmin = -90.0f;
 	public float turnmax = 90.0f;
-	public float xLimitMin = -180f;
-	public float xLimitMax = 180f;
 
 	Vector3 leftright;
 
@@ -45,9 +39,8 @@ public class OwnCharacterController : MonoBehaviour {
     Rigidbody rBody;
     float forwardInput, turnInput, directionInput, horizontalInput;
 
-    private bool canRun = false;
-    public bool haveInput = false;
-	private bool turnflag = false;
+    private bool canRun = false;    //store flag to determine run
+    private bool haveInput = false; 
     private MazeCell currentCell;
 
 	public Transform target;
@@ -99,15 +92,12 @@ public class OwnCharacterController : MonoBehaviour {
 		//mouseDelta = mouseX - oldMouseX;
 
 		//Check mouse orbit delta and stop rotating when mouse not moving
-		if (mouseX > oldMouseX) {
-			rotationX += mouseX * sensitivityX;
-		} else if (mouseX < oldMouseX) {
+		if (Mathf.Abs(mouseX-oldMouseX)>0) {
 			rotationX += mouseX * sensitivityX;
 		} else {
 			rotationX = 0;
 		}
 		//rotationX += mouseDelta * sensitivityX;
-		turnflag = true;
 
 		//Other direction inputs by keyboard
 		try {
@@ -133,8 +123,7 @@ public class OwnCharacterController : MonoBehaviour {
 			}
 		}
 
-		rotationX = ClampAngle(rotationX, turnmin, turnmax);
-		keyboardX = ClampAngle(keyboardX, turnmin, turnmax);
+		// rotationX = ClampAngle(rotationX, turnmin, turnmax);
 
 		Quaternion rotation = Quaternion.Euler (0, rotationX, 0);
 
@@ -175,7 +164,7 @@ public class OwnCharacterController : MonoBehaviour {
         else if (Mathf.Abs(horizontalInput) > inputDelay)
         {
             rBody.velocity = transform.right * horizontalInput * horizontalVel;
-            anim.CrossFade(run_animation);
+            anim.CrossFade(walk_animation);
         }
         else if (Mathf.Abs(forwardInput) > inputDelay)
         {
