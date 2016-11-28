@@ -35,7 +35,7 @@ public class testControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        rBody.AddForce(_dir * speed);
+      //  rBody.AddForce(_dir * speed);
     }
 
     void Track()

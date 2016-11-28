@@ -108,8 +108,8 @@ public class GameMaster : MonoBehaviour {
         {
             previous_locations.Dequeue();
         }
-
-        previous_locations.Enqueue(GameObject.FindGameObjectWithTag("Player").transform);
+        if (GameObject.FindGameObjectWithTag("Player")) 
+            previous_locations.Enqueue(GameObject.FindGameObjectWithTag("Player").transform);
     }
 
 }
