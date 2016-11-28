@@ -6,12 +6,14 @@ public class CharacterHealth : MonoBehaviour {
 
     public int current_health = 100;
     public int health_reduce = 1;
+    public AudioClip sound1;
 	void Update ()
     {
         if (current_health <= 0)
         {
             OwnCharacterController deadth_animation = GameObject.FindGameObjectWithTag("Player").GetComponent<OwnCharacterController>();
             deadth_animation.Death();
+            //GetComponent<AudioSource>().Play();
             Invoke("restartLevel", 3);
             //restartLevel();
         }
