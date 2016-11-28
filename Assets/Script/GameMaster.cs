@@ -15,9 +15,12 @@ public class GameMaster : MonoBehaviour {
     ///////////////////////////maze variable//////////////////////////
     public Maze mazePrefab;
     public GameObject playerPrefab;
+    public GameObject enemyPrefab;
     private OwnCharacterController player ;
+    private testControl enemy;
     private Maze mazeInstance;
     private GameObject playerInstance;
+    private GameObject enemyInstance;
     bool MapCreated = false;
     /////////////////////////////////End///////////////////////////////
 
@@ -75,7 +78,9 @@ public class GameMaster : MonoBehaviour {
         mazeInstance = Instantiate(mazePrefab) as Maze;
         yield return StartCoroutine(mazeInstance.Generate());
         playerInstance = Instantiate(playerPrefab) as GameObject;
+        enemyInstance = Instantiate(enemyPrefab) as GameObject;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
+        enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
         player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
 
     }
@@ -84,6 +89,19 @@ public class GameMaster : MonoBehaviour {
     {
         StopAllCoroutines();
         Destroy(mazeInstance.gameObject);
+    }
+
+    public void PreviousLocation ()
+    {
+        Queue previous_locations = new Queue();
+        int max_size = 15;
+
+        if(previous_locations.Count >= max_size)
+        {
+            previous_locations.Dequeue();
+        }
+
+        previous_locations.Enqueue(GameObject.FindGameObjectWithTag("Player").transform);
     }
 
 }
