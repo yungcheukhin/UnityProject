@@ -7,6 +7,9 @@ public class OwnCharacterController : MonoBehaviour {
     public float inputDelay = 0.1f; //perform better control with delay in input
     public float forwardVel = 0.8f;
     public float runVel = 1.6f;
+	public float distance = 5.0f;
+	public float xSpeed = 120.0f;
+	public float ySpeed = 120.0f;
     public float rotateVel = 80f;   //determine how fast it turn
     public Animation anim;
     public string death_animation = "death",
@@ -19,13 +22,15 @@ public class OwnCharacterController : MonoBehaviour {
         walk_animation = "walk";
     Vector3 Stand = new Vector3(0,0,0);
 
-	public float sensitivityX = 80F;
+	public float sensitivityX = 8000000F;
 	public float sensitivityY = 80F;
-	public float keyboardSensitivityX = 15F;
+	public float keyboardSensitivityX = 80F;
 
 	private float rotationX = 0F;
 	private float keyboardX = 0F;
 	private float mouseX = 0F;
+	private float oldMouseX = 0F;
+	private float mouseDelta = 0F;
 	private float rotationY = 0F;
 	private float finalRotate = 0F;
 	float turn =0F;
@@ -36,15 +41,22 @@ public class OwnCharacterController : MonoBehaviour {
 	public float xLimitMin = -180f;
 	public float xLimitMax = 180f;
 
+	Vector3 leftright;
+
 	Quaternion originalRotation;
     Quaternion targetRotation;
     Rigidbody rBody;
-    float forwardInput, turnInput, keyboardTurn;
+    float forwardInput, turnInput, keyboardTurn, leftInput, rightInput, directionInput;
 
     private bool canRun = false;
     public bool haveInput = false;
 	private bool turnflag = false;
     private MazeCell currentCell;
+
+	public Transform target;
+
+	float x = 0.0f;
+	float y = 0.0f;
 
     public Quaternion TargetRotation
     {
@@ -53,6 +65,14 @@ public class OwnCharacterController : MonoBehaviour {
 
     void Awake()
     {
+		Vector3 angles = transform.eulerAngles;
+
+		x = angles.y;
+		y = angles.x;
+		rBody = GetComponent<Rigidbody>();
+
+
+
 		motor = GetComponent(typeof(CharacterMotor)) as CharacterMotor;
 		if (motor==null) Debug.Log("Motor is null!!");
 		originalRotation = transform.localRotation;
@@ -72,32 +92,44 @@ public class OwnCharacterController : MonoBehaviour {
         //turnInput = Input.GetAxis("Horizontal");
         //turnInput = ClampAngle(turnInput, turnmin, turnmax);
 		//keyboardTurn = Input.GetAxis("Horizontal");
+		directionInput = Input.GetAxis("Horizontal");
         canRun = Input.GetKey("left shift");
-		keyboardTurn = Input.GetAxis("Horizontal");
+		//keyboardTurn = Input.GetAxis("Horizontal");
         haveInput = Input.anyKey;
 
     }
 
     void Update()   //dont require physic
     {
-		
-        GetInput();
+       
+		oldMouseX = mouseX;
+		GetInput();
 		mouseX = Input.GetAxis ("Mouse X");
-		rotationX += mouseX * sensitivityX;
+		//mouseDelta = mouseX - oldMouseX;
+
+		//Check mouse orbit delta and stop rotating when mouse not moving
+		if (mouseX > oldMouseX) {
+			rotationX += mouseX * sensitivityX;
+		} else if (mouseX < oldMouseX) {
+			rotationX += mouseX * sensitivityX;
+		} else {
+			rotationX = 0;
+		}
+		//rotationX += mouseDelta * sensitivityX;
 		turnflag = true;
 
-		//Quaternion rotation = Quaternion.Euler (0, rotationX, 0);
-
+		//Other direction inputs by keyboard
 		try {
 			//keyboardTurn = Input.GetAxis("Horizontal");
-			if (Mathf.Abs (keyboardTurn) > inputDelay) {	
-				keyboardX += keyboardTurn * keyboardSensitivityX ;
+			if (Mathf.Abs (directionInput) > inputDelay) {	
+//				leftright = Vector3(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"),0);
+//				transform.position += leftright * Time.deltaTime * keyboardSensitivityX;
 			} else {
 				//no keyboard input
  
 				//lock rotation of character
                                                                                                                                        
-				keyboardX = 0f;
+				directionInput = 0f;
 				//rotationX = 0f;
 			}
 			//rotationX += keyboardTurn * Time.deltaTime * rotateVel;
@@ -110,25 +142,12 @@ public class OwnCharacterController : MonoBehaviour {
 			}
 		}
 
-
-
-		//rotationX = Mathf.Repeat(rotationX, 360);
-
 		rotationX = ClampAngle(rotationX, turnmin, turnmax);
 		keyboardX = ClampAngle(keyboardX, turnmin, turnmax);
-		//rotationY = Mathf.Clamp(rotationY, -85, 85);
-		finalRotate = rotationX + keyboardX;
 
 		Quaternion rotation = Quaternion.Euler (0, rotationX, 0);
 
-//		Quaternion xQuaternion = Quaternion.AngleAxis (rotationX , Vector3.up);
-//		Quaternion yQuaternion = Quaternion.AngleAxis (rotationY, -Vector3.right);
-
-		turnInput = finalRotate;
-		//finalRotate = rotationX;
-//		if (turnflag) {
-//			Turn();
-//		}
+		turnInput = rotationX;
 
 		turn = turnInput * Time.deltaTime;
 		turn = Mathf.Clamp(turn, turnmin, turnmax); 

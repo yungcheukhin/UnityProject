@@ -28,6 +28,8 @@ public class CameraController : MonoBehaviour {
 	float rotationXAxis = 0.0f;
 	float rotationYAxis = 0.0f;
 
+	float rotateHead = 0.0f;
+
     public float speedH = 2.0f;
     public float speedV = 2.0f;
 
@@ -91,9 +93,12 @@ public class CameraController : MonoBehaviour {
     {
 		//MouseMovement(target);
 		rotationY += Input.GetAxis ("Mouse Y") * sensitivityCamY;
-		rotate *= Quaternion.AngleAxis(rotationY, Vector3.right);
-
+		rotateHead = rotationY * Time.deltaTime;
+		rotateHead = Mathf.Clamp(rotateHead, yLimitMin, yLimitMax); 
+		rotate *= Quaternion.AngleAxis(rotateHead, -Vector3.right);
+		//float y = player.transform.rotation.eulerAngles;
 		transform.rotation = rotate;
+		//transform.rotation = Quaternion.Euler(player.transform.rotation.eulerAngles.x, 0, 0);
 
 		currentHeight = transform.position.y;
 		currentHeight = Mathf.Lerp (currentHeight, wantedHeight, heightDamping * Time.deltaTime);
@@ -104,7 +109,7 @@ public class CameraController : MonoBehaviour {
 
 		//rotationY = ClampAngle(rotationY, yLimitMin, 10.0f);
 
-		Quaternion rotation = Quaternion.Euler (rotationY, 0, 0);
+		//Quaternion rotation = Quaternion.Euler (rotationY, 0, 0);
 
 		Quaternion yQuaternion = Quaternion.AngleAxis (rotationY, -Vector3.right);
 
