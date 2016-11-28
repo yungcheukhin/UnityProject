@@ -355,6 +355,8 @@ MonoBehaviour:
   mazePrefab: {fileID: 11400000, guid: a2395bb8a91944f21b621f2614d6db99, type: 2}
   playerPrefab: {fileID: 1000013444896288, guid: d34c400360bb739438746b27915321be,
     type: 2}
+  enemyPrefab: {fileID: 1000011176706658, guid: 71d043cbbfd8bb040ba53c298effa75a,
+    type: 2}
 --- !u!1 &1854430290
 GameObject:
   m_ObjectHideFlags: 0
