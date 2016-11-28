@@ -9,6 +9,7 @@ public class MazeDoor : MazePassage {
 	public Transform hinge;
 
 	private bool isMirrored;
+	private bool isOpened;
 
 	private MazeDoor OtherSideOfDoor {
 		get {
@@ -42,4 +43,5 @@ public class MazeDoor : MazePassage {
 		OtherSideOfDoor.hinge.localRotation = hinge.localRotation = Quaternion.identity;
 		OtherSideOfDoor.cell.room.Hide();
 	}
+
 }
