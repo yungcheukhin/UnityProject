@@ -13,7 +13,9 @@ public class CharacterHealth : MonoBehaviour {
         {
             OwnCharacterController deadth_animation = GameObject.FindGameObjectWithTag("Player").GetComponent<OwnCharacterController>();
             deadth_animation.Death();
-            //GetComponent<AudioSource>().Play();
+            //AudioSource audio = GetComponent<AudioSource>();
+            //audio.Play();
+            //yield return new WaitForSeconds(audio.clip.length);
             Invoke("restartLevel", 3);
             //restartLevel();
         }
@@ -34,8 +36,8 @@ public class CharacterHealth : MonoBehaviour {
     {
         if (col.gameObject.tag == "Enemy")
         {
-            //InvokeRepeating("getHit", 1.0f, 1.0f);
-            getHit();
+            InvokeRepeating("getHit", 1.0f, 3.0f);
+            //getHit();
         }
     }
 }
