@@ -4,6 +4,7 @@ using System.Collections;
 public class testControl : MonoBehaviour
 {
     public Animation anim;
+
     private bool flag = true;
     public string death_animation = "Death",
         idle_animation = "Idle",
@@ -11,12 +12,30 @@ public class testControl : MonoBehaviour
         run_animation = "Run",
         walk_animation = "Walk";
 
-    public float speed;
+    public float speed = 100f;
     private MazeCell currentCell;
+
+    public Transform target;
+    Quaternion targetRotation;
+    Rigidbody rBody;
+
+    public float turnSpeed = 5.0f;
+
+    Vector3 _dir;
+
+    void Start()
+    {
+
+    }
 
     void Update()
     {
         Track();
+    }
+
+    void FixedUpdate()
+    {
+        rBody.AddForce(_dir * speed);
     }
 
     void Track()
@@ -29,6 +48,10 @@ public class testControl : MonoBehaviour
 
             transform.position = Vector3.Lerp(transform.position, player_location, step);
 
+            //_dir = target.position - transform.position;
+            //_dir.Normalize();
+            //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_dir), turnSpeed * Time.deltaTime);
+            //transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
             anim.CrossFade(walk_animation);
 
         }

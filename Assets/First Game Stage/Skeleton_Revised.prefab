@@ -144,6 +144,7 @@ GameObject:
   - 111: {fileID: 111000011770863688}
   - 65: {fileID: 65000013835413080}
   - 114: {fileID: 114000011599757066}
+  - 114: {fileID: 114000013034506798}
   m_Layer: 0
   m_Name: Skeleton_Revised
   m_TagString: Untagged
@@ -1248,6 +1249,19 @@ MonoBehaviour:
   run_animation: Run
   walk_animation: Walk
   speed: 0.5
+  target: {fileID: 0}
+  turnSpeed: 5
+--- !u!114 &114000013034506798
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011176706658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b41cc518fd0fc4392b50be005a7c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137000010590272264
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
