@@ -139,7 +139,6 @@ public class OwnCharacterController : MonoBehaviour {
 		//rotationX = Mathf.Repeat(rotationX, 360);
 		//transform.rotation = originalRotation * rotation * Vector3.forward;
 
-
     }
 
     void FixedUpdate()  //need physic calculation
@@ -191,6 +190,12 @@ public class OwnCharacterController : MonoBehaviour {
             targetRotation *= Quaternion.AngleAxis(turn, Vector3.up);
         //}
 		transform.rotation = targetRotation;
+    }
+
+    public void Death()
+    {
+        rBody.velocity = Vector3.zero;
+        anim.CrossFade(death_animation);
     }
 
 	public static float ClampAngle(float angle, float min, float max){
