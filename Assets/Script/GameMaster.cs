@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
 using UnityEditor.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 
 public class GameMaster : MonoBehaviour {
 
-    
     public float offsetY = 40;
     public float sizeX  = 100;
     public float sizeY = 40;
     public Transform musicPrefab;
     bool RestartFlag = false;   //true if the game needa restart
+    Queue <Transform> previous_locations = new Queue<Transform>();
+    Transform enemy_spawn_location;
 
     ///////////////////////////maze variable//////////////////////////
     public Maze mazePrefab;
@@ -50,6 +52,12 @@ public class GameMaster : MonoBehaviour {
         {
             restartLevel();
         }
+
+        PreviousLocation();
+        if (previous_locations.Count == 15)
+        {
+            enemy_spawn_location = previous_locations.Dequeue();
+        }
     } 
 
     void OnGUI()
@@ -82,6 +90,7 @@ public class GameMaster : MonoBehaviour {
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
         player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
+        enemy.SetEnemyLocation(enemy_spawn_location.transform.position);
 
     }
 
@@ -93,7 +102,6 @@ public class GameMaster : MonoBehaviour {
 
     public void PreviousLocation ()
     {
-        Queue previous_locations = new Queue();
         int max_size = 15;
 
         if(previous_locations.Count >= max_size)
