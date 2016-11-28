@@ -44,7 +44,4 @@ public class MazeDoor : MazePassage {
 		OtherSideOfDoor.cell.room.Hide();
 	}
 
-	public override void OnPlayerEnteredCell(){
-
-	}
 }
