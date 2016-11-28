@@ -47,6 +47,7 @@ public class testControl : MonoBehaviour
 
             Vector3 player_location = GameObject.FindGameObjectWithTag("Player").transform.position;
             transform.position = Vector3.Lerp(transform.position, player_location, step);
+            anim.CrossFade(walk_animation);
 
             _dir = target.position - transform.position;
             _dir.Normalize();

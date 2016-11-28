@@ -7,7 +7,6 @@ public class CharacterHealth : MonoBehaviour {
     public int current_health = 100;
     public int health_reduce = 1;
     public AudioClip sound1;
-
 	void Update ()
     {
         if (current_health <= 0)
