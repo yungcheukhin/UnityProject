@@ -5,7 +5,7 @@ using System.Collections;
 public class CharacterHealth : MonoBehaviour {
 
     public int current_health = 100;
-
+    public int health_reduce = 1;
 	void Update ()
     {
         if (current_health <= 0)
@@ -25,14 +25,15 @@ public class CharacterHealth : MonoBehaviour {
 
     void getHit()
     {
-        current_health -= 50;
+        current_health -= health_reduce;
     }
 
     void OnCollisionStay(Collision col)
     {
         if (col.gameObject.tag == "Enemy")
         {
-            InvokeRepeating("getHit", 1.0f, 1.0f);
+            //InvokeRepeating("getHit", 1.0f, 1.0f);
+            getHit();
         }
     }
 }
