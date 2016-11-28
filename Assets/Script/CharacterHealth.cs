@@ -36,7 +36,7 @@ public class CharacterHealth : MonoBehaviour {
     {
         if (col.gameObject.tag == "Enemy")
         {
-            InvokeRepeating("getHit", 1.0f, 3.0f);
+            InvokeRepeating("getHit", 2, 10);
             //getHit();
         }
     }
