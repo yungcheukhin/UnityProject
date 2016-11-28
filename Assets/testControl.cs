@@ -4,7 +4,8 @@ using System.Collections;
 public class testControl : MonoBehaviour
 {
     public Animation anim;
-
+    private GameObject player;
+    private GameObject thisObject;
     private bool flag = true;
     public string death_animation = "Death",
         idle_animation = "Idle",
@@ -15,23 +16,18 @@ public class testControl : MonoBehaviour
     public float speed = 100f;
     private MazeCell currentCell;
 
-    public Transform target;
-    Quaternion targetRotation;
-    Rigidbody rBody;
-
-    public float turnSpeed = 5.0f;
-
-    private Vector3 _dir;
-
     void Start()
     {
-
+        player = GameObject.FindGameObjectWithTag("Player");
+        thisObject = GameObject.FindGameObjectWithTag("Enemy");
+        target = player.transform;
+        SetPlayerTarget(target);
     }
 
     void Update()
     {
         Track();
-
+        LookAtTarget();
     }
 
     void FixedUpdate()
@@ -48,22 +44,11 @@ public class testControl : MonoBehaviour
             Vector3 player_location = GameObject.FindGameObjectWithTag("Player").transform.position;
             transform.position = Vector3.Lerp(transform.position, player_location, step);
             anim.CrossFade(walk_animation);
-
-            _dir = target.position - transform.position;
-            _dir.Normalize();
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_dir), turnSpeed * Time.deltaTime);
-            //transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
-
-
         }
         else
         {   // in collision, do sth and expect no collision occur in next frame
-
             flag = true;
         }
-
-        
-
     }
 
     void OnCollisionStay (Collision col)
@@ -85,6 +70,38 @@ public class testControl : MonoBehaviour
     public void SetEnemyLocation(Vector3 spawnLocation)
     {
         transform.localPosition = spawnLocation;
+    }
+
+
+    // enemy looking at player code below:
+
+    public float lookSmooth = 0.09f;
+    private Transform target;
+    Vector3 destination = Vector3.zero;
+    OwnCharacterController charController;
+    float rotateVel = 0;
+
+    void SetPlayerTarget(Transform t)
+    {
+        target = t;
+        if (target != null)
+        {
+            if (target.GetComponent<OwnCharacterController>())
+            {
+                charController = target.GetComponent<OwnCharacterController>();
+            }
+            else
+                Debug.LogError("Camera target need a character controller");
+        }
+        else
+            Debug.LogError("Camera dont have a target");
+    }
+
+    void LookAtTarget()
+    {
+        float eulerYAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, target.eulerAngles.y, ref rotateVel, lookSmooth);
+        transform.rotation = Quaternion.Euler(0, eulerYAngle, 0);
+
     }
 
 }

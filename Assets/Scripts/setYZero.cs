@@ -3,10 +3,11 @@ using System.Collections;
 
 public class setYZero : MonoBehaviour {
     private Vector3 fitGround;
+    public float height=0.0f;
     // Use this for initialization
     void Start () {
         fitGround = transform.position;
-        fitGround.y = 0;
+        fitGround.y = height;
         transform.localPosition = fitGround;
 
     }
@@ -14,7 +15,7 @@ public class setYZero : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         fitGround = transform.position;
-        fitGround.y = 0;
+        fitGround.y = height;
         transform.localPosition = fitGround;
     }
 
