@@ -75,7 +75,7 @@ public class testControl : MonoBehaviour
 
     // enemy looking at player code below:
 
-    public float lookSmooth = 0.09f;
+    private float lookSmooth = 0.09f;
     private Transform target;
     Vector3 destination = Vector3.zero;
     OwnCharacterController charController;
