@@ -37,13 +37,9 @@ public class OwnCharacterController : MonoBehaviour {
 	Quaternion originalRotation;
     Quaternion targetRotation;
     Rigidbody rBody;
-<<<<<<< HEAD
     float forwardInput, turnInput, directionInput, horizontalInput;
 	bool flipInput;
-=======
-    float forwardInput, turnInput, horizontalInput;
 
->>>>>>> origin/master
     private bool canRun = false;    //store flag to determine run
     private bool haveInput = false; 
     private MazeCell currentCell;
