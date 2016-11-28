@@ -3,12 +3,17 @@ using UnityEditor.SceneManagement;
 using System.Collections;
 
 public class CharacterHealth : MonoBehaviour {
+
     public int current_health = 100;
+
 	void Update ()
     {
         if (current_health <= 0)
         {
-            restartLevel();
+            OwnCharacterController deadth_animation = GameObject.FindGameObjectWithTag("Player").GetComponent<OwnCharacterController>();
+            deadth_animation.Death();
+            Invoke("restartLevel", 3);
+            //restartLevel();
         }
 	}
 
