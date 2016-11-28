@@ -37,8 +37,13 @@ public class OwnCharacterController : MonoBehaviour {
 	Quaternion originalRotation;
     Quaternion targetRotation;
     Rigidbody rBody;
+<<<<<<< HEAD
     float forwardInput, turnInput, directionInput, horizontalInput;
 	bool flipInput;
+=======
+    float forwardInput, turnInput, horizontalInput;
+
+>>>>>>> origin/master
     private bool canRun = false;    //store flag to determine run
     private bool haveInput = false; 
     private MazeCell currentCell;
@@ -52,11 +57,13 @@ public class OwnCharacterController : MonoBehaviour {
     {
         get { return targetRotation; }
     }
-
+    void Start()
+    {
+        Cursor.visible = false;
+    }
     void Awake()
     {
-		Vector3 angles = transform.eulerAngles;
-
+        Vector3 angles = transform.eulerAngles;
 		x = angles.y;
 		y = angles.x;
 		rBody = GetComponent<Rigidbody>();
@@ -69,7 +76,7 @@ public class OwnCharacterController : MonoBehaviour {
         else
             Debug.LogError("The Character dont have any rigidbody");
 
-        forwardInput = turnInput  = horizontalInput  = directionInput = 0;
+        forwardInput = turnInput  = horizontalInput = 0;
 
     }
 
@@ -77,7 +84,7 @@ public class OwnCharacterController : MonoBehaviour {
     {
         forwardInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
-        directionInput = Input.GetAxis("Horizontal");
+        //directionInput = Input.GetAxis("Horizontal");
         canRun = Input.GetKey("left shift");
 		flipInput = Input.GetKeyDown("space");
         haveInput = Input.anyKey;
@@ -91,7 +98,6 @@ public class OwnCharacterController : MonoBehaviour {
 		GetInput();
 		mouseX = Input.GetAxis ("Mouse X");
 		//mouseDelta = mouseX - oldMouseX;
-
 		//Check mouse orbit delta and stop rotating when mouse not moving
 		if (Mathf.Abs(mouseX-oldMouseX)>0) {
 			rotationX += mouseX * sensitivityX;
@@ -101,28 +107,28 @@ public class OwnCharacterController : MonoBehaviour {
 		//rotationX += mouseDelta * sensitivityX;
 
 		//Other direction inputs by keyboard
-		try {
-			//keyboardTurn = Input.GetAxis("Horizontal");
-			if (Mathf.Abs (directionInput) > inputDelay) {	
-//				leftright = Vector3(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"),0);
-//				transform.position += leftright * Time.deltaTime * keyboardSensitivityX;
-			} else {
-				//no keyboard input
+//		try {
+//			//keyboardTurn = Input.GetAxis("Horizontal");
+//			if (Mathf.Abs (directionInput) > inputDelay) {	
+////				leftright = Vector3(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"),0);
+////				transform.position += leftright * Time.deltaTime * keyboardSensitivityX;
+//			} else {
+//				//no keyboard input
  
-				//lock rotation of character
+//				//lock rotation of character
                                                                                                                                        
-				directionInput = 0f;
-				//rotationX = 0f;
-			}
-			//rotationX += keyboardTurn * Time.deltaTime * rotateVel;
-		//	rotationY += Input.GetAxis("Vertical") * Time.deltaTime * rotateVel;
-		}
-		catch (UnityException e) {
-			if (!loggedInputInfo) {
-				Debug.Log ("Hint: Setup axes \"Horizontal\" and \"MouseX\" to support aiming direction. This is optional.\nYou can map them to whichever keys or joystick axes you want to control aiming direction.\n"+e.StackTrace, this);
-				loggedInputInfo = true;
-			}
-		}
+//				directionInput = 0f;
+//				//rotationX = 0f;
+//			}
+//			//rotationX += keyboardTurn * Time.deltaTime * rotateVel;
+//		//	rotationY += Input.GetAxis("Vertical") * Time.deltaTime * rotateVel;
+//		}
+//		catch (UnityException e) {
+//			if (!loggedInputInfo) {
+//				Debug.Log ("Hint: Setup axes \"Horizontal\" and \"MouseX\" to support aiming direction. This is optional.\nYou can map them to whichever keys or joystick axes you want to control aiming direction.\n"+e.StackTrace, this);
+//				loggedInputInfo = true;
+//			}
+//		}
 
 		// rotationX = ClampAngle(rotationX, turnmin, turnmax);
 

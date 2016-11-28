@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SkyboxMaterial: {fileID: 2100000, guid: e523c896238589445ae28370258d26c6, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 97637a2a763b7f24b8da4e139e4144ca, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -357,6 +357,7 @@ MonoBehaviour:
     type: 2}
   enemyPrefab: {fileID: 1000011176706658, guid: 71d043cbbfd8bb040ba53c298effa75a,
     type: 2}
+  cubePrefab: {fileID: 1000011460258108, guid: ca87284fca0040e4988235f7d7f2fbd4, type: 2}
 --- !u!1 &1854430290
 GameObject:
   m_ObjectHideFlags: 0
