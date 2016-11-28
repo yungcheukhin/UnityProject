@@ -901,6 +901,7 @@ GameObject:
   - 114: {fileID: 114000011928078132}
   - 114: {fileID: 114000013377621696}
   - 65: {fileID: 65000011568856264}
+  - 114: {fileID: 114000010052017282}
   m_Layer: 0
   m_Name: MAX
   m_TagString: Player
@@ -1293,7 +1294,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013444896288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 4.5}
+  m_LocalPosition: {x: -1.5, y: 0, z: 8.5}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2172,7 +2173,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 2
 --- !u!65 &65000011568856264
 BoxCollider:
@@ -2222,6 +2223,17 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 1
+--- !u!114 &114000010052017282
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013444896288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b41cc518fd0fc4392b50be005a7c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011928078132
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2237,6 +2249,9 @@ MonoBehaviour:
   inputDelay: 0.1
   forwardVel: 0.6
   runVel: 1.5
+  distance: 5
+  xSpeed: 120
+  ySpeed: 120
   rotateVel: 300
   anim: {fileID: 111000011205308162}
   death_animation: death
@@ -2255,6 +2270,7 @@ MonoBehaviour:
   xLimitMin: -180
   xLimitMax: 180
   haveInput: 0
+  target: {fileID: 0}
 --- !u!114 &114000012872812728
 MonoBehaviour:
   m_ObjectHideFlags: 1
