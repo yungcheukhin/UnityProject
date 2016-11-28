@@ -21,7 +21,7 @@ public class testControl : MonoBehaviour
 
     public float turnSpeed = 5.0f;
 
-    Vector3 _dir;
+    private Vector3 _dir;
 
     void Start()
     {
@@ -31,6 +31,7 @@ public class testControl : MonoBehaviour
     void Update()
     {
         Track();
+
     }
 
     void FixedUpdate()
@@ -45,14 +46,13 @@ public class testControl : MonoBehaviour
             float step = speed * Time.deltaTime;
 
             Vector3 player_location = GameObject.FindGameObjectWithTag("Player").transform.position;
-
             transform.position = Vector3.Lerp(transform.position, player_location, step);
 
-            //_dir = target.position - transform.position;
-            //_dir.Normalize();
-            //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_dir), turnSpeed * Time.deltaTime);
+            _dir = target.position - transform.position;
+            _dir.Normalize();
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_dir), turnSpeed * Time.deltaTime);
             //transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
-            anim.CrossFade(walk_animation);
+
 
         }
         else

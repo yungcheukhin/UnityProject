@@ -2378,7 +2378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a2f219269cef04f9d28999862bf8b7, type: 3}
   m_Name:
   m_EditorClassIdentifier:
-  current_health: 100
+  current_health: 200
+  health_reduce: 1
   sound1: {fileID: 8300000, guid: f8925ff95288bee4086486f3f79497d3, type: 3}
 --- !u!124 &124000013713157842
 Behaviour:
