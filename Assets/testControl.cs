@@ -58,4 +58,9 @@ public class testControl : MonoBehaviour
         transform.localPosition = cell.transform.localPosition;
     }
 
+    public void SetEnemyLocation(Vector3 spawnLocation)
+    {
+        transform.localPosition = spawnLocation;
+    }
+
 }
