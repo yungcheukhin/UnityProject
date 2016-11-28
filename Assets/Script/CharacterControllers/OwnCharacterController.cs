@@ -38,7 +38,7 @@ public class OwnCharacterController : MonoBehaviour {
     Quaternion targetRotation;
     Rigidbody rBody;
     float forwardInput, turnInput, directionInput, horizontalInput;
-
+	bool flipInput;
     private bool canRun = false;    //store flag to determine run
     private bool haveInput = false; 
     private MazeCell currentCell;
@@ -79,6 +79,7 @@ public class OwnCharacterController : MonoBehaviour {
         horizontalInput = Input.GetAxis("Horizontal");
         directionInput = Input.GetAxis("Horizontal");
         canRun = Input.GetKey("left shift");
+		flipInput = Input.GetKeyDown("space");
         haveInput = Input.anyKey;
 
     }
@@ -137,6 +138,10 @@ public class OwnCharacterController : MonoBehaviour {
 
 		//rotationX = Mathf.Repeat(rotationX, 360);
 		//transform.rotation = originalRotation * rotation * Vector3.forward;
+
+		if (flipInput) {
+			anim.CrossFade(flip_animation);
+		}
 
     }
 
