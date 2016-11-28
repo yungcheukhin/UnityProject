@@ -5,6 +5,7 @@ using System.Collections;
 public class CharacterHealth : MonoBehaviour {
 
     public int current_health = 100;
+    public AudioClip sound1;
 
 	void Update ()
     {
@@ -12,6 +13,8 @@ public class CharacterHealth : MonoBehaviour {
         {
             OwnCharacterController deadth_animation = GameObject.FindGameObjectWithTag("Player").GetComponent<OwnCharacterController>();
             deadth_animation.Death();
+            gameObject.GetComponent<AudioSource>().clip = sound1;
+            gameObject.GetComponent<AudioSource>().Play();
             Invoke("restartLevel", 3);
             //restartLevel();
         }
