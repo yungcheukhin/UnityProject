@@ -146,7 +146,7 @@ GameObject:
   - 114: {fileID: 114000011599757066}
   m_Layer: 0
   m_Name: Skeleton_Revised
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1247,7 +1247,7 @@ MonoBehaviour:
   attack_animation: Attack
   run_animation: Run
   walk_animation: Walk
-  speed: 0.5
+  speed: 1.2
 --- !u!137 &137000010590272264
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
