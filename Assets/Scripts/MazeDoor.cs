@@ -45,6 +45,6 @@ public class MazeDoor : MazePassage {
 	}
 
 	public override void OnPlayerEnteredCell(){
-		OtherSideOfDoor
+
 	}
 }
