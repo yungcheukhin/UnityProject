@@ -90,7 +90,7 @@ public class GameMaster : MonoBehaviour {
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
         player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
-        enemy.SetEnemyLocation(enemy_spawn_location.transform.position);
+        enemy.SetEnemyLocation(enemy_spawn_location.position);
 
     }
 

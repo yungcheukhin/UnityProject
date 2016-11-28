@@ -13,8 +13,7 @@ public class CharacterHealth : MonoBehaviour {
         {
             OwnCharacterController deadth_animation = GameObject.FindGameObjectWithTag("Player").GetComponent<OwnCharacterController>();
             deadth_animation.Death();
-            gameObject.GetComponent<AudioSource>().clip = sound1;
-            gameObject.GetComponent<AudioSource>().Play();
+            //GetComponent<AudioSource>().Play();
             Invoke("restartLevel", 3);
             //restartLevel();
         }
