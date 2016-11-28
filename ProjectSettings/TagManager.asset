@@ -8,6 +8,7 @@ TagManager:
   - Name
   - LoadingCamera
   - Player
+  - Enemy
   layers:
   - Default
   - TransparentFX
