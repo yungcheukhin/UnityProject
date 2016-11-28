@@ -22,4 +22,17 @@ public class CharacterHealth : MonoBehaviour {
         string current_scene = EditorSceneManager.GetActiveScene().name;
         EditorSceneManager.LoadScene(current_scene);
     }
+
+    void getHit()
+    {
+        current_health -= 50;
+    }
+
+    void OnCollisionStay(Collision col)
+    {
+        if (col.gameObject.tag == "Enemy")
+        {
+            InvokeRepeating("getHit", 1.0f, 1.0f);
+        }
+    }
 }

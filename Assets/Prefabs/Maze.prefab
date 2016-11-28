@@ -60,13 +60,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f489487ab599f45b181d62c31aa46aa7, type: 2}
   roomSettings:
   - floorMaterial: {fileID: 2100000, guid: 5f73475cf0cad364b9800b85c2a229fc, type: 2}
-    wallMaterial: {fileID: 2100000, guid: 52bad096caad6184589c08061112a341, type: 2}
-  - floorMaterial: {fileID: 2100000, guid: 7b1f582b53ed34fb8a895c21d34d6cfd, type: 2}
-    wallMaterial: {fileID: 2100000, guid: c93005eefa3ee49c084cc0b4e1a3b85d, type: 2}
-  - floorMaterial: {fileID: 2100000, guid: a482f5db0ed124d9ca47f89d651edd14, type: 2}
-    wallMaterial: {fileID: 2100000, guid: 18b63f50e1eed41e28e31bbc33b5b467, type: 2}
-  - floorMaterial: {fileID: 2100000, guid: 1ab50c00f5e744989a090ed703902070, type: 2}
-    wallMaterial: {fileID: 2100000, guid: 04a41fca2fffc4d48803bab4f7af8d2c, type: 2}
+    wallMaterial: {fileID: 2100000, guid: 92f575e356de5d64e9346ceddb75dee5, type: 2}
+  - floorMaterial: {fileID: 2100000, guid: 883f217f3feae4b858262a0ba5f54738, type: 2}
+    wallMaterial: {fileID: 2100000, guid: 2e396b6df87a3c94e8e20e922295ec69, type: 2}
+  - floorMaterial: {fileID: 2100000, guid: 3e8a9f4f5633b45678c0464613984944, type: 2}
+    wallMaterial: {fileID: 2100000, guid: 3302d8980be2b5742b574a2509d9e6b7, type: 2}
+  - floorMaterial: {fileID: 2100000, guid: dd3948b1cc3c247e2bd57e5a859adb63, type: 2}
+    wallMaterial: {fileID: 2100000, guid: 29f48cc2a8ed8f448a8579bc2c980c38, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
