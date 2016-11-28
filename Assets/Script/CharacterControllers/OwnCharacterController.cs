@@ -2,15 +2,12 @@
 using System.Collections;
 
 public class OwnCharacterController : MonoBehaviour {
-	public GameObject camera;
+
 	private CharacterMotor motor;
     public float inputDelay = 0.1f; //perform better control with delay in input
     public float forwardVel = 0.8f;
     public float runVel = 1.6f;
-	public float distance = 5.0f;
-	public float xSpeed = 120.0f;
-	public float ySpeed = 120.0f;
-    public float rotateVel = 80f;   //determine how fast it turn
+    public float horizontalVel = 1.0f;
     public Animation anim;
     public string death_animation = "death",
         flip_animation = "flip",
@@ -33,7 +30,7 @@ public class OwnCharacterController : MonoBehaviour {
 	private float mouseDelta = 0F;
 	private float rotationY = 0F;
 	private float finalRotate = 0F;
-	float turn =0F;
+	float turn = 0F;
 
 	private static bool loggedInputInfo = false;
 	public float turnmin = -90.0f;
@@ -46,7 +43,7 @@ public class OwnCharacterController : MonoBehaviour {
 	Quaternion originalRotation;
     Quaternion targetRotation;
     Rigidbody rBody;
-    float forwardInput, turnInput, keyboardTurn, leftInput, rightInput, directionInput;
+    float forwardInput, turnInput, directionInput, horizontalInput;
 
     private bool canRun = false;
     public bool haveInput = false;
@@ -70,9 +67,6 @@ public class OwnCharacterController : MonoBehaviour {
 		x = angles.y;
 		y = angles.x;
 		rBody = GetComponent<Rigidbody>();
-
-
-
 		motor = GetComponent(typeof(CharacterMotor)) as CharacterMotor;
 		if (motor==null) Debug.Log("Motor is null!!");
 		originalRotation = transform.localRotation;
@@ -82,19 +76,16 @@ public class OwnCharacterController : MonoBehaviour {
         else
             Debug.LogError("The Character dont have any rigidbody");
 
-        forwardInput = turnInput = 0;
+        forwardInput = turnInput  = horizontalInput  = directionInput = 0;
 
     }
 
     void GetInput()
     {
         forwardInput = Input.GetAxis("Vertical");
-        //turnInput = Input.GetAxis("Horizontal");
-        //turnInput = ClampAngle(turnInput, turnmin, turnmax);
-		//keyboardTurn = Input.GetAxis("Horizontal");
-		directionInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxis("Horizontal");
+        directionInput = Input.GetAxis("Horizontal");
         canRun = Input.GetKey("left shift");
-		//keyboardTurn = Input.GetAxis("Horizontal");
         haveInput = Input.anyKey;
 
     }
@@ -167,12 +158,29 @@ public class OwnCharacterController : MonoBehaviour {
 
     void Move()
     {
-        if (Mathf.Abs(forwardInput) > inputDelay)
+        if (Mathf.Abs(horizontalInput) > inputDelay && Mathf.Abs(forwardInput) > inputDelay)
+        {
+            if (canRun)
+            {
+                rBody.velocity = transform.right * horizontalInput * horizontalVel + transform.forward * forwardInput * runVel;
+                if(forwardInput <0) rBody.velocity = transform.right * horizontalInput * horizontalVel + transform.forward * forwardInput * forwardVel;
+                anim.CrossFade(run_animation);
+            }
+            else
+            {
+                rBody.velocity = transform.right * horizontalInput * horizontalVel + transform.forward * forwardInput * forwardVel;
+                anim.CrossFade(walk_animation);
+            }
+        }
+        else if (Mathf.Abs(horizontalInput) > inputDelay)
+        {
+            rBody.velocity = transform.right * horizontalInput * horizontalVel;
+            anim.CrossFade(run_animation);
+        }
+        else if (Mathf.Abs(forwardInput) > inputDelay)
         {
             //move
             //transform.forward = rBody.
-            rBody.velocity = transform.forward * forwardInput * forwardVel;
-
             if (canRun)
             {
                 rBody.velocity = transform.forward * forwardInput * runVel;

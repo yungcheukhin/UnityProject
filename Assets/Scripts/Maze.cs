@@ -8,7 +8,7 @@ public class Maze : MonoBehaviour {
 
 	public MazeCell cellPrefab;
 
-	public float generationStepDelay;
+	//  public float generationStepDelay;
 
 	public MazePassage passagePrefab;
 
@@ -42,12 +42,12 @@ public class Maze : MonoBehaviour {
 
 
 	public IEnumerator Generate () {
-		WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
+		//  WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
 		cells = new MazeCell[size.x, size.z];
 		List<MazeCell> activeCells = new List<MazeCell>();
 		DoFirstGenerationStep(activeCells);
 		while (activeCells.Count > 0) {
-			yield return delay;
+			yield return 0;
 			DoNextGenerationStep(activeCells);
 		}
 	}
