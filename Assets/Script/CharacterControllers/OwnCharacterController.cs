@@ -82,7 +82,7 @@ public class OwnCharacterController : MonoBehaviour {
         horizontalInput = Input.GetAxis("Horizontal");
         //directionInput = Input.GetAxis("Horizontal");
         canRun = Input.GetKey("left shift");
-		flipInput = Input.GetKeyDown("space");
+		flipInput = Input.GetKey("space");
         haveInput = Input.anyKey;
 
     }

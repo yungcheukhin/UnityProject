@@ -5,7 +5,8 @@ using System.Collections;
 public class CharacterHealth : MonoBehaviour {
 
     public int current_health = 100;
-    public int health_reduce = 1;
+    public int health_reduce = 5;
+	public int health_increase = 2;
     public AudioClip sound1;
 	void Update ()
     {
@@ -19,6 +20,9 @@ public class CharacterHealth : MonoBehaviour {
             Invoke("restartLevel", 3);
             //restartLevel();
         }
+		if (Input.GetKeyUp ("space")) {
+			externalHealthGain();
+		}
 	}
 
     public void restartLevel()
@@ -32,11 +36,15 @@ public class CharacterHealth : MonoBehaviour {
         current_health -= health_reduce;
     }
 
+	void externalHealthGain(){
+		current_health += health_increase;
+	}
+
     void OnCollisionStay(Collision col)
     {
         if (col.gameObject.tag == "Enemy")
         {
-            InvokeRepeating("getHit", 2, 10);
+            InvokeRepeating("getHit", 2, 5);
             //getHit();
         }
     }
