@@ -22,7 +22,7 @@ public class CharacterHealth : MonoBehaviour {
         }
 
 		//Flip to gain health
-		if (Input.GetKeyUp ("space")&&(current_health<=200)) {
+		if (Input.GetKeyUp ("space")&&(current_health<=198)) {
 			externalHealthGain();
 		}
 	}

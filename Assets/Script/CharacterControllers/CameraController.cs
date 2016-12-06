@@ -89,40 +89,30 @@ public class CameraController : MonoBehaviour {
             Debug.LogError("Camera dont have a target");
     }
 
+
     void LateUpdate()
     {
-		//MouseMovement(target);
 		rotationY += Input.GetAxis ("Mouse Y") * sensitivityCamY;
 		rotateHead = rotationY * Time.deltaTime;
 		rotateHead = Mathf.Clamp(rotateHead, yLimitMin, yLimitMax); 
 		rotate *= Quaternion.AngleAxis(rotateHead, -Vector3.right);
-		//float y = player.transform.rotation.eulerAngles;
 		transform.rotation = rotate;
-		//transform.rotation = Quaternion.Euler(player.transform.rotation.eulerAngles.x, 0, 0);
 
 		currentHeight = transform.position.y;
 		currentHeight = Mathf.Lerp (currentHeight, wantedHeight, heightDamping * Time.deltaTime);
 
-//
-//		transform.position.y = currentHeight;
-//		transform.LookAt (target);
-
-		//rotationY = ClampAngle(rotationY, yLimitMin, 10.0f);
-
-		//Quaternion rotation = Quaternion.Euler (rotationY, 0, 0);
 
 		Quaternion yQuaternion = Quaternion.AngleAxis (rotationY, -Vector3.right);
 
     }
+    
 
 	void MouseMovement(Transform t){
 		//with rotation and position
 		if (t) {
-			//x += Input.GetAxis("Mouse X") * xSpeed * distance * xyOffset;
 			y -= Input.GetAxis("Mouse Y") * ySpeed * xyOffset;
 
 			y = ClampAngle(y, yLimitMin, yLimitMax);
-			//x = ClampAngle(x, xLimitMin, xLimitMax);
 
 			Quaternion rotation = Quaternion.Euler (y, 0, 0);
 
@@ -135,10 +125,8 @@ public class CameraController : MonoBehaviour {
 
 			Vector3 negDist = new Vector3 (0.0f, 4.0f, -distance);
 			Vector3 position = rotation * negDist + t.position;
-
-			//transform.rotation = rotation;
 			transform.position = position;
-			//transform.position.x = 0;
+
 		}
 
 	}

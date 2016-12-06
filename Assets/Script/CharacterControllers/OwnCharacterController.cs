@@ -89,18 +89,17 @@ public class OwnCharacterController : MonoBehaviour {
 
     void Update()   //dont require physic
     {
-       
+
 		oldMouseX = mouseX;
 		GetInput();
 		mouseX = Input.GetAxis ("Mouse X");
-		//mouseDelta = mouseX - oldMouseX;
+
 		//Check mouse orbit delta and stop rotating when mouse not moving
 		if (Mathf.Abs(mouseX-oldMouseX)>0) {
 			rotationX += mouseX * sensitivityX;
 		} else {
 			rotationX = 0;
 		}
-		//rotationX += mouseDelta * sensitivityX;
 
 		//Other direction inputs by keyboard
 //		try {
@@ -126,21 +125,17 @@ public class OwnCharacterController : MonoBehaviour {
 //			}
 //		}
 
-		// rotationX = ClampAngle(rotationX, turnmin, turnmax);
-
+		//Convert Mouse X rotation into Quaternion
 		Quaternion rotation = Quaternion.Euler (0, rotationX, 0);
-
 		turnInput = rotationX;
-
 		turn = turnInput * Time.deltaTime;
 		turn = Mathf.Clamp(turn, turnmin, turnmax); 
-		//turn *= rotateVel;
+
+		//Rotate the player centering at it's Y-axis
 		targetRotation *= Quaternion.AngleAxis(turn, Vector3.up);
 		transform.rotation = targetRotation;
 
-		//rotationX = Mathf.Repeat(rotationX, 360);
-		//transform.rotation = originalRotation * rotation * Vector3.forward;
-
+		//Flip animation Input
 		if (flipInput) {
 			anim.CrossFade(flip_animation);
 		}
@@ -152,6 +147,8 @@ public class OwnCharacterController : MonoBehaviour {
         Move();
     }
 
+
+	//Forward input, with walk, run or idle animation
     void Move()
     {
         if (Mathf.Abs(horizontalInput) > inputDelay && Mathf.Abs(forwardInput) > inputDelay)
@@ -175,8 +172,7 @@ public class OwnCharacterController : MonoBehaviour {
         }
         else if (Mathf.Abs(forwardInput) > inputDelay)
         {
-            //move
-            //transform.forward = rBody.
+
             if (canRun)
             {
                 rBody.velocity = transform.forward * forwardInput * runVel;
@@ -196,10 +192,7 @@ public class OwnCharacterController : MonoBehaviour {
         }
     }
 
-    void Mouse_move(){
-
-	}
-
+	//Extra Turning function
     void Turn()
     {   
 		//find where to apply this statement
@@ -215,12 +208,14 @@ public class OwnCharacterController : MonoBehaviour {
 		transform.rotation = targetRotation;
     }
 
+	//Death animation
     public void Death()
     {
         rBody.velocity = Vector3.zero;
         anim.CrossFade(death_animation);
     }
 
+	//Clamp Angles
 	public static float ClampAngle(float angle, float min, float max){
 		if (angle < -360F)
 			angle += 360F;
@@ -229,6 +224,7 @@ public class OwnCharacterController : MonoBehaviour {
 		return Mathf.Clamp(angle, min, max);
 	}
 
+	//Set at Maze location
 	public void SetLocation(MazeCell cell){
 		currentCell = cell;
 		transform.localPosition = cell.transform.localPosition;
