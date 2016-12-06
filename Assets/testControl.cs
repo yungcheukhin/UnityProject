@@ -13,7 +13,8 @@ public class testControl : MonoBehaviour
         run_animation = "Run",
         walk_animation = "Walk";
 
-    public float speed = 100f;
+	//Speed of enemy
+    public float speed = 1.5f;
     private MazeCell currentCell;
 
     void Start()
@@ -32,13 +33,14 @@ public class testControl : MonoBehaviour
 
     void FixedUpdate()
     {
-      //  rBody.AddForce(_dir * speed);
+
     }
 
     void Track()
     {
         if (flag)
-        {   // not in collision
+        {   
+			// not in collision
             float step = speed * Time.deltaTime;
 
             Vector3 player_location = GameObject.FindGameObjectWithTag("Player").transform.position;
