@@ -10,17 +10,19 @@ public class CharacterHealth : MonoBehaviour {
     public AudioClip sound1;
 	void Update ()
     {
+		//Dealth condition
         if (current_health <= 0)
         {
             OwnCharacterController deadth_animation = GameObject.FindGameObjectWithTag("Player").GetComponent<OwnCharacterController>();
             deadth_animation.Death();
-            //AudioSource audio = GetComponent<AudioSource>();
+            // audio = GetComponent<AudioSource>();
             //audio.Play();
-            //yield return new WaitForSeconds(audio.clip.length);
             Invoke("restartLevel", 3);
             //restartLevel();
         }
-		if (Input.GetKeyUp ("space")) {
+
+		//Flip to gain health
+		if (Input.GetKeyUp ("space")&&(current_health<=200)) {
 			externalHealthGain();
 		}
 	}

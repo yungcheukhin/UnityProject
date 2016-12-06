@@ -14,7 +14,7 @@ public class testControl : MonoBehaviour
         walk_animation = "Walk";
 
 	//Speed of enemy
-    public float speed = 1.5f;
+    public float speed = 2f;
     private MazeCell currentCell;
 
     void Start()
