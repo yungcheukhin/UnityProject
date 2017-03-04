@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 1488476336}
   - component: {fileID: 1488476337}
   m_Layer: 0
-  m_Name: GameMaster
+  m_Name: GM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -411,6 +411,10 @@ Prefab:
         type: 2}
       propertyPath: Player_health
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911689027729322, guid: 82971fa2e0c0f1d4fa49d6c8a04af407, type: 2}
+      propertyPath: m_Name
+      value: GM
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 82971fa2e0c0f1d4fa49d6c8a04af407, type: 2}

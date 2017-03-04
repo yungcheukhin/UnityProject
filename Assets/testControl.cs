@@ -53,7 +53,7 @@ public class testControl : MonoBehaviour
         }
     }
 
-    void OnCollisionStay (Collision col)
+    /*void OnCollisionStay (Collision col)
     {
         if(col.gameObject.tag == ("Player"))
         {
@@ -61,7 +61,7 @@ public class testControl : MonoBehaviour
             flag = false;
             anim.CrossFade(attack_animation);
         }
-    }
+    }*/
 
     public void SetLocation(MazeCell cell)
     {

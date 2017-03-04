@@ -1,31 +1,32 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEditor.SceneManagement;
 using System.Collections;
 
 public class CharacterHealth : MonoBehaviour {
 
-    public int current_health = 100;
-    public int health_reduce = 5;
-	public int health_increase = 2;
     public AudioClip sound1;
+    public int starting_health = 100;
+    public int current_health;
+    public Image damage_image;
+    public float flash_speed = 5f;
+    public Color flash_colour = new Color(1f, 0f, 0f, 0.1f);
+
+    bool isDead;
+    bool damaged;
+
 	void Update ()
     {
-		//Dealth condition
-        if (current_health <= 0)
+        if (damaged)
         {
-            OwnCharacterController deadth_animation = GameObject.FindGameObjectWithTag("Player").GetComponent<OwnCharacterController>();
-            deadth_animation.Death();
-            // audio = GetComponent<AudioSource>();
-            //audio.Play();
-            Invoke("restartLevel", 3);
-            //restartLevel();
+            damage_image.color = flash_colour;
         }
-
-		//Flip to gain health
-		if (Input.GetKeyUp ("space")&&(current_health<=198)) {
-			externalHealthGain();
-		}
-	}
+        else
+        {
+            damage_image.color = Color.Lerp(damage_image.color, Color.clear, flash_speed * Time.deltaTime);
+        }
+        damaged = false;
+    }
 
     public void restartLevel()
     {
@@ -33,21 +34,28 @@ public class CharacterHealth : MonoBehaviour {
         EditorSceneManager.LoadScene(current_scene);
     }
 
-    void getHit()
+    public void TakeDamage (int amount)
     {
-        current_health -= health_reduce;
-    }
+        damaged = true;
 
-	void externalHealthGain(){
-		current_health += health_increase;
-	}
+        current_health -= amount;
 
-    void OnCollisionStay(Collision col)
-    {
-        if (col.gameObject.tag == "Enemy")
+        if (current_health <= 0 && !isDead)
         {
-            InvokeRepeating("getHit", 2, 5);
-            //getHit();
+            Death();
         }
     }
+
+    void Death()
+    {
+        isDead = true;
+
+        OwnCharacterController deadth_animation = GameObject.FindGameObjectWithTag("Player").GetComponent<OwnCharacterController>();
+        deadth_animation.Death();
+        // audio = GetComponent<AudioSource>();
+        //audio.Play();
+        Invoke("restartLevel", 3);
+        //restartLevel();
+    }
+
 }
