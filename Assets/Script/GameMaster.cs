@@ -10,11 +10,12 @@ public class GameMaster : MonoBehaviour {
     public float offsetY = 40;
     public float sizeX  = 100;
     public float sizeY = 40;
+    public int Player_health = 100;
     public Transform musicPrefab;
     bool RestartFlag = false;   //true if the game needa restart
     Queue <Transform> previous_locations = new Queue<Transform>();
     Transform enemy_spawn_location;
-    public int Player_health = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterHealth>().current_health;
+    
 
     ///////////////////////////maze variable//////////////////////////
     public Maze mazePrefab;
@@ -32,11 +33,9 @@ public class GameMaster : MonoBehaviour {
     /////////////////////////////////End///////////////////////////////
 
     // Update is called once per frame
-    private void Start ()
+    private void Awake()
     {
-        StartCoroutine(BeginGame());    //generate maze
-
-        if(instance == null) //To check the existence of the GM to avoid two instances of GM
+        if (instance == null) //To check the existence of the GM to avoid two instances of GM
         {
             instance = this;
         }
@@ -45,12 +44,19 @@ public class GameMaster : MonoBehaviour {
             Destroy(gameObject);
         }
 
+        DontDestroyOnLoad(gameObject); //Keep the GM persist between scenes
+
         if (!GameObject.FindGameObjectWithTag("MM"))
         {
             var mManger = Instantiate(musicPrefab, transform.position, Quaternion.identity);
             mManger.name = musicPrefab.name;
             DontDestroyOnLoad(mManger);
         }
+    }
+
+    private void Start ()
+    {
+        StartCoroutine(BeginGame());    //generate maze
 	}
     
     private void Update()
