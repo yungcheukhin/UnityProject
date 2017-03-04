@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class GameMaster : MonoBehaviour {
 
+    public static GameMaster instance = null;//make the game master as an instance so that we can access it elsewhere
     public float offsetY = 40;
     public float sizeX  = 100;
     public float sizeY = 40;
@@ -13,6 +14,7 @@ public class GameMaster : MonoBehaviour {
     bool RestartFlag = false;   //true if the game needa restart
     Queue <Transform> previous_locations = new Queue<Transform>();
     Transform enemy_spawn_location;
+    public int Player_health = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterHealth>().current_health;
 
     ///////////////////////////maze variable//////////////////////////
     public Maze mazePrefab;
@@ -33,6 +35,15 @@ public class GameMaster : MonoBehaviour {
     private void Start ()
     {
         StartCoroutine(BeginGame());    //generate maze
+
+        if(instance == null) //To check the existence of the GM to avoid two instances of GM
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
 
         if (!GameObject.FindGameObjectWithTag("MM"))
         {
@@ -68,7 +79,7 @@ public class GameMaster : MonoBehaviour {
         if (MapCreated)
         {
             string playerName = PlayerPrefs.GetString("player_name");
-            int currentHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterHealth>().current_health;
+            int currentHealth = Player_health;
             GUI.Box(new Rect(Screen.width / 2 - sizeX / 2, offsetY, sizeX, sizeY), playerName+"\nHealth: " + currentHealth);
         }
     }
