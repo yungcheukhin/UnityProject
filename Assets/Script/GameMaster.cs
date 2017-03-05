@@ -11,6 +11,7 @@ public class GameMaster : MonoBehaviour {
     public float sizeX  = 100;
     public float sizeY = 40;
     public Transform musicPrefab;
+    private int current_health;
     bool RestartFlag = false;   //true if the game needa restart
     Queue <Transform> previous_locations = new Queue<Transform>();
     Transform enemy_spawn_location;
@@ -21,6 +22,7 @@ public class GameMaster : MonoBehaviour {
     public GameObject enemyPrefab;
     public GameObject cubePrefab;
     private OwnCharacterController player ;
+    private GameObject Max;
     private testControl enemy;
     private CubeControl cube;
     private Maze mazeInstance;
@@ -42,7 +44,7 @@ public class GameMaster : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        Instantiate(gameObject);
+        //Instantiate(gameObject);
         DontDestroyOnLoad(gameObject); //Keep the GM persist between scenes
 
         if (!GameObject.FindGameObjectWithTag("MM"))
@@ -84,8 +86,9 @@ public class GameMaster : MonoBehaviour {
         if (MapCreated)
         {
             string playerName = PlayerPrefs.GetString("player_name");
-            int currentHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterHealth>().current_health;
-            GUI.Box(new Rect(Screen.width / 2 - sizeX / 2, offsetY, sizeX, sizeY), playerName+"\nHealth: " + currentHealth);
+            Max = GameObject.FindGameObjectWithTag("Player");
+            current_health = Max.GetComponent<CharacterHealth>().current_health;
+            GUI.Box(new Rect(Screen.width / 2 - sizeX / 2, offsetY, sizeX, sizeY), playerName+"\nHealth: " + current_health);
         }
     }
   

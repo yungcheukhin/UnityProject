@@ -1275,7 +1275,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time_between_attack: 0.5
   attack_damage: 10
-  anim: {fileID: 0}
+  anim: {fileID: 111000011770863688}
+  attack_animation: Attack
+  idle_animation: Idle
 --- !u!137 &137000010590272264
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

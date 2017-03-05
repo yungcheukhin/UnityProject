@@ -31,11 +31,6 @@ public class testControl : MonoBehaviour
         LookAtTarget();
     }
 
-    void FixedUpdate()
-    {
-
-    }
-
     void Track()
     {
         if (flag)

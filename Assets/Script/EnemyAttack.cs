@@ -10,17 +10,15 @@ public class EnemyAttack : MonoBehaviour {
     public Animation anim;
     GameObject player;
     CharacterHealth player_health;
-    public string attack_animation = "Attack", idle_animation = "Idle",;
+    public string attack_animation = "Attack", idle_animation = "Idle";
 
-    // Use this for initialization
     void Awake ()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         player_health = player.GetComponent<CharacterHealth>();
-        anim.CrossFade(attack_animation);
     }
 
-    void OnTriggerEnter (Collider other)
+    void OnCollisionStay (Collision other)
     {
         if(other.gameObject == player)
         {
@@ -28,7 +26,7 @@ public class EnemyAttack : MonoBehaviour {
         }
     }
 
-    void OnTriggerExit (Collider other)
+    void OnCollisionExit (Collision other)
     {
         if(other.gameObject == player)
         {
@@ -58,6 +56,7 @@ public class EnemyAttack : MonoBehaviour {
         if(player_health.current_health > 0)
         {
             player_health.TakeDamage(attack_damage);
+            anim.CrossFade(attack_animation);
         }
     }
 }
