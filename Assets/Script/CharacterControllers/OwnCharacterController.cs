@@ -41,7 +41,8 @@ public class OwnCharacterController : MonoBehaviour {
 	bool flipInput;
 
     private bool canRun = false;    //store flag to determine run
-    private bool haveInput = false; 
+    private bool haveInput = false;
+    private bool isDead = false;
     private MazeCell currentCell;
 
 	public Transform target;
@@ -101,30 +102,6 @@ public class OwnCharacterController : MonoBehaviour {
 			rotationX = 0;
 		}
 
-		//Other direction inputs by keyboard
-//		try {
-//			//keyboardTurn = Input.GetAxis("Horizontal");
-//			if (Mathf.Abs (directionInput) > inputDelay) {	
-////				leftright = Vector3(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"),0);
-////				transform.position += leftright * Time.deltaTime * keyboardSensitivityX;
-//			} else {
-//				//no keyboard input
- 
-//				//lock rotation of character
-                                                                                                                                       
-//				directionInput = 0f;
-//				//rotationX = 0f;
-//			}
-//			//rotationX += keyboardTurn * Time.deltaTime * rotateVel;
-//		//	rotationY += Input.GetAxis("Vertical") * Time.deltaTime * rotateVel;
-//		}
-//		catch (UnityException e) {
-//			if (!loggedInputInfo) {
-//				Debug.Log ("Hint: Setup axes \"Horizontal\" and \"MouseX\" to support aiming direction. This is optional.\nYou can map them to whichever keys or joystick axes you want to control aiming direction.\n"+e.StackTrace, this);
-//				loggedInputInfo = true;
-//			}
-//		}
-
 		//Convert Mouse X rotation into Quaternion
 		Quaternion rotation = Quaternion.Euler (0, rotationX, 0);
 		turnInput = rotationX;
@@ -144,7 +121,7 @@ public class OwnCharacterController : MonoBehaviour {
 
     void FixedUpdate()  //need physic calculation
     {
-        Move();
+        if(!isDead) Move();
     }
 
 
@@ -213,6 +190,7 @@ public class OwnCharacterController : MonoBehaviour {
     {
         rBody.velocity = Vector3.zero;
         anim.CrossFade(death_animation);
+        isDead = true;
     }
 
 	//Clamp Angles

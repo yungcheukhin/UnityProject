@@ -28,7 +28,7 @@ public class GameMaster : MonoBehaviour {
     private Maze mazeInstance;
     private GameObject playerInstance;
     private GameObject enemyInstance;
-    private GameObject cubeInstance;
+    //private GameObject cubeInstance;
     bool MapCreated = false;
     /////////////////////////////////End///////////////////////////////
 
@@ -109,12 +109,12 @@ public class GameMaster : MonoBehaviour {
         yield return StartCoroutine(mazeInstance.Generate());
         playerInstance = Instantiate(playerPrefab) as GameObject;
         enemyInstance = Instantiate(enemyPrefab) as GameObject;
-        cubeInstance = Instantiate(cubePrefab) as GameObject;
+        //cubeInstance = Instantiate(cubePrefab) as GameObject;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
         cube = cubePrefab.GetComponent(typeof(CubeControl)) as CubeControl;
         player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
-        cube.SetCubeLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
+        //cube.SetCubeLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
         if(enemy_spawn_location.position != null)
         {
             enemy.SetEnemyLocation(enemy_spawn_location.position);
