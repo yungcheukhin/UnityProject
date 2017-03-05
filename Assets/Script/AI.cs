@@ -31,6 +31,7 @@ public class AI : MonoBehaviour
         else
         {
             // disable the nav mesh agent.
+            if(nav != null)
             nav.enabled = false;
         }
     }
