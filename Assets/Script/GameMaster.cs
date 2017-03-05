@@ -45,7 +45,7 @@ public class GameMaster : MonoBehaviour {
         }
 
         //Instantiate(gameObject);
-        DontDestroyOnLoad(gameObject); //Keep the GM persist between scenes
+        //DontDestroyOnLoad(gameObject); //Keep the GM persist between scenes
 
         if (!GameObject.FindGameObjectWithTag("MM"))
         {
@@ -71,7 +71,7 @@ public class GameMaster : MonoBehaviour {
 
         if (RestartFlag)
         {
-            restartLevel();
+            RestartGame();
         }
 
         PreviousLocation();
@@ -87,7 +87,8 @@ public class GameMaster : MonoBehaviour {
         {
             string playerName = PlayerPrefs.GetString("player_name");
             Max = GameObject.FindGameObjectWithTag("Player");
-            current_health = Max.GetComponent<CharacterHealth>().current_health;
+            if (Max != null) current_health = Max.GetComponent<CharacterHealth>().current_health;
+            else current_health = 0;
             GUI.Box(new Rect(Screen.width / 2 - sizeX / 2, offsetY, sizeX, sizeY), playerName+"\nHealth: " + current_health);
         }
     }
@@ -115,17 +116,18 @@ public class GameMaster : MonoBehaviour {
         cube = cubePrefab.GetComponent(typeof(CubeControl)) as CubeControl;
         player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
         //cube.SetCubeLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
-        if(enemy_spawn_location.position != null)
-        {
-            enemy.SetEnemyLocation(enemy_spawn_location.position);
-        }
+        StartCoroutine(spawnEnemy(5));
         //enemy.SetEnemyLocation(enemy_spawn_location.position);
     }
 
     private void RestartGame()
     {
-        StopAllCoroutines();
-        Destroy(mazeInstance.gameObject);
+        //StopAllCoroutines();
+        //Destroy(mazeInstance.gameObject);
+        string current_scene = EditorSceneManager.GetActiveScene().name;
+        EditorSceneManager.LoadScene(current_scene);
+        StartCoroutine(BeginGame());
+        RestartFlag = false;
     }
 
     public void PreviousLocation ()
@@ -140,4 +142,12 @@ public class GameMaster : MonoBehaviour {
             previous_locations.Enqueue(GameObject.FindGameObjectWithTag("Player").transform);
     }
 
+    IEnumerator spawnEnemy(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (enemy_spawn_location.position != null && enemy_spawn_location != null)
+        {
+            enemy.SetEnemyLocation(enemy_spawn_location.position);
+        }
+    }
 }
