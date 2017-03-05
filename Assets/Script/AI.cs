@@ -5,16 +5,16 @@ using UnityEngine.AI;
 
 public class AI : MonoBehaviour
 {
-    Transform player;               // Reference to the player's position.
-    CharacterHealth playerHealth;      // Reference to the player's health.
-    NavMeshAgent nav;               // Reference to the nav mesh agent.
+    private Transform player_location;       // Reference to the player's position.
+    private CharacterHealth playerHealth;    // Reference to the player's health.
+    private NavMeshAgent nav;                // Reference to the nav mesh agent.
 
 
     void Awake()
     {
         // Set up the references.
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        playerHealth = player.GetComponent<CharacterHealth>();
+        player_location = GameObject.FindGameObjectWithTag("Player").transform;
+        playerHealth = player_location.GetComponent<CharacterHealth>();
         nav = GetComponent<NavMeshAgent>();
     }
 
@@ -25,7 +25,7 @@ public class AI : MonoBehaviour
         if (playerHealth.current_health > 0)
         {
             // set the destination of the nav mesh agent to the player.
-            nav.SetDestination(player.position);
+            nav.SetDestination(player_location.position);
         }
         else
         {
