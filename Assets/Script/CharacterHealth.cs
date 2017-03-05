@@ -14,8 +14,8 @@ public class CharacterHealth : MonoBehaviour {
     //public float flash_speed = 5f;
     //public Color flash_colour = new Color(1f, 0f, 0f, 0.1f);
 
-    bool isDead;
-    bool damaged;
+    //bool isDead = false;
+    bool damaged = false;
 
 	void Update ()
     {
@@ -28,6 +28,14 @@ public class CharacterHealth : MonoBehaviour {
             damage_image.color = Color.Lerp(damage_image.color, Color.clear, flash_speed * Time.deltaTime);
         }
         damaged = false;*/
+
+        if (current_health <= 0)
+        {
+            anim.CrossFade("death");
+
+            Invoke("restartLevel", 3);
+            //restartLevel();
+        }
     }
 
     public void restartLevel()
@@ -42,23 +50,6 @@ public class CharacterHealth : MonoBehaviour {
 
         current_health -= amount;
 
-        if (current_health <= 0 && !isDead)
-        {
-            Death();
-        }
-    }
-
-    void Death()
-    {
-        isDead = true;
-
-        anim.CrossFade("death");
-        //OwnCharacterController deadth_animation = GameObject.FindGameObjectWithTag("Player").GetComponent<OwnCharacterController>();
-        //deadth_animation.Death();
-        // audio = GetComponent<AudioSource>();
-        //audio.Play();
-        Invoke("restartLevel", 3);
-        //restartLevel();
     }
 
 }

@@ -41,6 +41,7 @@ public class EnemyAttack : MonoBehaviour {
         if(timer >= time_between_attack && player_in_range)
         {
             Attack();
+            anim.CrossFade(attack_animation);
         }
 
         if (player_health.current_health <= 0)
@@ -56,7 +57,6 @@ public class EnemyAttack : MonoBehaviour {
         if(player_health.current_health > 0)
         {
             player_health.TakeDamage(attack_damage);
-            anim.CrossFade(attack_animation);
         }
     }
 }
