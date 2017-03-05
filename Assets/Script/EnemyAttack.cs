@@ -3,19 +3,23 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour {
 
-    public float time_between_attack = 0.5f;
+    public float time_between_attack = 2.0f;
     public int attack_damage = 10;
     bool player_in_range;
     float timer;
     public Animation anim;
     GameObject player;
+    GameObject enemy;
     CharacterHealth player_health;
+    testControl ctrl;
     public string attack_animation = "Attack", idle_animation = "Idle";
 
     void Awake ()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
         player_health = player.GetComponent<CharacterHealth>();
+        ctrl = enemy.GetComponent<testControl>();
     }
 
     void OnCollisionStay (Collision other)
@@ -41,13 +45,13 @@ public class EnemyAttack : MonoBehaviour {
         if(timer >= time_between_attack && player_in_range)
         {
             Attack();
-            anim.CrossFade(attack_animation);
+            ctrl.underAttack();
         }
 
-        if (player_health.current_health <= 0)
-        {
-            anim.CrossFade(idle_animation);
-        }
+        //if (player_health.current_health <= 0)
+        //{
+        //    anim.CrossFade(idle_animation);
+        //}
     }
 
     void Attack()

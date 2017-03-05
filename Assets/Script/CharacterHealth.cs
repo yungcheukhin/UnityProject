@@ -32,7 +32,6 @@ public class CharacterHealth : MonoBehaviour {
         if (current_health <= 0)
         {
             anim.CrossFade("death");
-
             Invoke("restartLevel", 3);
             //restartLevel();
         }
