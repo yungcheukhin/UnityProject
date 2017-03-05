@@ -15,7 +15,7 @@ public class testControl : MonoBehaviour
         walk_animation = "Walk";
 
 	//Speed of enemy
-    public float speed = 2f;
+    public float enemy_movement_speed = 2f;
     private MazeCell currentCell;
 
     void Start()
@@ -37,7 +37,7 @@ public class testControl : MonoBehaviour
         if (flag && !underattack)
         {   
 			// not in collision
-            float step = speed * Time.deltaTime;
+            float step = enemy_movement_speed * Time.deltaTime;
 
             Vector3 player_location = GameObject.FindGameObjectWithTag("Player").transform.position;
             transform.position = Vector3.Lerp(transform.position, player_location, step);

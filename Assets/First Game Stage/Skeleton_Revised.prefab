@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 114000011599757066}
   - component: {fileID: 114000012599234938}
   - component: {fileID: 114985987463550912}
+  - component: {fileID: 114215951408096242}
   m_Layer: 0
   m_Name: Skeleton_Revised
   m_TagString: Enemy
@@ -1262,6 +1263,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   height: 0
+--- !u!114 &114215951408096242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011176706658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b69ef671ad52eef4e91002dca47cb3cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114985987463550912
 MonoBehaviour:
   m_ObjectHideFlags: 1
