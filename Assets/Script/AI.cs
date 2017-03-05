@@ -22,9 +22,10 @@ public class AI : MonoBehaviour
     void Update()
     {
         // If the enemy and the player have health left...
-        if (playerHealth.current_health > 0)
+        if (playerHealth.current_health > 0 && nav != null)
         {
             // set the destination of the nav mesh agent to the player.
+            if(player != null)
             nav.SetDestination(player.position);
         }
         else
