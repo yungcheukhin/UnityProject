@@ -141,7 +141,8 @@ public class OwnCharacterController : MonoBehaviour {
 
 		if (openDoor) {
 			//door.OnPlayerEntered ();
-			door.hinge.localRotation = Quaternion.Euler (0f, -90f, 0f);
+			door.OnPlayerEntered();
+//			door.hinge.localRotation = Quaternion.Euler (0f, -90f, 0f);
 
 			//OtherSideOfDoor.hinge.localRotation = hinge.localRotation = isMirrored ? mirroredRotation : normalRotation;
 		}

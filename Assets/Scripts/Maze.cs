@@ -27,7 +27,7 @@ public class Maze : MonoBehaviour {
 
 	public IntVector2 RandomCoordinates {
 		get {
-			return new IntVector2(Random.Range(0, size.x), Random.Range(0, size.z));
+			return new IntVector2(Random.Range(2, size.x), Random.Range(2, size.z));
 		}
 	}
 
@@ -71,7 +71,7 @@ public class Maze : MonoBehaviour {
 				neighbor = CreateCell(coordinates);
 
 				//Create doors at random probability at range 0f-1f
-				doorProbability = Random.Range (0f, 1f);
+				doorProbability = Random.Range (0f, 0.1f);
 
 				CreatePassage(currentCell, neighbor, direction);
 				activeCells.Add(neighbor);
