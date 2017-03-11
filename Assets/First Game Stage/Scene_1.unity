@@ -377,7 +377,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1530266909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,10 +389,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a145614b679b846b0940f7bb8cc546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 0}
   enemy: {fileID: 1000011176706658, guid: 71d043cbbfd8bb040ba53c298effa75a, type: 2}
   spawnTime: 3
-  spawnPoints: []
+  MinX: 0
+  MaxX: 10
+  MinY: 0
+  MaxY: 10
+  MinZ: 0
+  MaxZ: 10
 --- !u!4 &1530266910
 Transform:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
 
 public class testControl : MonoBehaviour
 {
@@ -13,8 +14,11 @@ public class testControl : MonoBehaviour
         attack_animation = "Attack",
         run_animation = "Run",
         walk_animation = "Walk";
+    private Transform player_location;       // Reference to the player's position.
+    private CharacterHealth playerHealth;    // Reference to the player's health.
+    private NavMeshAgent nav;                // Reference to the nav mesh agent.
 
-	//Speed of enemy
+    //Speed of enemy
     public float enemy_movement_speed = 2f;
     private MazeCell currentCell;
 
@@ -24,12 +28,26 @@ public class testControl : MonoBehaviour
         thisObject = GameObject.FindGameObjectWithTag("Enemy");
         target = player.transform;
         SetPlayerTarget(target);
+        player_location = GameObject.FindGameObjectWithTag("Player").transform;
+        playerHealth = player_location.GetComponent<CharacterHealth>();
+        nav = GetComponent<NavMeshAgent>();
     }
 
     void Update()
     {
-        Track();
         LookAtTarget();
+        // If the enemy and the player have health left...
+        if (playerHealth.current_health > 0)
+        {
+            // set the destination of the nav mesh agent to the player.
+            nav.SetDestination(player_location.position);
+            Track();
+        }
+        else
+        {
+            // disable the nav mesh agent.
+            nav.enabled = false;
+        }
     }
 
     void Track()
@@ -39,8 +57,8 @@ public class testControl : MonoBehaviour
 			// not in collision
             float step = enemy_movement_speed * Time.deltaTime;
 
-            Vector3 player_location = GameObject.FindGameObjectWithTag("Player").transform.position;
-            transform.position = Vector3.Lerp(transform.position, player_location, step);
+            //Vector3 player_location = GameObject.FindGameObjectWithTag("Player").transform.position;
+            //transform.position = Vector3.Lerp(transform.position, player_location, step);
             anim.CrossFade(walk_animation);
         }
         else if(!flag && !underattack)
