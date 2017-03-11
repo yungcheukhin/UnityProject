@@ -69,9 +69,8 @@ public class Maze : MonoBehaviour {
 			MazeCell neighbor = GetCell(coordinates);
 			if (neighbor == null) {
 				neighbor = CreateCell(coordinates);
-
-				//Create doors at random probability at range 0f-1f
-				doorProbability = Random.Range (0f, 0.1f);
+				////Create doors at random probability at range 0f-1f
+				//doorProbability = Random.Range (0f, 0.1f);
 
 				CreatePassage(currentCell, neighbor, direction);
 				activeCells.Add(neighbor);
