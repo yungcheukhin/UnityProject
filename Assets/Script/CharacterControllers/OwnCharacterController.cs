@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class OwnCharacterController : MonoBehaviour {
 
 	private CharacterMotor motor;
@@ -46,6 +47,7 @@ public class OwnCharacterController : MonoBehaviour {
     private bool isDead = false;
 	private bool openDoor = false;
     private MazeCell currentCell;
+	private MazeCell currentCellPos;
 
 	public Transform target;
 
@@ -64,8 +66,6 @@ public class OwnCharacterController : MonoBehaviour {
     void Start()
     {
         Cursor.visible = false;
-		doorInstance = Instantiate (doorPrefab) as GameObject;
-		door = doorPrefab.GetComponent (typeof(MazeDoor)) as MazeDoor;
 //		door =.GetComponent<MazeDoor>();
 		//door = doorPrefab.GetComponent (typeof(MazeDoor)) as MazeDoor;
 //		door.OnPlayerExited();
@@ -80,6 +80,15 @@ public class OwnCharacterController : MonoBehaviour {
 		if (motor==null) Debug.Log("Motor is null!!");
 		originalRotation = transform.localRotation;
         targetRotation = transform.rotation;
+
+		doorInstance = Instantiate (doorPrefab) as GameObject;
+		door = doorPrefab.GetComponent (typeof(MazeDoor)) as MazeDoor;
+		if (door == null) Debug.Log ("Door is null!");
+
+		//Get the current coordinates in 2d form and get Mazecell by 2d-position
+		//check if there is player entered and open door
+//		checkCellHvDoor(T2IntVector2());
+
         if (GetComponent<Rigidbody>())
             rBody = GetComponent<Rigidbody>();
         else
@@ -97,11 +106,11 @@ public class OwnCharacterController : MonoBehaviour {
         canRun = Input.GetKey("left shift");
 		flipInput = Input.GetKey("space");
         haveInput = Input.anyKey;
-		if (Input.GetKey (KeyCode.Z)) {
-			openDoor = true;
-		} else {
-			openDoor = false;
-		}
+//		if (Input.GetKey (KeyCode.Z)) {
+//			openDoor = true;
+//		} else {
+//			openDoor = false;
+//		}
 
     }
 
@@ -135,17 +144,8 @@ public class OwnCharacterController : MonoBehaviour {
 		}
 
 //		player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
-//		enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
-//		cube = cubePrefab.GetComponent(typeof(CubeControl)) as CubeControl;
 //		player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
 
-		if (openDoor) {
-			//door.OnPlayerEntered ();
-			door.OnPlayerEntered();
-//			door.hinge.localRotation = Quaternion.Euler (0f, -90f, 0f);
-
-			//OtherSideOfDoor.hinge.localRotation = hinge.localRotation = isMirrored ? mirroredRotation : normalRotation;
-		}
 			
 
     }
@@ -236,5 +236,18 @@ public class OwnCharacterController : MonoBehaviour {
 		transform.localPosition = cell.transform.localPosition;
 	}
 
+	public IntVector2 T2IntVector2(){
+		Vector2 pos = GameObject.FindGameObjectWithTag ("Player").transform.position;
+		IntVector2 intVectorVar;
+		intVectorVar.x = (int)pos.x;
+		intVectorVar.z = (int)pos.y;
+		return intVectorVar;
+	}
 
+	public void checkCellHvDoor(IntVector2 posIntVectorVar){
+		Maze cell= null;
+//		currentCellPos = cell.GetCell(posIntVectorVar);
+		currentCellPos.transform.localPosition = transform.localPosition;
+		currentCellPos.GetComponent<MazeCell>().OnPlayerEntered();
+	}
 }
