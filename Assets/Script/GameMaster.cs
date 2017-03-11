@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class GameMaster : MonoBehaviour {
 
+    public int game_round = 0;  // 1 = round 1, 2 = round 2, 3 = round 3
     public static GameMaster instance = null;//make the game master as an instance so that we can access it elsewhere
     public float offsetY = 40;
     public float sizeX  = 100;
@@ -17,6 +18,7 @@ public class GameMaster : MonoBehaviour {
     Transform enemy_spawn_location;
 
     ///////////////////////////maze variable//////////////////////////
+    public Maze FixedMaze;
     public Maze mazePrefab;
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
@@ -57,7 +59,26 @@ public class GameMaster : MonoBehaviour {
 
     private void Start ()
     {
-        StartCoroutine(BeginGame());    //generate maze
+        if(game_round == 0)
+        {
+            // game main menu
+        }
+        else if (game_round == 1)
+        {
+            BeginGameR1();
+        }
+        else if (game_round == 2)
+        {
+            BeginGameR2();
+        }
+        else if (game_round == 3)
+        {
+            StartCoroutine(BeginGameR3());
+        }
+        else
+        {
+            //game main menu
+        }
 	}
     
     private void Update()
@@ -104,7 +125,7 @@ public class GameMaster : MonoBehaviour {
         EditorSceneManager.LoadScene(current_scene);
     }
 
-    private IEnumerator BeginGame()
+    private IEnumerator BeginGameR3()
     {
         mazeInstance = Instantiate(mazePrefab) as Maze;
         yield return StartCoroutine(mazeInstance.Generate());
@@ -120,13 +141,53 @@ public class GameMaster : MonoBehaviour {
         //enemy.SetEnemyLocation(enemy_spawn_location.position);
     }
 
+    private void BeginGameR2()
+    {
+        //mazeInstance = Instantiate(mazePrefab) as Maze;
+        //yield return StartCoroutine(mazeInstance.Generate());
+        playerInstance = Instantiate(playerPrefab) as GameObject;
+        enemyInstance = Instantiate(enemyPrefab) as GameObject;
+        //cubeInstance = Instantiate(cubePrefab) as GameObject;
+        player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
+        enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
+        //cube = cubePrefab.GetComponent(typeof(CubeControl)) as CubeControl;
+        player.SetLocation(FixedMaze.GetCell(mazeInstance.RandomCoordinates));
+        //cube.SetCubeLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
+        StartCoroutine(spawnEnemy(5));
+        //enemy.SetEnemyLocation(enemy_spawn_location.position);
+    }
+
+    private void BeginGameR1()
+    {
+
+    }
+
     private void RestartGame()
     {
         //StopAllCoroutines();
         //Destroy(mazeInstance.gameObject);
         string current_scene = EditorSceneManager.GetActiveScene().name;
         EditorSceneManager.LoadScene(current_scene);
-        StartCoroutine(BeginGame());
+        if (game_round == 0)
+        {
+            // game main menu
+        }
+        else if (game_round == 1)
+        {
+            BeginGameR1();
+        }
+        else if (game_round == 2)
+        {
+            BeginGameR2();
+        }
+        else if (game_round == 3)
+        {
+            StartCoroutine(BeginGameR3());
+        }
+        else
+        {
+            //game main menu
+        }
         RestartFlag = false;
     }
 
