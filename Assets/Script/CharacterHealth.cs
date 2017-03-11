@@ -10,12 +10,18 @@ public class CharacterHealth : MonoBehaviour {
     public int current_health = 100;
     public Animation anim;
     public string death_animation = "death";
+    GameMaster gm;
     //public Image damage_image;
     //public float flash_speed = 5f;
     //public Color flash_colour = new Color(1f, 0f, 0f, 0.1f);
 
     //bool isDead = false;
     bool damaged = false;
+
+    private void Awake()
+    {
+        gm = FindObjectOfType<GameMaster>();
+    }
 
 	void Update ()
     {
@@ -32,16 +38,18 @@ public class CharacterHealth : MonoBehaviour {
         if (current_health <= 0)
         {
             anim.CrossFade("death");
-
-            Invoke("restartLevel", 3);
-            //restartLevel();
+            if (!IsInvoking("restartLevel"))
+            {
+                Invoke("restartLevel", 3);
+            }
         }
     }
 
     public void restartLevel()
     {
-        string current_scene = EditorSceneManager.GetActiveScene().name;
-        EditorSceneManager.LoadScene(current_scene);
+        //string current_scene = EditorSceneManager.GetActiveScene().name;
+        //EditorSceneManager.LoadScene(current_scene);
+        gm.setRestart();
     }
 
     public void TakeDamage (int amount)

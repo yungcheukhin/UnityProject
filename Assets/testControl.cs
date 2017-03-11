@@ -7,6 +7,7 @@ public class testControl : MonoBehaviour
     private GameObject player;
     private GameObject thisObject;
     private bool flag = true;
+    private bool underattack = false;
     public string death_animation = "Death",
         idle_animation = "Idle",
         attack_animation = "Attack",
@@ -14,7 +15,7 @@ public class testControl : MonoBehaviour
         walk_animation = "Walk";
 
 	//Speed of enemy
-    public float speed = 2f;
+    public float enemy_movement_speed = 2f;
     private MazeCell currentCell;
 
     void Start()
@@ -33,18 +34,27 @@ public class testControl : MonoBehaviour
 
     void Track()
     {
-        if (flag)
+        if (flag && !underattack)
         {   
 			// not in collision
-            float step = speed * Time.deltaTime;
+            float step = enemy_movement_speed * Time.deltaTime;
 
             Vector3 player_location = GameObject.FindGameObjectWithTag("Player").transform.position;
             transform.position = Vector3.Lerp(transform.position, player_location, step);
             anim.CrossFade(walk_animation);
         }
-        else
+        else if(!flag && !underattack)
         {   // in collision, do sth and expect no collision occur in next frame
             flag = true;
+        }
+        else
+        {   //underattack, play attack anim
+
+            if (!IsInvoking("exitAttack"))
+            {
+                anim.Play(attack_animation);
+                Invoke("exitAttack", 2.0f);
+            }
         }
     }
 
@@ -57,6 +67,16 @@ public class testControl : MonoBehaviour
             anim.CrossFade(attack_animation);
         }
     }*/
+
+    public void underAttack()
+    {
+        underattack = true;
+    }
+
+    public void exitAttack()
+    {
+        underattack = false;
+    }
 
     public void SetLocation(MazeCell cell)
     {
