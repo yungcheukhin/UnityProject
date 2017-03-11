@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class OwnCharacterController : MonoBehaviour {
 
@@ -43,9 +44,15 @@ public class OwnCharacterController : MonoBehaviour {
     private bool canRun = false;    //store flag to determine run
     private bool haveInput = false;
     private bool isDead = false;
+	private bool openDoor = false;
     private MazeCell currentCell;
 
 	public Transform target;
+
+	public MazeDoor door;
+	public GameObject doorInstance;
+	public GameObject doorPrefab;
+
 
 	float x = 0.0f;
 	float y = 0.0f;
@@ -57,6 +64,11 @@ public class OwnCharacterController : MonoBehaviour {
     void Start()
     {
         Cursor.visible = false;
+		doorInstance = Instantiate (doorPrefab) as GameObject;
+		door = doorPrefab.GetComponent (typeof(MazeDoor)) as MazeDoor;
+//		door =.GetComponent<MazeDoor>();
+		//door = doorPrefab.GetComponent (typeof(MazeDoor)) as MazeDoor;
+//		door.OnPlayerExited();
     }
     void Awake()
     {
@@ -85,6 +97,11 @@ public class OwnCharacterController : MonoBehaviour {
         canRun = Input.GetKey("left shift");
 		flipInput = Input.GetKey("space");
         haveInput = Input.anyKey;
+		if (Input.GetKey (KeyCode.Z)) {
+			openDoor = true;
+		} else {
+			openDoor = false;
+		}
 
     }
 
@@ -116,6 +133,19 @@ public class OwnCharacterController : MonoBehaviour {
 		if (flipInput) {
 			anim.CrossFade(flip_animation);
 		}
+
+//		player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
+//		enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
+//		cube = cubePrefab.GetComponent(typeof(CubeControl)) as CubeControl;
+//		player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
+
+		if (openDoor) {
+			//door.OnPlayerEntered ();
+			door.hinge.localRotation = Quaternion.Euler (0f, -90f, 0f);
+
+			//OtherSideOfDoor.hinge.localRotation = hinge.localRotation = isMirrored ? mirroredRotation : normalRotation;
+		}
+			
 
     }
 
@@ -172,9 +202,6 @@ public class OwnCharacterController : MonoBehaviour {
 	//Extra Turning function
     void Turn()
     {   
-		//find where to apply this statement
-		//transform.localEulerAngles = new Vector3 (Camera.main.transform.localEulerAngles.x, transform.localEulerAngles.y, transform.localEulerAngles.z);
-
         //if(Mathf.Abs(turnInput) > inputDelay)
         //{
 			turn = turnInput * Time.deltaTime;
