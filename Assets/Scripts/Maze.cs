@@ -8,7 +8,7 @@ public class Maze : MonoBehaviour {
 
 	public MazeCell cellPrefab;
 
-	//  public float generationStepDelay;
+	// public float generationStepDelay;
 
 	public MazePassage passagePrefab;
 
@@ -39,10 +39,8 @@ public class Maze : MonoBehaviour {
 		return cells[coordinates.x, coordinates.z];
 	}
 
-
-
 	public IEnumerator Generate () {
-		//  WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
+		//WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
 		cells = new MazeCell[size.x, size.z];
 		List<MazeCell> activeCells = new List<MazeCell>();
 		DoFirstGenerationStep(activeCells);
@@ -71,6 +69,10 @@ public class Maze : MonoBehaviour {
 			MazeCell neighbor = GetCell(coordinates);
 			if (neighbor == null) {
 				neighbor = CreateCell(coordinates);
+
+				//Create doors at random probability at range 0f-1f
+				doorProbability = Random.Range (0f, 1f);
+
 				CreatePassage(currentCell, neighbor, direction);
 				activeCells.Add(neighbor);
 			}
