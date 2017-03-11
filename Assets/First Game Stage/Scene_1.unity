@@ -389,14 +389,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a145614b679b846b0940f7bb8cc546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1000011176706658, guid: 71d043cbbfd8bb040ba53c298effa75a, type: 2}
-  spawnTime: 3
-  MinX: 0
-  MaxX: 10
-  MinY: 0
-  MaxY: 10
-  MinZ: 0
-  MaxZ: 10
 --- !u!4 &1530266910
 Transform:
   m_ObjectHideFlags: 0
@@ -15828,6 +15820,10 @@ Prefab:
     - target: {fileID: 4518670166311820, guid: 9154a52428443b44cb55c1d5d5763ce2, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 1360997189303796, guid: 9154a52428443b44cb55c1d5d5763ce2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9154a52428443b44cb55c1d5d5763ce2, type: 2}
