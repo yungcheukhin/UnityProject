@@ -6,14 +6,14 @@ public class OpenChest : MonoBehaviour {
 
     public float distanceToActivate;
     public float setOpenCloseTimer;
+    public GameObject open_chest_prefab;
 
-    float distance;
-    float openCloseTimer;
-
-    bool isSwitchable;
-    bool isOpen;
-
-    GameObject player;
+    private float distance;
+    private float openCloseTimer;
+    private bool isSwitchable;
+    private bool isOpen;
+    private GameObject player;
+    private GameObject open_chest_object;
 
     void Awake()
     {
@@ -49,17 +49,8 @@ public class OpenChest : MonoBehaviour {
 
         if (isOpen)
         {
-            /*animation["Open"].wrapMode = WrapMode.Once;
-            animation.Play("Open");
-            openCloseTimer = setOpenCloseTimer;*/
+            open_chest_object = GameObject.Instantiate(open_chest_prefab, this.transform.position, this.transform.rotation);
+            Destroy(this);
         }
-
-        if (!isOpen)
-        {
-            /*animation.Play("Close");
-            animation["Close"].wrapMode = WrapMode.Once;
-            openCloseTimer = setOpenCloseTimer;*/
-        }
-
     }
 }
