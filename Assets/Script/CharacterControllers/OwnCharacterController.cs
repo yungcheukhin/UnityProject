@@ -49,10 +49,10 @@ public class OwnCharacterController : MonoBehaviour {
     private MazeCell currentCell;
 	private MazeCell currentCellPos;
 
-	public Transform target;
+	private Transform target;
 
-	public MazeDoor door;
-	public GameObject doorInstance;
+	private MazeDoor door;
+	private GameObject doorInstance;
 	public GameObject doorPrefab;
 
 
@@ -100,7 +100,7 @@ public class OwnCharacterController : MonoBehaviour {
 
     void GetInput()
     {
-        forwardInput = Input.GetAxis("Vertical");
+        forwardInput = Input.GetAxis("Vertical");https://www.youtube.com/watch?v=dT9eI40RNoQ&t=10293s
         horizontalInput = Input.GetAxis("Horizontal");
         //directionInput = Input.GetAxis("Horizontal");
         canRun = Input.GetKey("left shift");

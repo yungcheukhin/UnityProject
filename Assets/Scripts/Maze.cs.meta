@@ -1,8 +1,14 @@
 fileFormatVersion: 2
 guid: 1592517cf81484424a60f86dfcafc7eb
+timeCreated: 1489821310
+licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - cellPrefab: {fileID: 11400000, guid: 8cc5710f710a24360a566370d7049cf8, type: 2}
+  - passagePrefab: {fileID: 11400000, guid: 4db582300649e4e399ee4a2665f9e8e6, type: 2}
+  - doorPrefab: {fileID: 114274099013138980, guid: ddd2858d08f2e45f3b4b479b51caf822,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
