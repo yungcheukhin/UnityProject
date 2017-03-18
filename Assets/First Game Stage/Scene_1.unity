@@ -335,14 +335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a145614b679b846b0940f7bb8cc546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
-  spawnTime: 3
-  MinX: 0
-  MaxX: 10
-  MinY: 0
-  MaxY: 10
-  MinZ: 0
-  MaxZ: 10
 --- !u!4 &1530266910
 Transform:
   m_ObjectHideFlags: 0
@@ -393,7 +385,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4863603975516582, guid: 9154a52428443b44cb55c1d5d5763ce2, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1178253339030796, guid: 9154a52428443b44cb55c1d5d5763ce2, type: 2}
       propertyPath: m_StaticEditorFlags
@@ -15875,7 +15867,7 @@ RectTransform:
   - {fileID: 922663627}
   - {fileID: 2087250775}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

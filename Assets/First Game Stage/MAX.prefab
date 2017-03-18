@@ -1295,7 +1295,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013444896288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5, y: 0, z: 5.5}
+  m_LocalPosition: {x: -2.5, y: 0, z: -6.5}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 4000010560199924}
@@ -2186,8 +2186,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: -0.14, z: 0}
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!81 &81000011199450926
 AudioListener:
   m_ObjectHideFlags: 1
@@ -2331,10 +2331,7 @@ MonoBehaviour:
   sensitivityX: 100
   turnmin: -90
   turnmax: 90
-  target: {fileID: 0}
-  door: {fileID: 0}
-  doorInstance: {fileID: 0}
-  doorPrefab: {fileID: 0}
+  doorPrefab: {fileID: 1866844640580890, guid: ddd2858d08f2e45f3b4b479b51caf822, type: 2}
 --- !u!114 &114000012872812728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2377,8 +2374,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound1: {fileID: 8300000, guid: f8925ff95288bee4086486f3f79497d3, type: 3}
-  starting_health: 100
-  current_health: 100
+  starting_health: 10000000
+  current_health: 10000000
   anim: {fileID: 111000011205308162}
   death_animation: death
 --- !u!114 &114000013774968676
