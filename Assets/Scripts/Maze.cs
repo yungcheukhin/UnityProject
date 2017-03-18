@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class Maze : MonoBehaviour {
 
+
+
 	public IntVector2 size;
 
 	public MazeCell cellPrefab;
@@ -21,7 +23,7 @@ public class Maze : MonoBehaviour {
 
 	public MazeRoomSettings[] roomSettings;
 
-	private MazeCell[,] cells;
+	public MazeCell[,] cells;
 
 	private List<MazeRoom> rooms = new List<MazeRoom>();
 
@@ -34,14 +36,17 @@ public class Maze : MonoBehaviour {
 	public bool ContainsCoordinates (IntVector2 coordinate) {
 		return coordinate.x >= 0 && coordinate.x < size.x && coordinate.z >= 0 && coordinate.z < size.z;
 	}
+		
 
 	public MazeCell GetCell (IntVector2 coordinates) {
 		return cells[coordinates.x, coordinates.z];
 	}
 
+
 	public IEnumerator Generate () {
 		//WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
 		cells = new MazeCell[size.x, size.z];
+
 		List<MazeCell> activeCells = new List<MazeCell>();
 		DoFirstGenerationStep(activeCells);
 		while (activeCells.Count > 0) {
@@ -69,6 +74,7 @@ public class Maze : MonoBehaviour {
 			MazeCell neighbor = GetCell(coordinates);
 			if (neighbor == null) {
 				neighbor = CreateCell(coordinates);
+
 				////Create doors at random probability at range 0f-1f
 				//doorProbability = Random.Range (0f, 0.1f);
 
@@ -143,4 +149,6 @@ public class Maze : MonoBehaviour {
 		rooms.Add(newRoom);
 		return newRoom;
 	}
+
+
 }
