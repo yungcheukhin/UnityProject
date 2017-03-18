@@ -10,13 +10,9 @@ public class CharacterHealth : MonoBehaviour {
     public int current_health = 100;
     public Animation anim;
     public string death_animation = "death";
-    GameMaster gm;
-    //public Image damage_image;
-    //public float flash_speed = 5f;
-    //public Color flash_colour = new Color(1f, 0f, 0f, 0.1f);
-
-    //bool isDead = false;
-    bool damaged = false;
+    private GameMaster gm;
+    
+    private bool damaged = false;
 
     private void Awake()
     {
@@ -25,15 +21,6 @@ public class CharacterHealth : MonoBehaviour {
 
 	void Update ()
     {
-        /*if (damaged)
-        {
-            damage_image.color = flash_colour;
-        }
-        else
-        {
-            damage_image.color = Color.Lerp(damage_image.color, Color.clear, flash_speed * Time.deltaTime);
-        }
-        damaged = false;*/
 
         if (current_health <= 0)
         {
@@ -47,8 +34,6 @@ public class CharacterHealth : MonoBehaviour {
 
     public void restartLevel()
     {
-        //string current_scene = EditorSceneManager.GetActiveScene().name;
-        //EditorSceneManager.LoadScene(current_scene);
         gm.setRestart();
     }
 

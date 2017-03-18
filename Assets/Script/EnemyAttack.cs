@@ -47,11 +47,6 @@ public class EnemyAttack : MonoBehaviour {
             Attack();
             ctrl.underAttack();
         }
-
-        //if (player_health.current_health <= 0)
-        //{
-        //    anim.CrossFade(idle_animation);
-        //}
     }
 
     void Attack()
