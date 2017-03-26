@@ -52,9 +52,14 @@ public class OwnCharacterController : MonoBehaviour {
 	private MazeCell cell_arr;
 	private Transform target;
 	private Maze mazeInstance;
+	private MazeRoom roomInstance;
+	private MazeRoom room;
 	private MazeDoor door;
 	private MazeDoor doorInstance;
 	private MazeDoor doorPrefab;
+
+	private List<MazeRoom> roomS = new List<MazeRoom>();
+	private MazeRoom[] roomArr = { };
 
 	float x = 0.0f;
 	float y = 0.0f;
@@ -87,7 +92,7 @@ public class OwnCharacterController : MonoBehaviour {
 		//Get the current coordinates in 2d form and get Mazecell by 2d-position
 		//check if there is player entered and open door
 //		checkCellHvDoor(T2IntVector2());
-
+		//if (roomArr == null) roomArr = FindObjectsOfType<MazeRoom>();
         if (mazeInstance == null) mazeInstance = GetComponent(typeof(Maze)) as Maze;
         if (GetComponent<Rigidbody>())
             rBody = GetComponent<Rigidbody>();
@@ -254,7 +259,12 @@ public class OwnCharacterController : MonoBehaviour {
 
 	public void wallTransSkill(){
 		if (transSkillInput) {
+//			room = roomInstance.FindObjectsOfType<MazeDoor> ();
+
+			//GetComponent(typeof(MazeRoom)) as MazeRoom
+
 			//gameobject.renderer.color.a=0.5;
+
 			//mazeInstance.GetComponent<MazeRoom>.renderer.color.a=0.5;
 		}
 
