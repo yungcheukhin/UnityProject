@@ -241,9 +241,6 @@ public class OwnCharacterController : MonoBehaviour {
 		//cell.transform.position=posIntVectorVar;
 		currentCell.GetComponent<MazeDoor>().OnPlayerEntered();
 		currentCell.GetComponent<MazeDoor>().OnPlayerExited();
-		//currentCell.GetComponent<MazeDoor>().OnPlayerEntered();
-		//currentCellPos.GetComponent<MazeDoor>().OnPlayerEntered();
-		//currentCellPos.GetComponent<MazeDoor>().OnPlayerExited();
 
 
 	}
