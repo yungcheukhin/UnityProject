@@ -41,6 +41,7 @@ public class OwnCharacterController : MonoBehaviour {
     Rigidbody rBody;
     float forwardInput, turnInput, directionInput, horizontalInput;
 	bool flipInput;
+	bool transSkillInput;
 
     private bool canRun = false;    //store flag to determine run
     private bool haveInput = false;
@@ -76,6 +77,15 @@ public class OwnCharacterController : MonoBehaviour {
 		if (motor==null) Debug.Log("Motor is null!!");
 		originalRotation = transform.localRotation;
         targetRotation = transform.rotation;
+		//mazeInstance = FindObjectOfType
+		doorInstance = Instantiate (doorPrefab) as GameObject;
+		door = doorPrefab.GetComponent (typeof(MazeDoor)) as MazeDoor;
+		if (door == null) Debug.Log ("Door is null!");
+
+		//Get the current coordinates in 2d form and get Mazecell by 2d-position
+		//check if there is player entered and open door
+//		checkCellHvDoor(T2IntVector2());
+
         if (mazeInstance == null) mazeInstance = GetComponent(typeof(Maze)) as Maze;
         if (GetComponent<Rigidbody>())
             rBody = GetComponent<Rigidbody>();
@@ -87,17 +97,14 @@ public class OwnCharacterController : MonoBehaviour {
 
     void GetInput()
     {
-        forwardInput = Input.GetAxis("Vertical");  
+        forwardInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
         //directionInput = Input.GetAxis("Horizontal");
         canRun = Input.GetKey("left shift");
 		flipInput = Input.GetKey("space");
         haveInput = Input.anyKey;
-		if (Input.GetKey (KeyCode.Z)) {
-			openDoor = true;
-		} else {
-			openDoor = false;
-		}
+		transSkillInput = (Input.GetKey (KeyCode.E)) ? true : false;
+		openDoor = (Input.GetKey (KeyCode.Z)) ? true : false;
 
     }
 
@@ -118,30 +125,29 @@ public class OwnCharacterController : MonoBehaviour {
 		Quaternion rotation = Quaternion.Euler (0, rotationX, 0);
 		turnInput = rotationX;
 		turn = turnInput * Time.deltaTime;
-		turn = Mathf.Clamp(turn, turnmin, turnmax); 
+		turn = Mathf.Clamp(turn, turnmin, turnmax);
 
 		//Rotate the player centering at it's Y-axis
 		targetRotation *= Quaternion.AngleAxis(turn, Vector3.up);
 		transform.rotation = targetRotation;
 
 		//Flip animation Input
-		if (flipInput) {
-			anim.CrossFade(flip_animation);
-		}
-		if (openDoor) {
-			checkCellHvDoor (T2IntVector2 ());
-		}
+		if (flipInput) anim.CrossFade(flip_animation);
+		if (openDoor) checkCellHvDoor (T2IntVector2 ());
+
+
 
 //		player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
 //		player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
 
-			
+
 
     }
 
     void FixedUpdate()  //need physic calculation
     {
         if(!isDead) Move();
+		wallTransSkill();
     }
 
 
@@ -191,11 +197,11 @@ public class OwnCharacterController : MonoBehaviour {
 
 	//Extra Turning function
     void Turn()
-    {   
+    {
         //if(Mathf.Abs(turnInput) > inputDelay)
         //{
 			turn = turnInput * Time.deltaTime;
-			turn = Mathf.Clamp(turn, turnmin, turnmax); 
+			turn = Mathf.Clamp(turn, turnmin, turnmax);
 			//turn *= rotateVel;
             targetRotation *= Quaternion.AngleAxis(turn, Vector3.up);
         //}
@@ -242,13 +248,16 @@ public class OwnCharacterController : MonoBehaviour {
 		currentCell.GetComponent<MazeDoor>().OnPlayerEntered();
 		currentCell.GetComponent<MazeDoor>().OnPlayerExited();
 
-
 	}
 
 	public void wallTransSkill(){
-		//gameobject.renderer.color.a=0.5;
+		if (transSkillInput) {
+			//gameobject.renderer.color.a=0.5;
+			//mazeInstance.GetComponent<MazeRoom>.renderer.color.a=0.5;
+		}
 
 	}
+
 
 
 }
