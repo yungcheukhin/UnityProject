@@ -57,8 +57,6 @@ public class testControl : MonoBehaviour
 			// not in collision
             float step = enemy_movement_speed * Time.deltaTime;
 
-            //Vector3 player_location = GameObject.FindGameObjectWithTag("Player").transform.position;
-            //transform.position = Vector3.Lerp(transform.position, player_location, step);
             anim.CrossFade(walk_animation);
         }
         else if(!flag && !underattack)
@@ -75,16 +73,6 @@ public class testControl : MonoBehaviour
             }
         }
     }
-
-    /*void OnCollisionStay (Collision col)
-    {
-        if(col.gameObject.tag == ("Player"))
-        {
-            //Destroy(gameObject);
-            flag = false;
-            anim.CrossFade(attack_animation);
-        }
-    }*/
 
     public void underAttack()
     {
