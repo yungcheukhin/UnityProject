@@ -51,11 +51,9 @@ public class OwnCharacterController : MonoBehaviour {
 	private MazeCell currentCellPos;
 	private MazeCell cell_arr;
 	private Transform target;
-	private GameObject mazeInstance;
+	private Maze mazeInstance;
 	private MazeDoor door;
 	private GameObject doorInstance;
-	public GameObject doorPrefab;
-
 
 	float x = 0.0f;
 	float y = 0.0f;
@@ -88,18 +86,18 @@ public class OwnCharacterController : MonoBehaviour {
 		//check if there is player entered and open door
 //		checkCellHvDoor(T2IntVector2());
 
+        if (mazeInstance == null) mazeInstance = GetComponent(typeof(Maze)) as Maze;
         if (GetComponent<Rigidbody>())
             rBody = GetComponent<Rigidbody>();
         else
             Debug.LogError("The Character dont have any rigidbody");
 
         forwardInput = turnInput  = horizontalInput = 0;
-
     }
 
     void GetInput()
     {
-        forwardInput = Input.GetAxis("Vertical");  //https://www.youtube.com/watch?v=dT9eI40RNoQ&t=10293s
+        forwardInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
         //directionInput = Input.GetAxis("Horizontal");
         canRun = Input.GetKey("left shift");
@@ -123,12 +121,11 @@ public class OwnCharacterController : MonoBehaviour {
 		} else {
 			rotationX = 0;
 		}
-		if(mazeInstance == null) mazeInstance = GetComponent(typeof(Maze)) as Maze;
 		//Convert Mouse X rotation into Quaternion
 		Quaternion rotation = Quaternion.Euler (0, rotationX, 0);
 		turnInput = rotationX;
 		turn = turnInput * Time.deltaTime;
-		turn = Mathf.Clamp(turn, turnmin, turnmax); 
+		turn = Mathf.Clamp(turn, turnmin, turnmax);
 
 		//Rotate the player centering at it's Y-axis
 		targetRotation *= Quaternion.AngleAxis(turn, Vector3.up);
@@ -143,7 +140,7 @@ public class OwnCharacterController : MonoBehaviour {
 //		player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
 //		player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
 
-			
+
 
     }
 
@@ -200,11 +197,11 @@ public class OwnCharacterController : MonoBehaviour {
 
 	//Extra Turning function
     void Turn()
-    {   
+    {
         //if(Mathf.Abs(turnInput) > inputDelay)
         //{
 			turn = turnInput * Time.deltaTime;
-			turn = Mathf.Clamp(turn, turnmin, turnmax); 
+			turn = Mathf.Clamp(turn, turnmin, turnmax);
 			//turn *= rotateVel;
             targetRotation *= Quaternion.AngleAxis(turn, Vector3.up);
         //}
