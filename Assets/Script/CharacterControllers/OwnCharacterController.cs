@@ -41,6 +41,7 @@ public class OwnCharacterController : MonoBehaviour {
     Rigidbody rBody;
     float forwardInput, turnInput, directionInput, horizontalInput;
 	bool flipInput;
+	bool transSkillInput;
 
     private bool canRun = false;    //store flag to determine run
     private bool haveInput = false;
@@ -78,7 +79,7 @@ public class OwnCharacterController : MonoBehaviour {
 		if (motor==null) Debug.Log("Motor is null!!");
 		originalRotation = transform.localRotation;
         targetRotation = transform.rotation;
-		mazeInstance = FindObjectOfType
+		//mazeInstance = FindObjectOfType
 		doorInstance = Instantiate (doorPrefab) as GameObject;
 		door = doorPrefab.GetComponent (typeof(MazeDoor)) as MazeDoor;
 		if (door == null) Debug.Log ("Door is null!");
@@ -104,11 +105,8 @@ public class OwnCharacterController : MonoBehaviour {
         canRun = Input.GetKey("left shift");
 		flipInput = Input.GetKey("space");
         haveInput = Input.anyKey;
-		if (Input.GetKey (KeyCode.Z)) {
-			openDoor = true;
-		} else {
-			openDoor = false;
-		}
+		transSkillInput = (Input.GetKey (KeyCode.E)) ? true : false;
+		openDoor = (Input.GetKey (KeyCode.Z)) ? true : false;
 
     }
 
@@ -137,12 +135,10 @@ public class OwnCharacterController : MonoBehaviour {
 		transform.rotation = targetRotation;
 
 		//Flip animation Input
-		if (flipInput) {
-			anim.CrossFade(flip_animation);
-		}
-		if (openDoor) {
-			checkCellHvDoor (T2IntVector2 ());
-		}
+		if (flipInput) anim.CrossFade(flip_animation);
+		if (openDoor) checkCellHvDoor (T2IntVector2 ());
+
+
 
 //		player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
 //		player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
@@ -154,6 +150,7 @@ public class OwnCharacterController : MonoBehaviour {
     void FixedUpdate()  //need physic calculation
     {
         if(!isDead) Move();
+		wallTransSkill();
     }
 
 
@@ -254,16 +251,17 @@ public class OwnCharacterController : MonoBehaviour {
 		currentCell.GetComponent<MazeDoor>().OnPlayerEntered();
 		currentCell.GetComponent<MazeDoor>().OnPlayerExited();
 		//currentCell.GetComponent<MazeDoor>().OnPlayerEntered();
-		//currentCellPos.GetComponent<MazeDoor>().OnPlayerEntered();
-		//currentCellPos.GetComponent<MazeDoor>().OnPlayerExited();
-
 
 	}
 
 	public void wallTransSkill(){
-		//gameobject.renderer.color.a=0.5;
+		if (transSkillInput) {
+			//gameobject.renderer.color.a=0.5;
+			//mazeInstance.GetComponent<MazeRoom>.renderer.color.a=0.5;
+		}
 
 	}
+
 
 
 }

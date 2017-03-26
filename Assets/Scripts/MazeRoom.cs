@@ -19,4 +19,10 @@ public class MazeRoom : ScriptableObject {
 			Add(room.cells[i]);
 		}
 	}
+
+	public void Hide(){
+		for (int i = 0; i < cells.Count; i++) {
+			cells[i].Hide();
+		}
+	}
 }
