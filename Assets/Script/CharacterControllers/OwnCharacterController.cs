@@ -50,7 +50,7 @@ public class OwnCharacterController : MonoBehaviour {
 	private MazeCell currentCellPos;
 	private MazeCell cell_arr;
 	private Transform target;
-	private Maze mazeInstance;
+	private GameObject mazeInstance;
 	private MazeDoor door;
 	private GameObject doorInstance;
 	public GameObject doorPrefab;
@@ -78,7 +78,7 @@ public class OwnCharacterController : MonoBehaviour {
 		if (motor==null) Debug.Log("Motor is null!!");
 		originalRotation = transform.localRotation;
         targetRotation = transform.rotation;
-		mazeInstance = GetComponent(typeof(Maze)) as Maze;
+		mazeInstance = FindObjectOfType
 		doorInstance = Instantiate (doorPrefab) as GameObject;
 		door = doorPrefab.GetComponent (typeof(MazeDoor)) as MazeDoor;
 		if (door == null) Debug.Log ("Door is null!");
