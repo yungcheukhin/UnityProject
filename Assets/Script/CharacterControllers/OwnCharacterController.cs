@@ -53,7 +53,8 @@ public class OwnCharacterController : MonoBehaviour {
 	private Transform target;
 	private Maze mazeInstance;
 	private MazeDoor door;
-	private GameObject doorInstance;
+	private MazeDoor doorInstance;
+	private MazeDoor doorPrefab;
 
 	float x = 0.0f;
 	float y = 0.0f;
@@ -65,6 +66,9 @@ public class OwnCharacterController : MonoBehaviour {
     void Start()
     {
         Cursor.visible = false;
+		doorInstance = Instantiate (doorPrefab) as MazeDoor;
+		door = doorPrefab.GetComponent (typeof(MazeDoor)) as MazeDoor;
+		if (door == null) Debug.Log ("Door is null!");
 
     }
     void Awake()
@@ -78,9 +82,7 @@ public class OwnCharacterController : MonoBehaviour {
 		originalRotation = transform.localRotation;
         targetRotation = transform.rotation;
 		//mazeInstance = FindObjectOfType
-		doorInstance = Instantiate (doorPrefab) as GameObject;
-		door = doorPrefab.GetComponent (typeof(MazeDoor)) as MazeDoor;
-		if (door == null) Debug.Log ("Door is null!");
+
 
 		//Get the current coordinates in 2d form and get Mazecell by 2d-position
 		//check if there is player entered and open door
