@@ -6,6 +6,8 @@ public class MazeCell : MonoBehaviour {
 
 	public MazeRoom room;
 
+	public MazeWall wall;
+
 	private MazeCellEdge[] edges = new MazeCellEdge[MazeDirections.Count];
 
 	private int initializedEdgeCount;
@@ -61,9 +63,16 @@ public class MazeCell : MonoBehaviour {
 
 	public void Show(){
 		gameObject.SetActive (true);
+		//gameObject.GetComponent<Renderer>().material.color= new Color(1.0f, 1.0f, 1.0f, 0.0f);
 	}
 
 	public void Hide(){
 		gameObject.SetActive (false);
+		//gameObject.GetComponent<Renderer>().material.color.a=0.5f;
+		//room.GetComponent<MazeWall>().transparent();
+		//gameObject.GetComponent<Renderer>(FindObjectOfType(typeof(MazeWall))).material.color=new Color(0.5f, 0.5f, 0.5f, 0.0f);
+
+		//if(transform.GetChild(3)!=null) transform.GetChild(3).GetComponent<Renderer>().material.color=new Color(0.5f, 0.5f, 0.5f, 0.0f);
+		//gameObject.GetComponent<Renderer> ().material.color = new Color(0.5f, 0.5f, 0.5f, 0.0f);
 	}
 }

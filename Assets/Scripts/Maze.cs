@@ -153,5 +153,16 @@ public class Maze : MonoBehaviour {
 		return newRoom;
 	}
 
+	public void transSkills(){
+		
+		for (int i = 0; i < rooms.Count; i++) {
+			rooms [i].Hide();
+		}
+	}
+	public void revertTransSkills(){
+		for (int i = 0; i < rooms.Count; i++) {
+			rooms [i].Show();
+		}
+	}
 
 }
