@@ -67,7 +67,7 @@ public class MazeCell : MonoBehaviour {
 	}
 
 	public void Hide(){
-		gameObject.SetActive (false);
+		//gameObject.SetActive (false);
 		//transform.GetComponent<MazeWall>().transparent();
 		//gameObject.GetComponent<Renderer>().material.color.a=0.5f;
 		//room.GetComponent<MazeWall>().transparent();
