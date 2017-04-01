@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 
 public class OwnCharacterController : MonoBehaviour {
-
-	private CharacterMotor motor;
+    private GameMaster GM;
+    private CharacterMotor motor;
     public float inputDelay = 0.1f; //perform better control with delay in input
     public float forwardVel = 0.8f;
     public float runVel = 1.6f;
@@ -42,7 +42,6 @@ public class OwnCharacterController : MonoBehaviour {
     float forwardInput, turnInput, directionInput, horizontalInput;
 	bool flipInput;
 	bool transSkillInput;
-
     private bool canRun = false;    //store flag to determine run
     private bool haveInput = false;
     private bool isDead = false;
@@ -51,6 +50,7 @@ public class OwnCharacterController : MonoBehaviour {
 	private MazeCell currentCellPos;
 	private MazeCell cell_arr;
 	private Transform target;
+
 	private Maze mazeInstance;
 	private MazeRoom roomInstance;
 	private MazeRoom room;
@@ -71,19 +71,20 @@ public class OwnCharacterController : MonoBehaviour {
     void Start()
     {
         Cursor.visible = false;
-		doorInstance = Instantiate (doorPrefab) as MazeDoor;
-		door = doorPrefab.GetComponent (typeof(MazeDoor)) as MazeDoor;
-		if (door == null) Debug.Log ("Door is null!");
-
+        //doorInstance = Instantiate (doorPrefab) as MazeDoor;
+        //door = doorPrefab.GetComponent (typeof(MazeDoor)) as MazeDoor;
+        //if (door == null) Debug.Log ("Door is null!");
+        GM = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
     }
     void Awake()
     {
+
         Vector3 angles = transform.eulerAngles;
 		x = angles.y;
 		y = angles.x;
 		rBody = GetComponent<Rigidbody>();
-		motor = GetComponent(typeof(CharacterMotor)) as CharacterMotor;
-		if (motor==null) Debug.Log("Motor is null!!");
+		//motor = GetComponent(typeof(CharacterMotor)) as CharacterMotor;
+		//if (motor==null) Debug.Log("Motor is null!!");
 		originalRotation = transform.localRotation;
         targetRotation = transform.rotation;
 		//mazeInstance = FindObjectOfType
@@ -239,23 +240,24 @@ public class OwnCharacterController : MonoBehaviour {
 	}
 
 	public IntVector2 T2IntVector2(){
-		Vector2 pos = GameObject.FindGameObjectWithTag ("Player").transform.position;
+		Vector3 pos = GameObject.FindGameObjectWithTag ("Player").transform.position;
 		IntVector2 intVectorVar;
 		intVectorVar.x = (int)(pos.x + 9.5);
-		intVectorVar.z = (int)(pos.y + 9.5);
+		intVectorVar.z = (int)(pos.z + 9.5);
 		return intVectorVar;
 	}
 
 	public void checkCellHvDoor(IntVector2 posIntVectorVar){
-		currentCell = mazeInstance.cells[posIntVectorVar.x,posIntVectorVar.z];
-//		currentCellPos = cell.GetCell(posIntVectorVar);
-		//currentCellPos.transform.localPosition = transform.localPosition;
+        //currentCell = mazeInstance.cells[posIntVectorVar.x,posIntVectorVar.z];
+        //		currentCellPos = cell.GetCell(posIntVectorVar);
+        //currentCellPos.transform.localPosition = transform.localPosition;
 
-		//cell.transform.position=posIntVectorVar;
-		currentCell.GetComponent<MazeDoor>().OnPlayerEntered();
-		currentCell.GetComponent<MazeDoor>().OnPlayerExited();
+        //cell.transform.position=posIntVectorVar;
+        //currentCell.GetComponent<MazeDoor>().OnPlayerEntered();
+        //currentCell.GetComponent<MazeDoor>().OnPlayerExited();
+        GM.openCellDoor(posIntVectorVar);
 
-	}
+    }
 
 	public void wallTransSkill(){
 		if (transSkillInput) {
