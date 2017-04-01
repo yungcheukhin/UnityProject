@@ -796,7 +796,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 592576560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42cf2fadfcd0b480a9a52c8bd6ae85df, type: 3}
+  m_Script: {fileID: 11500000, guid: 0eddf17510bf4ba41882c824a4efb95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   settingCanvas: {fileID: 592576560}
@@ -2404,7 +2404,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1378177398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 851c7c52a908b4723a97db3d27d3c03b, type: 3}
+  m_Script: {fileID: 11500000, guid: 402ee5328f1819343ae85e3879d40724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 1378177398}
