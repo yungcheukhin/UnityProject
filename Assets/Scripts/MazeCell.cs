@@ -68,11 +68,14 @@ public class MazeCell : MonoBehaviour {
 
 	public void Hide(){
 		gameObject.SetActive (false);
+		//transform.GetComponent<MazeWall>().transparent();
 		//gameObject.GetComponent<Renderer>().material.color.a=0.5f;
 		//room.GetComponent<MazeWall>().transparent();
 		//gameObject.GetComponent<Renderer>(FindObjectOfType(typeof(MazeWall))).material.color=new Color(0.5f, 0.5f, 0.5f, 0.0f);
 
 		//if(transform.GetChild(3)!=null) transform.GetChild(3).GetComponent<Renderer>().material.color=new Color(0.5f, 0.5f, 0.5f, 0.0f);
 		//gameObject.GetComponent<Renderer> ().material.color = new Color(0.5f, 0.5f, 0.5f, 0.0f);
+
+		//** http://answers.unity3d.com/questions/60453/fading-out-using-rendermaterialcolora-doesnt-work.html
 	}
 }
