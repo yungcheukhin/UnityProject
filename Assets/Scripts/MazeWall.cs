@@ -8,4 +8,7 @@ public class MazeWall : MazeCellEdge {
 		base.Initialize (cell, otherCell, direction);
 		wall.GetComponent<Renderer>().material = cell.room.settings.wallMaterial;
 	}
+	public void transparent(){
+		wall.GetComponent<Renderer> ().material.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+	}
 }

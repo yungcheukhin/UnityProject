@@ -29,6 +29,7 @@ public class OwnCharacterController : MonoBehaviour {
 	private float rotationY = 0F;
 	private float finalRotate = 0F;
 	float turn = 0F;
+	public int countKey = 0;
 
 	private static bool loggedInputInfo = false;
 	public float turnmin = -90.0f;
@@ -52,14 +53,13 @@ public class OwnCharacterController : MonoBehaviour {
 	private Transform target;
 
 	private Maze mazeInstance;
-	private MazeRoom roomInstance;
-	private MazeRoom room;
+	private MazeWall wallInstance;
+	private MazeWall wall;
 	private MazeDoor door;
 	private MazeDoor doorInstance;
 	private MazeDoor doorPrefab;
 
-	private List<MazeRoom> roomS = new List<MazeRoom>();
-	private MazeRoom[] roomArr = { };
+	private List<MazeRoom> rooms = new List<MazeRoom>();
 
 	float x = 0.0f;
 	float y = 0.0f;
@@ -87,14 +87,17 @@ public class OwnCharacterController : MonoBehaviour {
 		//if (motor==null) Debug.Log("Motor is null!!");
 		originalRotation = transform.localRotation;
         targetRotation = transform.rotation;
-		//mazeInstance = FindObjectOfType
+		mazeInstance = FindObjectOfType (typeof(Maze)) as Maze;
 
 
 		//Get the current coordinates in 2d form and get Mazecell by 2d-position
 		//check if there is player entered and open door
 //		checkCellHvDoor(T2IntVector2());
-		//if (roomArr == null) roomArr = FindObjectsOfType<MazeRoom>();
+
+		//if (rooms == null) rooms = mazeInstance.GetComponentsInParent(typeof(MazeRoom)) as MazeRoom;
         if (mazeInstance == null) mazeInstance = GetComponent(typeof(Maze)) as Maze;
+		mazeInstance = GameObject.FindObjectOfType (typeof(Maze)) as Maze;
+		if (wall == null) wall = GameObject.FindObjectOfType(typeof(MazeWall)) as MazeWall;
         if (GetComponent<Rigidbody>())
             rBody = GetComponent<Rigidbody>();
         else
@@ -260,15 +263,25 @@ public class OwnCharacterController : MonoBehaviour {
     }
 
 	public void wallTransSkill(){
+		if (countKey > 100) countKey = 0;
 		if (transSkillInput) {
-//			room = roomInstance.FindObjectsOfType<MazeDoor> ();
+			countKey += 1;
+			if (countKey % 2==1) {
 
-			//GetComponent(typeof(MazeRoom)) as MazeRoom
+				//			room = roomInstance.FindObjectsOfType<MazeDoor> ();
+				//staticRenderer.material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+				mazeInstance.transSkills ();
+				//wall.GetComponent<Renderer> ().material.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+				//GetComponent(typeof(MazeRoom)) as MazeRoom
 
-			//gameobject.renderer.color.a=0.5;
+				//gameobject.renderer.color.a=0.5;
 
-			//mazeInstance.GetComponent<MazeRoom>.renderer.color.a=0.5;
+				//mazeInstance.GetComponent<MazeRoom>.renderer.color.a=0.5;
+			} else {
+				mazeInstance.revertTransSkills ();
+			}
 		}
+
 
 	}
 
