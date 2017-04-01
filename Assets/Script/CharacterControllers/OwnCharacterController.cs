@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using System;
 
 public class OwnCharacterController : MonoBehaviour {
     private GameMaster GM;
@@ -245,8 +245,9 @@ public class OwnCharacterController : MonoBehaviour {
 	public IntVector2 T2IntVector2(){
 		Vector3 pos = GameObject.FindGameObjectWithTag ("Player").transform.position;
 		IntVector2 intVectorVar;
-		intVectorVar.x = (int)(pos.x + 9.5);
-		intVectorVar.z = (int)(pos.z + 9.5);
+        //Math.Round(2.5, MidpointRounding.AwayFromZero) ==> 3
+        intVectorVar.x = (int)Math.Round(pos.x + 9.5, MidpointRounding.AwayFromZero);
+		intVectorVar.z = (int)Math.Round(pos.z + 9.5, MidpointRounding.AwayFromZero);
 		return intVectorVar;
 	}
 
