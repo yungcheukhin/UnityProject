@@ -9,6 +9,7 @@ TagManager:
   - LoadingCamera
   - Player
   - Enemy
+  - GM
   layers:
   - Default
   - TransparentFX
