@@ -17,7 +17,6 @@ public class GameMaster : MonoBehaviour {
     bool RestartFlag = false;   //true if the game needa restart
     Queue <Transform> previous_locations = new Queue<Transform>();
     Transform enemy_spawn_location;
-
     ///////////////////////////maze variable//////////////////////////
     public Maze R1Maze;
     public Maze R2Maze;
@@ -129,7 +128,7 @@ public class GameMaster : MonoBehaviour {
         EditorSceneManager.LoadScene(current_scene);
     }
 
-    private IEnumerator BeginGameR3()
+    private IEnumerator BeginGameR3()   //for stage 3 init
     {
         mazeInstance = Instantiate(mazePrefab) as Maze;
         yield return StartCoroutine(mazeInstance.Generate());
@@ -145,7 +144,7 @@ public class GameMaster : MonoBehaviour {
         //enemy.SetEnemyLocation(enemy_spawn_location.position);
     }
 
-    private void BeginGameR2()
+    private void BeginGameR2()  //for stage 2 init
     {
         mazeInstance = R2Maze;
         playerInstance = Instantiate(playerPrefab) as GameObject;
@@ -156,7 +155,7 @@ public class GameMaster : MonoBehaviour {
         StartCoroutine(spawnEnemy(5));
     }
 
-    private void BeginGameR1()
+    private void BeginGameR1()  // for stage 1 init
     {
         mazeInstance = R2Maze;
         playerInstance = Instantiate(playerPrefab) as GameObject;

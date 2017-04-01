@@ -801,7 +801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingCanvas: {fileID: 592576560}
   pauseCanvas: {fileID: 1378177398}
-  isShowing: 0
+  isShowing: 1
 --- !u!114 &592576562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2408,7 +2408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 1378177398}
-  isShowing: 0
+  isShowing: 1
 --- !u!4 &1378177400
 Transform:
   m_ObjectHideFlags: 0
@@ -2653,14 +2653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a145614b679b846b0940f7bb8cc546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
-  spawnTime: 3
-  MinX: 0
-  MaxX: 10
-  MinY: 0
-  MaxY: 10
-  MinZ: 0
-  MaxZ: 10
 --- !u!4 &1530266910
 Transform:
   m_ObjectHideFlags: 0
@@ -3866,8 +3858,8 @@ MonoBehaviour:
   sizeY: 40
   musicPrefab: {fileID: 4000010215273384, guid: ca555997b3da04d43aabb9212206f4f3,
     type: 2}
-  FixedMaze: {fileID: 114629878161084492, guid: 9154a52428443b44cb55c1d5d5763ce2,
-    type: 2}
+  R1Maze: {fileID: 0}
+  R2Maze: {fileID: 0}
   mazePrefab: {fileID: 11400000, guid: a2395bb8a91944f21b621f2614d6db99, type: 2}
   playerPrefab: {fileID: 1000013444896288, guid: d34c400360bb739438746b27915321be,
     type: 2}
