@@ -8,6 +8,7 @@ public class GameMaster : MonoBehaviour {
 
     public int game_round = 0;  // 1 = round 1, 2 = round 2, 3 = round 3
     public static GameMaster instance = null;//make the game master as an instance so that we can access it elsewhere
+    public int doorOpenTime = 4; // time for door to auto close 
     public float offsetY = 40;
     public float sizeX  = 100;
     public float sizeY = 40;
@@ -30,6 +31,8 @@ public class GameMaster : MonoBehaviour {
     private Maze mazeInstance;
     private GameObject playerInstance;
     private GameObject enemyInstance;
+    private MazeCell currentCell;
+    private bool doorOpened = false;
     //private GameObject cubeInstance;
     bool MapCreated = false;
     /////////////////////////////////End///////////////////////////////
@@ -211,4 +214,28 @@ public class GameMaster : MonoBehaviour {
             enemy.SetEnemyLocation(enemy_spawn_location.position);
         }
     }
+
+    public void openCellDoor(IntVector2 currPos)
+    {
+        if (!doorOpened) {
+            doorOpened = true;
+            currentCell = mazeInstance.GetCell(currPos);
+            //currentCell.GetComponent<MazeDoor>().OnPlayerEntered();
+            currentCell.OnPlayerEntered();
+            Invoke("closeCellDoor", doorOpenTime);
+        }
+
+
+
+    }
+
+    public void closeCellDoor()
+    {
+        //currentCell.GetComponent<MazeDoor>().OnPlayerExited();
+        currentCell.OnPlayerExited();
+        doorOpened = false;
+
+
+    }
+
 }
