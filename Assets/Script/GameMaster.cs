@@ -227,6 +227,7 @@ public class GameMaster : MonoBehaviour {
         if (!doorOpened) {
             doorOpened = true;
             if (game_round == 3) currentCell = mazeInstance.GetCell(currPos);
+            currentCell = mazeInstance.GetCell(currPos);
             //else if (game_round == 1) currentCell;
             //currentCell.GetComponent<MazeDoor>().OnPlayerEntered();
             currentCell.OnPlayerEntered();
