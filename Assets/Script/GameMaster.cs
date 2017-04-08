@@ -17,9 +17,9 @@ public class GameMaster : MonoBehaviour {
     bool RestartFlag = false;   //true if the game needa restart
     Queue <Transform> previous_locations = new Queue<Transform>();
     Transform enemy_spawn_location;
-
     ///////////////////////////maze variable//////////////////////////
-    public Maze FixedMaze;
+    public Maze R1Maze;
+    public Maze R2Maze;
     public Maze mazePrefab;
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
@@ -128,7 +128,7 @@ public class GameMaster : MonoBehaviour {
         EditorSceneManager.LoadScene(current_scene);
     }
 
-    private IEnumerator BeginGameR3()
+    private IEnumerator BeginGameR3()   //for stage 3 init
     {
         mazeInstance = Instantiate(mazePrefab) as Maze;
         yield return StartCoroutine(mazeInstance.Generate());
@@ -144,25 +144,26 @@ public class GameMaster : MonoBehaviour {
         //enemy.SetEnemyLocation(enemy_spawn_location.position);
     }
 
-    private void BeginGameR2()
+    private void BeginGameR2()  //for stage 2 init
     {
-        //mazeInstance = Instantiate(mazePrefab) as Maze;
-        //yield return StartCoroutine(mazeInstance.Generate());
+        mazeInstance = R2Maze;
         playerInstance = Instantiate(playerPrefab) as GameObject;
         enemyInstance = Instantiate(enemyPrefab) as GameObject;
-        //cubeInstance = Instantiate(cubePrefab) as GameObject;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
-        //cube = cubePrefab.GetComponent(typeof(CubeControl)) as CubeControl;
-        player.SetLocation(FixedMaze.GetCell(mazeInstance.RandomCoordinates));
-        //cube.SetCubeLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
+        player.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
         StartCoroutine(spawnEnemy(5));
-        //enemy.SetEnemyLocation(enemy_spawn_location.position);
     }
 
-    private void BeginGameR1()
+    private void BeginGameR1()  // for stage 1 init
     {
-
+        mazeInstance = R2Maze;
+        playerInstance = Instantiate(playerPrefab) as GameObject;
+        enemyInstance = Instantiate(enemyPrefab) as GameObject;
+        player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
+        enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
+        player.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
+        StartCoroutine(spawnEnemy(5));
     }
 
     private void RestartGame()
