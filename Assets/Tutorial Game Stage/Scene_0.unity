@@ -5117,7 +5117,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToActivate: 1
+  distanceToActivate: 1.1
   setOpenCloseTimer: 0
   open_chest_prefab: {fileID: 1000014099110386, guid: 0df1ade2b60ee5e40b13ea73239ec9a6,
     type: 2}
