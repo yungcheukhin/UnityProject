@@ -10,6 +10,8 @@ TagManager:
   - Player
   - Enemy
   - GM
+  - R1CellL
+  - R1CellR
   layers:
   - Default
   - TransparentFX

@@ -18,6 +18,7 @@ public class GameMaster : MonoBehaviour {
     Queue <Transform> previous_locations = new Queue<Transform>();
     Transform enemy_spawn_location;
     ///////////////////////////maze variable//////////////////////////
+    private MazeDoor R1Door;
     public Maze R1Maze;
     public Maze R2Maze;
     public Maze mazePrefab;
@@ -226,23 +227,45 @@ public class GameMaster : MonoBehaviour {
     {
 		//Debug.Log("Opendoor");
         if (!doorOpened) {
-            doorOpened = true;
-            if (game_round == 3) currentCell = mazeInstance.GetCell(currPos);
-            currentCell = mazeInstance.GetCell(currPos);
-            //else if (game_round == 1) currentCell;
-            //currentCell.GetComponent<MazeDoor>().OnPlayerEntered();
-            currentCell.OnPlayerEntered();
-            Invoke("closeCellDoor", doorOpenTime);
+
+            if (game_round == 3)
+            {
+                doorOpened = true;
+                currentCell = mazeInstance.GetCell(currPos);
+                currentCell.OnPlayerEntered();
+                Invoke("closeCellDoor", doorOpenTime);
+            }
+            else if(game_round == 1 && onPosition(currPos))
+            {
+                doorOpened = true;
+                R1Door = GameObject.FindGameObjectWithTag("R1Door").GetComponent<MazeDoor>();
+                MazeDoor OtherSideOfDoor = GameObject.FindGameObjectWithTag("R1Door_r").GetComponent<MazeDoor>();
+                R1Door.OnPlayerEntered(OtherSideOfDoor);
+                Invoke("closeR1Door", doorOpenTime);
+
+            }
         }
+    }
+    private bool onPosition(IntVector2 currPos)
+    {
+        IntVector2 L = new IntVector2(2,19);
+        IntVector2 R = new IntVector2(1,19);
+        if ((L.x == currPos.x) && (L.z == currPos.z)) return true;
+        if ((R.x == currPos.x) && (R.z == currPos.z)) return true;
+        return false;
+    }
+
+    public void closeR1Door()
+    {
+        MazeDoor OtherSideOfDoor = GameObject.FindGameObjectWithTag("R1Door_r").GetComponent<MazeDoor>();
+        R1Door.OnPlayerExited(OtherSideOfDoor);
+        doorOpened = false;
     }
 
     public void closeCellDoor()
     {
-        //currentCell.GetComponent<MazeDoor>().OnPlayerExited();
         currentCell.OnPlayerExited();
         doorOpened = false;
-
-
     }
 
 	public void wallTransparentSkill(){

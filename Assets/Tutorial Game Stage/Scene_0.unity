@@ -1035,6 +1035,14 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 1464069871467216, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
+      propertyPath: m_TagString
+      value: R1CellR
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604135641185882, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
+      propertyPath: m_TagString
+      value: R1CellL
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
   m_IsPrefabParent: 0
