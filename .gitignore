@@ -36,8 +36,6 @@ ProjectSettings/GraphicsSettings.asset
 ProjectSettings/GraphicsSettings.assetProjectSettings/ProjectSettings.asset
 ProjectSettings/ProjectSettings.asset
 
-#*.meta
-
 Assets/DOOR SCRIPT/SCRIPTS.meta
 
 Assets/DOOR SCRIPT/DEMO.meta
@@ -46,7 +44,7 @@ Assets/DOOR SCRIPT/ASSETS/MATERIALS.meta
 
 Assets/DOOR SCRIPT/SUPPORT.meta
 
-*.meta
+#*.meta
 
 Assets/DOOR SCRIPT/SCRIPTS.meta
 
