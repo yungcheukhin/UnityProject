@@ -157,7 +157,7 @@ public class GameMaster : MonoBehaviour {
 
     private void BeginGameR1()  // for stage 1 init
     {
-        mazeInstance = R2Maze;
+        mazeInstance = R1Maze;
         playerInstance = Instantiate(playerPrefab) as GameObject;
         enemyInstance = Instantiate(enemyPrefab) as GameObject;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
