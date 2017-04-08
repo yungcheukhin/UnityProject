@@ -63,16 +63,20 @@ public class MazeCell : MonoBehaviour {
 
 	public void transSkills(){
 		
-		for (int i = 0; i < transform.childCount; i++) {
-			Transform child = transform.GetChild(i);
-			if (child == wall) {
-				child.GetComponent<Renderer> ().material.color = new Color (0.5f, 0.5f, 0.5f, 0.5f);
-			}
+		for (int i = 0; i < edges.Length; i++) {
+			edges [i].transSkills ();
+		}
+	}
+
+	public void revertTransSkill(){
+		for (int i = 0; i < edges.Length; i++) {
+			edges [i].revertTransSkill();
 		}
 	}
 
 	public void Show(){
 		gameObject.SetActive (true);
+		//gameObject.get
 		//gameObject.GetComponent<Renderer>().material.color= new Color(1.0f, 1.0f, 1.0f, 0.0f);
 	}
 

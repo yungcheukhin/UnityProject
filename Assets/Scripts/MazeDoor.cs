@@ -33,14 +33,6 @@ public class MazeDoor : MazePassage {
 		}
 	}
 		
-	public override void transSkills(){
-		for (int i = 0; i < transform.childCount; i++) {
-			Transform child = transform.GetChild(i);
-			if (child != hinge) {
-				child.GetComponent<Renderer>().material.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-			}
-		}
-	}
 
 	public override void OnPlayerEntered () {
 		OtherSideOfDoor.hinge.localRotation = hinge.localRotation = isMirrored ? mirroredRotation : normalRotation;
@@ -49,6 +41,6 @@ public class MazeDoor : MazePassage {
 	
 	public override void OnPlayerExited () {
 		OtherSideOfDoor.hinge.localRotation = hinge.localRotation = Quaternion.identity;
-		OtherSideOfDoor.cell.room.Hide();
+		//OtherSideOfDoor.cell.room.Hide();
 	}
 }

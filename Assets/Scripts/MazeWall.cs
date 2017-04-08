@@ -8,14 +8,16 @@ public class MazeWall : MazeCellEdge {
 		base.Initialize (cell, otherCell, direction);
 		wall.GetComponent<Renderer>().material = cell.room.settings.wallMaterial;
 	}
-	public void transSkills(){
+	public override void transSkills(){
 		wall.GetComponent<Renderer>().material.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-		Debug.Log("Wall Transparent");
+		Debug.Log("Wall Transparented");
 
 	}
 
-	public void revertTransSkill(){
+	public override void revertTransSkill(){
 		wall.GetComponent<Renderer>().material = cell.room.settings.wallMaterial;
-		Debug.Log("Wall Normal");
+		Debug.Log("Wall Normaled");
 	}
+
+
 }

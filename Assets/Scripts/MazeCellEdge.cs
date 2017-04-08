@@ -22,4 +22,6 @@ public abstract class MazeCellEdge : MonoBehaviour {
 
 	public virtual void transSkills(){}
 
+	public virtual void revertTransSkill(){}
+
 }

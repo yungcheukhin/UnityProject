@@ -272,8 +272,8 @@ public class OwnCharacterController : MonoBehaviour {
 
 				//			room = roomInstance.FindObjectsOfType<MazeDoor> ();
 				//staticRenderer.material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-				mazeInstance.transSkills ();
-				Invoke ("mazeInstance.revertTransSkills", wallTransSkillTime);
+				GM.wallTransparentSkill();
+				//Invoke ("GM.revertWallTransSkill", wallTransSkillTime);
 				//wall.GetComponent<Renderer> ().material.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
 				//GetComponent(typeof(MazeRoom)) as MazeRoom
 
@@ -281,7 +281,7 @@ public class OwnCharacterController : MonoBehaviour {
 
 				//mazeInstance.GetComponent<MazeRoom>.renderer.color.a=0.5;
 			} else {
-				mazeInstance.revertTransSkills ();
+				GM.revertWallTransSkill();
 			}
 		}
 

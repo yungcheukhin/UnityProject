@@ -32,6 +32,8 @@ public class GameMaster : MonoBehaviour {
     private GameObject playerInstance;
     private GameObject enemyInstance;
     private MazeCell currentCell;
+	private MazeCell transWallCell;
+	private MazeCell revertTransWall;
     private bool doorOpened = false;
 	private bool transUsed = false;
     //private GameObject cubeInstance;
@@ -247,9 +249,31 @@ public class GameMaster : MonoBehaviour {
 	public void wallTransparentSkill(){
 		Debug.Log ("Apply trans skills");
 		//sweep all cells
-		//for (int i=
+		IntVector2 currentWall;
 
+		for (int x = 0; x < 20; x++) {
+			for (int y = 0; y < 20; y++) {
+				currentWall.x = x;
+				currentWall.z = y;
+				transWallCell = mazeInstance.GetCell(currentWall);
+				transWallCell.transSkills();
+			}
+		}
 
+	}
+
+	public void revertWallTransSkill(){
+		Debug.Log ("De-apply trans skills");
+		//sweep all cells
+		IntVector2 currentWall;
+		for (int x = 0; x < 20; x++) {
+			for (int y = 0; y < 20; y++) {
+				currentWall.x = x;
+				currentWall.z = y;
+				revertTransWall = mazeInstance.GetCell(currentWall);
+				revertTransWall.revertTransSkill();
+			}
+		}
 	}
 
 }
