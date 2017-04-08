@@ -2320,6 +2320,7 @@ MonoBehaviour:
   runVel: 1.6
   horizontalVel: 0.8
   anim: {fileID: 111000011205308162}
+  wallTransSkillTime: 3
   death_animation: death
   flip_animation: flip
   idle_animation: idle

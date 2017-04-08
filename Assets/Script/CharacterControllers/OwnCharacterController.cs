@@ -11,6 +11,7 @@ public class OwnCharacterController : MonoBehaviour {
     public float runVel = 1.6f;
     public float horizontalVel = 0.6f;
     public Animation anim;
+	public int wallTransSkillTime = 3;
     public string death_animation = "death",
         flip_animation = "flip",
         idle_animation = "idle",
@@ -115,7 +116,7 @@ public class OwnCharacterController : MonoBehaviour {
 		flipInput = Input.GetKey("space");
         haveInput = Input.anyKey;
 		transSkillInput = (Input.GetKey (KeyCode.E)) ? true : false;
-		openDoor = (Input.GetKey (KeyCode.Z)) ? true : false;
+		openDoor = (Input.GetKey (KeyCode.Q)) ? true : false;
 
     }
 
@@ -272,6 +273,7 @@ public class OwnCharacterController : MonoBehaviour {
 				//			room = roomInstance.FindObjectsOfType<MazeDoor> ();
 				//staticRenderer.material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
 				mazeInstance.transSkills ();
+				Invoke ("mazeInstance.revertTransSkills", wallTransSkillTime);
 				//wall.GetComponent<Renderer> ().material.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
 				//GetComponent(typeof(MazeRoom)) as MazeRoom
 

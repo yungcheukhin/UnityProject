@@ -23,10 +23,18 @@ public class MazeRoom : ScriptableObject {
 	public void Hide(){
 		for (int i = 0; i < cells.Count; i++) {
 			cells[i].Hide();
-			if (cells [i].GetComponentInChildren<MazeWall> () != null)
-				cells [i].GetComponentInChildren<MazeWall> ().transparent ();
+			//if (cells [i].GetComponentInChildren<MazeWall> () != null)
+				//cells [i].GetComponentInChildren<MazeWall> ().transparent();
 		}
 	}
+
+	public void transSkills(){
+		for (int i = 0; i < cells.Count; i++) {
+
+			cells [i].transSkills();
+		}
+	}
+
 	public void Show(){
 		for (int i = 0; i < cells.Count; i++) {
 			cells [i].Show ();
