@@ -24,7 +24,7 @@ public class OpenChest : MonoBehaviour {
 
     }
 
-    void OnMouseUp()
+    public void openChest()
     {
 
         if (openCloseTimer <= 0 && isSwitchable)

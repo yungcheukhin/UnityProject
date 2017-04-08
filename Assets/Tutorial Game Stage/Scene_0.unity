@@ -305,7 +305,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1681951991401902, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1007052884315470, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
       propertyPath: m_StaticEditorFlags
@@ -345,7 +345,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1870781300730006, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1022473419086850, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
       propertyPath: m_StaticEditorFlags
@@ -381,7 +381,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1967400290030236, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1450734494898952, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
       propertyPath: m_StaticEditorFlags
@@ -629,7 +629,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1226055787676818, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1691025156201898, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
       propertyPath: m_StaticEditorFlags
@@ -865,7 +865,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1476427388816204, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1573338399561656, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
       propertyPath: m_StaticEditorFlags
@@ -881,7 +881,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1863659792220366, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1518420100934054, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
       propertyPath: m_StaticEditorFlags
@@ -1037,11 +1037,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1464069871467216, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
       propertyPath: m_TagString
-      value: R1CellR
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1604135641185882, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
       propertyPath: m_TagString
-      value: R1CellL
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141554030329196, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
+      propertyPath: m_TagString
+      value: R1Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 1951279629318432, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
+      propertyPath: m_TagString
+      value: R1Door_r
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
@@ -1080,6 +1088,7 @@ MonoBehaviour:
   sizeY: 40
   musicPrefab: {fileID: 4000010215273384, guid: ca555997b3da04d43aabb9212206f4f3,
     type: 2}
+  chest: {fileID: 1999032673}
   R1Maze: {fileID: 114356632683899446, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
   R2Maze: {fileID: 0}
   mazePrefab: {fileID: 0}
@@ -1298,6 +1307,7 @@ GameObject:
   - component: {fileID: 1999032676}
   - component: {fileID: 1999032674}
   - component: {fileID: 1999032675}
+  - component: {fileID: 1999032678}
   m_Layer: 0
   m_Name: chest_close
   m_TagString: Untagged
@@ -1348,9 +1358,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f105af7ffdf2c8c4f9390f1405e1517b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToActivate: 0
+  distanceToActivate: 10
   setOpenCloseTimer: 0
-  open_chest_prefab: {fileID: 0}
+  open_chest_prefab: {fileID: 100000, guid: 5cbd4cd0f328ce74fa83b47cc196ac12, type: 3}
 --- !u!33 &1999032676
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1373,6 +1383,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1999032678
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1999032673}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.48679993, y: 0.7238002, z: 0.5361002}
+  m_Center: {x: -0.029200032, y: 0.0020999913, z: 0.2680501}
 --- !u!1 &2031751919
 GameObject:
   m_ObjectHideFlags: 0

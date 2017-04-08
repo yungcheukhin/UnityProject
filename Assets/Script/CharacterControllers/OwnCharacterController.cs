@@ -60,10 +60,11 @@ public class OwnCharacterController : MonoBehaviour {
 	private MazeDoor doorInstance;
 	private MazeDoor doorPrefab;
 
-	private List<MazeRoom> rooms = new List<MazeRoom>();
-
 	float x = 0.0f;
 	float y = 0.0f;
+
+    private bool open_chest = false;
+
 
     public Quaternion TargetRotation
     {
@@ -117,6 +118,7 @@ public class OwnCharacterController : MonoBehaviour {
         haveInput = Input.anyKey;
 		transSkillInput = (Input.GetKey (KeyCode.E)) ? true : false;
 		openDoor = (Input.GetKey (KeyCode.Q)) ? true : false;
+        open_chest = (Input.GetKey(KeyCode.F)) ? true : false;
 
     }
 
@@ -146,6 +148,7 @@ public class OwnCharacterController : MonoBehaviour {
 		//Flip animation Input
 		if (flipInput) anim.CrossFade(flip_animation);
 		if (openDoor) checkCellHvDoor (T2IntVector2 ());
+        if (open_chest) GM.control_chest();
 
 
 
@@ -263,6 +266,7 @@ public class OwnCharacterController : MonoBehaviour {
         GM.openCellDoor(posIntVectorVar);
 
     }
+
 
 	public void wallTransSkill(){
 		if (countKey > 100) countKey = 0;

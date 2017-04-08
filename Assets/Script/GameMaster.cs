@@ -17,6 +17,7 @@ public class GameMaster : MonoBehaviour {
     bool RestartFlag = false;   //true if the game needa restart
     Queue <Transform> previous_locations = new Queue<Transform>();
     Transform enemy_spawn_location;
+    public GameObject chest;
     ///////////////////////////maze variable//////////////////////////
     private MazeDoor R1Door;
     public Maze R1Maze;
@@ -34,10 +35,13 @@ public class GameMaster : MonoBehaviour {
     private GameObject enemyInstance;
     private MazeCell currentCell;
     private bool doorOpened = false;
-	private bool transUsed = false;
+
     //private GameObject cubeInstance;
     bool MapCreated = false;
+
     /////////////////////////////////End///////////////////////////////
+
+
 
     // Update is called once per frame
     private void Awake()
@@ -273,7 +277,10 @@ public class GameMaster : MonoBehaviour {
 		//sweep all cells
 		//for (int i=
 
-
 	}
 
+    public void control_chest()
+    {
+        chest.GetComponent<OpenChest>().openChest();
+    }
 }
