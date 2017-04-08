@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class GameMaster : MonoBehaviour {
 
-    public int game_round = 0;  // 1 = round 1, 2 = round 2, 3 = round 3
+    public int game_round; // 1 = round 1, 2 = round 2, 3 = round 3
     public static GameMaster instance = null;//make the game master as an instance so that we can access it elsewhere
     public int doorOpenTime = 4; // time for door to auto close 
     public float offsetY = 40;
@@ -49,20 +49,7 @@ public class GameMaster : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        //Instantiate(gameObject);
-        //DontDestroyOnLoad(gameObject); //Keep the GM persist between scenes
-
-        if (!GameObject.FindGameObjectWithTag("MM"))
-        {
-            var mManger = Instantiate(musicPrefab, transform.position, Quaternion.identity);
-            mManger.name = musicPrefab.name;
-            DontDestroyOnLoad(mManger);
-        }
-    }
-
-    private void Start ()
-    {
-        if(game_round == 0)
+        if (game_round == 0)
         {
             // game main menu
         }
@@ -82,6 +69,24 @@ public class GameMaster : MonoBehaviour {
         {
             //game main menu
         }
+
+        //Instantiate(gameObject);
+        //DontDestroyOnLoad(gameObject); //Keep the GM persist between scenes
+
+        if (!GameObject.FindGameObjectWithTag("MM"))
+        {
+            var mManger = Instantiate(musicPrefab, transform.position, Quaternion.identity);
+            mManger.name = musicPrefab.name;
+            DontDestroyOnLoad(mManger);
+        }
+
+
+
+    }
+
+    private void Start ()
+    {
+
 	}
     
     private void Update()
@@ -158,11 +163,11 @@ public class GameMaster : MonoBehaviour {
     private void BeginGameR1()  // for stage 1 init
     {
         mazeInstance = R1Maze;
-        playerInstance = Instantiate(playerPrefab) as GameObject;
-        enemyInstance = Instantiate(enemyPrefab) as GameObject;
+        //playerInstance = Instantiate(playerPrefab) as GameObject;
+        //enemyInstance = Instantiate(enemyPrefab) as GameObject;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
-        player.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
+        //player.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
         StartCoroutine(spawnEnemy(5));
     }
 
@@ -218,10 +223,11 @@ public class GameMaster : MonoBehaviour {
 
     public void openCellDoor(IntVector2 currPos)
     {
-		Debug.Log("Opendoor");
+		//Debug.Log("Opendoor");
         if (!doorOpened) {
             doorOpened = true;
-            currentCell = mazeInstance.GetCell(currPos);
+            if (game_round == 3) currentCell = mazeInstance.GetCell(currPos);
+            //else if (game_round == 1) currentCell;
             //currentCell.GetComponent<MazeDoor>().OnPlayerEntered();
             currentCell.OnPlayerEntered();
             Invoke("closeCellDoor", doorOpenTime);

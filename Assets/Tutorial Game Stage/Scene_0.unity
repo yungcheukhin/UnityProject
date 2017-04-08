@@ -1045,7 +1045,7 @@ GameObject:
   - component: {fileID: 426659551}
   m_Layer: 0
   m_Name: GM
-  m_TagString: Untagged
+  m_TagString: GM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1061,7 +1061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b44945707fadb1a47babf09685c2b19b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game_round: 0
+  game_round: 1
   doorOpenTime: 4
   offsetY: 40
   sizeX: 100
@@ -1128,6 +1128,10 @@ Prefab:
     - target: {fileID: 4000010897164388, guid: 980d43d0c8a90b042a56ddf19af12af8, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013444896288, guid: 980d43d0c8a90b042a56ddf19af12af8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 980d43d0c8a90b042a56ddf19af12af8, type: 2}
