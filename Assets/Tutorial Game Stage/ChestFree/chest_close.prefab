@@ -88,10 +88,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011713842796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c6a67a9eaf6fd24581e8cfe08572190, type: 3}
+  m_Script: {fileID: 11500000, guid: f105af7ffdf2c8c4f9390f1405e1517b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToActivate: 0
   setOpenCloseTimer: 0
-  open_chest_prefab: {fileID: 1000014099110386, guid: f70efd16e2055514fb4338de375d0588,
-    type: 2}
+  open_chest_prefab: {fileID: 0}

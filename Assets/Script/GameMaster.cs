@@ -8,7 +8,7 @@ public class GameMaster : MonoBehaviour {
 
     public int game_round; // 1 = round 1, 2 = round 2, 3 = round 3
     public static GameMaster instance = null;//make the game master as an instance so that we can access it elsewhere
-    public int doorOpenTime = 4; // time for door to auto close 
+    public int doorOpenTime = 4; // time for door to auto close
     public float offsetY = 40;
     public float sizeX  = 100;
     public float sizeY = 40;
@@ -17,7 +17,10 @@ public class GameMaster : MonoBehaviour {
     bool RestartFlag = false;   //true if the game needa restart
     Queue <Transform> previous_locations = new Queue<Transform>();
     Transform enemy_spawn_location;
+    public GameObject chest;
+    bool chest_opened = false;
     ///////////////////////////maze variable//////////////////////////
+    private MazeDoor R1Door;
     public Maze R1Maze;
     public Maze R2Maze;
     public Maze mazePrefab;
@@ -35,10 +38,13 @@ public class GameMaster : MonoBehaviour {
 	private MazeCell transWallCell;
 	private MazeCell revertTransWall;
     private bool doorOpened = false;
-	private bool transUsed = false;
+
     //private GameObject cubeInstance;
     bool MapCreated = false;
+
     /////////////////////////////////End///////////////////////////////
+
+
 
     // Update is called once per frame
     private void Awake()
@@ -91,7 +97,7 @@ public class GameMaster : MonoBehaviour {
     {
 
 	}
-    
+
     private void Update()
     {
         if (!MapCreated && GameObject.FindGameObjectWithTag("MainCamera"))
@@ -111,7 +117,7 @@ public class GameMaster : MonoBehaviour {
         {
             enemy_spawn_location = previous_locations.Dequeue();
         }
-    } 
+    }
 
     void OnGUI()
     {
@@ -124,7 +130,7 @@ public class GameMaster : MonoBehaviour {
             GUI.Box(new Rect(Screen.width / 2 - sizeX / 2, offsetY, sizeX, sizeY), playerName+"\nHealth: " + current_health);
         }
     }
-  
+
     public void setRestart()
     {
         RestartFlag = true;
@@ -211,7 +217,7 @@ public class GameMaster : MonoBehaviour {
         {
             previous_locations.Dequeue();
         }
-        if (GameObject.FindGameObjectWithTag("Player")) 
+        if (GameObject.FindGameObjectWithTag("Player"))
             previous_locations.Enqueue(GameObject.FindGameObjectWithTag("Player").transform);
     }
 
@@ -228,29 +234,51 @@ public class GameMaster : MonoBehaviour {
     {
 		//Debug.Log("Opendoor");
         if (!doorOpened) {
-            doorOpened = true;
-            if (game_round == 3) currentCell = mazeInstance.GetCell(currPos);
-            //else if (game_round == 1) currentCell;
-            //currentCell.GetComponent<MazeDoor>().OnPlayerEntered();
-            currentCell.OnPlayerEntered();
-            Invoke("closeCellDoor", doorOpenTime);
+
+            if (game_round == 3)
+            {
+                doorOpened = true;
+                currentCell = mazeInstance.GetCell(currPos);
+                currentCell.OnPlayerEntered();
+                Invoke("closeCellDoor", doorOpenTime);
+            }
+            else if(game_round == 1 && onPosition(currPos))
+            {
+                doorOpened = true;
+                R1Door = GameObject.FindGameObjectWithTag("R1Door").GetComponent<MazeDoor>();
+                MazeDoor OtherSideOfDoor = GameObject.FindGameObjectWithTag("R1Door_r").GetComponent<MazeDoor>();
+                R1Door.OnPlayerEntered(OtherSideOfDoor);
+                Invoke("closeR1Door", doorOpenTime);
+
+            }
         }
+    }
+    private bool onPosition(IntVector2 currPos)
+    {
+        IntVector2 L = new IntVector2(2,19);
+        IntVector2 R = new IntVector2(1,19);
+        if ((L.x == currPos.x) && (L.z == currPos.z)) return true;
+        if ((R.x == currPos.x) && (R.z == currPos.z)) return true;
+        return false;
+    }
+
+    public void closeR1Door()
+    {
+        MazeDoor OtherSideOfDoor = GameObject.FindGameObjectWithTag("R1Door_r").GetComponent<MazeDoor>();
+        R1Door.OnPlayerExited(OtherSideOfDoor);
+        doorOpened = false;
     }
 
     public void closeCellDoor()
     {
-        //currentCell.GetComponent<MazeDoor>().OnPlayerExited();
         currentCell.OnPlayerExited();
         doorOpened = false;
-
-
     }
 
 	public void wallTransparentSkill(){
 		Debug.Log ("Apply trans skills");
 		//sweep all cells
 		IntVector2 currentWall;
-
 		for (int x = 0; x < 20; x++) {
 			for (int y = 0; y < 20; y++) {
 				currentWall.x = x;
@@ -276,4 +304,14 @@ public class GameMaster : MonoBehaviour {
 		}
 	}
 
+	}
+
+    public void control_chest()
+    {
+        if (!chest_opened)
+        {
+            if(chest.GetComponent<OpenChest>().openChest()) chest_opened = true;
+        }
+
+    }
 }

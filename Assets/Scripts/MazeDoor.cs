@@ -10,7 +10,7 @@ public class MazeDoor : MazePassage {
 
 	private bool isMirrored;
 
-	private MazeDoor OtherSideOfDoor {
+	public MazeDoor OtherSideOfDoor {
 		get {
 			return otherCell.GetEdge(direction.GetOpposite()) as MazeDoor;
 		}
@@ -38,8 +38,18 @@ public class MazeDoor : MazePassage {
 		OtherSideOfDoor.hinge.localRotation = hinge.localRotation = isMirrored ? mirroredRotation : normalRotation;
 		//OtherSideOfDoor.cell.room.Show();
 	}
-	
-	public override void OnPlayerExited () {
+
+    public void OnPlayerEntered(MazeDoor door)
+    {
+        door.hinge.localRotation = hinge.localRotation = isMirrored ? mirroredRotation : normalRotation;
+    }
+
+    public void OnPlayerExited(MazeDoor door)
+    {
+        door.hinge.localRotation = hinge.localRotation = Quaternion.identity;
+    }
+
+    public override void OnPlayerExited () {
 		OtherSideOfDoor.hinge.localRotation = hinge.localRotation = Quaternion.identity;
 		//OtherSideOfDoor.cell.room.Hide();
 	}

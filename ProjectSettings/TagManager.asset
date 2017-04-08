@@ -10,6 +10,9 @@ TagManager:
   - Player
   - Enemy
   - GM
+  - R1Door
+  - R1Door_r
+  - Chest
   layers:
   - Default
   - TransparentFX
