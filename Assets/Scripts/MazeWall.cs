@@ -13,4 +13,9 @@ public class MazeWall : MazeCellEdge {
 		Debug.Log("Wall Transparent");
 
 	}
+
+	public void revertTransSkill(){
+		wall.GetComponent<Renderer>().material = cell.room.settings.wallMaterial;
+		Debug.Log("Wall Normal");
+	}
 }

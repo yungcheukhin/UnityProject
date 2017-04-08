@@ -33,6 +33,7 @@ public class GameMaster : MonoBehaviour {
     private GameObject enemyInstance;
     private MazeCell currentCell;
     private bool doorOpened = false;
+	private bool transUsed = false;
     //private GameObject cubeInstance;
     bool MapCreated = false;
     /////////////////////////////////End///////////////////////////////
@@ -233,9 +234,6 @@ public class GameMaster : MonoBehaviour {
             currentCell.OnPlayerEntered();
             Invoke("closeCellDoor", doorOpenTime);
         }
-
-
-
     }
 
     public void closeCellDoor()
@@ -248,6 +246,10 @@ public class GameMaster : MonoBehaviour {
     }
 
 	public void wallTransparentSkill(){
+		Debug.Log ("Apply trans skills");
+		//sweep all cells
+		//for (int i=
+
 
 	}
 
