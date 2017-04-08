@@ -2996,6 +2996,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f6b2158af8691174e85e50050e8ff756, type: 3}
+      propertyPath: m_TagString
+      value: Chest
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f6b2158af8691174e85e50050e8ff756, type: 3}
   m_IsPrefabParent: 0
@@ -3014,9 +3018,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f105af7ffdf2c8c4f9390f1405e1517b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToActivate: 5
+  distanceToActivate: 1.5
   setOpenCloseTimer: 0
-  open_chest_prefab: {fileID: 100000, guid: 5cbd4cd0f328ce74fa83b47cc196ac12, type: 3}
+  open_chest_prefab: {fileID: 1000014099110386, guid: 0df1ade2b60ee5e40b13ea73239ec9a6,
+    type: 2}
 --- !u!65 &770678929
 BoxCollider:
   m_ObjectHideFlags: 0
