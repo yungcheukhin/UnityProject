@@ -1283,8 +1283,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1999032677}
   - component: {fileID: 1999032676}
-  - component: {fileID: 1999032675}
   - component: {fileID: 1999032674}
+  - component: {fileID: 1999032675}
   m_Layer: 0
   m_Name: chest_close
   m_TagString: Untagged
@@ -1327,15 +1327,17 @@ MeshRenderer:
 --- !u!114 &1999032675
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114627605172784996, guid: 96ced21055b56ff4c93906518bd68cd6,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1999032673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: f105af7ffdf2c8c4f9390f1405e1517b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distanceToActivate: 0
+  setOpenCloseTimer: 0
+  open_chest_prefab: {fileID: 0}
 --- !u!33 &1999032676
 MeshFilter:
   m_ObjectHideFlags: 0
