@@ -61,12 +61,28 @@ public class MazeCell : MonoBehaviour {
 		}
 	}
 
+	public void transSkills(){
+		
+		for (int i = 0; i < transform.childCount; i++) {
+			Transform child = transform.GetChild(i);
+			if (child == wall) {
+				child.GetComponent<Renderer> ().material.color = new Color (0.5f, 0.5f, 0.5f, 0.5f);
+			}
+		}
+	}
+
 	public void Show(){
 		gameObject.SetActive (true);
 		//gameObject.GetComponent<Renderer>().material.color= new Color(1.0f, 1.0f, 1.0f, 0.0f);
 	}
 
 	public void Hide(){
+		
+		if (gameObject.GetComponent<MazeWall> () != null) {
+			//gameObject.GetComponent<MazeWall> ().transparent();
+			//gameObject.GetComponentInChildren<MazeWall>().
+
+		}
 		//gameObject.SetActive (false);
 		//transform.GetComponent<MazeWall>().transparent();
 		//gameObject.GetComponent<Renderer>().material.color.a=0.5f;

@@ -3835,7 +3835,7 @@ GameObject:
   - component: {fileID: 2015137421}
   m_Layer: 0
   m_Name: GM
-  m_TagString: Untagged
+  m_TagString: GM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3852,6 +3852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game_round: 3
+  doorOpenTime: 4
   offsetY: 40
   sizeX: 100
   sizeY: 40

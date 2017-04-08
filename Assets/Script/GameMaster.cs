@@ -217,6 +217,7 @@ public class GameMaster : MonoBehaviour {
 
     public void openCellDoor(IntVector2 currPos)
     {
+		Debug.Log("Opendoor");
         if (!doorOpened) {
             doorOpened = true;
             currentCell = mazeInstance.GetCell(currPos);
@@ -237,5 +238,9 @@ public class GameMaster : MonoBehaviour {
 
 
     }
+
+	public void wallTransparentSkill(){
+
+	}
 
 }

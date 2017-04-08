@@ -32,13 +32,14 @@ public class MazeDoor : MazePassage {
 			}
 		}
 	}
-
-	public void openDoor(){
-
-	}
-
-	public void closeDoor(){
-
+		
+	public override void transSkills(){
+		for (int i = 0; i < transform.childCount; i++) {
+			Transform child = transform.GetChild(i);
+			if (child != hinge) {
+				child.GetComponent<Renderer>().material.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+			}
+		}
 	}
 
 	public override void OnPlayerEntered () {
