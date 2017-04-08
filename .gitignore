@@ -21,7 +21,6 @@ ExportedObj/
 
 # Unity3D generated meta files
 *.pidb
-# *.meta
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
@@ -35,14 +34,9 @@ sysinfo.txt
 ProjectSettings/ProjectSettings.asset
 ProjectSettings/GraphicsSettings.asset
 ProjectSettings/GraphicsSettings.assetProjectSettings/ProjectSettings.asset
-
 ProjectSettings/ProjectSettings.asset
 
-*.meta
-
-*.meta
-
-*.meta
+#*.meta
 
 Assets/DOOR SCRIPT/SCRIPTS.meta
 
