@@ -13,6 +13,7 @@ public class OpenChest : MonoBehaviour {
     private bool isSwitchable;
     private bool isOpen;
     private GameObject player;
+    private GameObject close_chest;
     private GameObject open_chest_object;
 
     void Awake()
@@ -21,14 +22,20 @@ public class OpenChest : MonoBehaviour {
         isSwitchable = false;
         openCloseTimer = 0;
         player = GameObject.FindGameObjectWithTag("Player");
+        close_chest = GameObject.FindGameObjectWithTag("Chest");
 
     }
 
-    public void openChest()
+    public bool openChest()
     {
 
         if (openCloseTimer <= 0 && isSwitchable)
+        {
             isOpen = !isOpen;
+            return true;
+        }
+        return false;
+
 
     }
 
@@ -50,7 +57,7 @@ public class OpenChest : MonoBehaviour {
         if (isOpen)
         {
             open_chest_object = GameObject.Instantiate(open_chest_prefab, this.transform.position, this.transform.rotation);
-            Destroy(this);
+            Destroy(close_chest);
         }
     }
 }

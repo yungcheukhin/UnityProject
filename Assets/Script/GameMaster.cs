@@ -18,6 +18,7 @@ public class GameMaster : MonoBehaviour {
     Queue <Transform> previous_locations = new Queue<Transform>();
     Transform enemy_spawn_location;
     public GameObject chest;
+    bool chest_opened = false;
     ///////////////////////////maze variable//////////////////////////
     private MazeDoor R1Door;
     public Maze R1Maze;
@@ -281,6 +282,10 @@ public class GameMaster : MonoBehaviour {
 
     public void control_chest()
     {
-        chest.GetComponent<OpenChest>().openChest();
+        if (!chest_opened)
+        {
+            if(chest.GetComponent<OpenChest>().openChest()) chest_opened = true;
+        }
+
     }
 }
