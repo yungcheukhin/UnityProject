@@ -310,7 +310,7 @@ public class GameMaster : MonoBehaviour {
     {
         if (!chest_opened)
         {
-            if(chest.GetComponent<OpenChest>().openChest()) chest_opened = true;
+            chest_opened = chest.GetComponent<OpenChest>().openChest();
         }
 
     }
