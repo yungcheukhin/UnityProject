@@ -32,7 +32,6 @@ public class DayNightCycle : MonoBehaviour {
             time = 0;
         }
         currentTime = TimeSpan.FromSeconds(time);
-        string[] tempTime = currentTime.ToString().Split(":"[0]);
 
         SunLocation.rotation = Quaternion.Euler(new Vector3((time - 21600) / 86400 * 360, 0, 0));
         if (time < 43200)
