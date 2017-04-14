@@ -273,24 +273,22 @@ public class OwnCharacterController : MonoBehaviour {
 		if (transSkillInput) {
 			countKey += 1;
 			if (countKey % 2==1) {
-
-				//			room = roomInstance.FindObjectsOfType<MazeDoor> ();
-				//staticRenderer.material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
 				GM.wallTransparentSkill();
-				//Invoke ("GM.revertWallTransSkill", wallTransSkillTime);
-				//wall.GetComponent<Renderer> ().material.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-				//GetComponent(typeof(MazeRoom)) as MazeRoom
+                //Invoke ("GM.revertWallTransSkill", wallTransSkillTime);
+                //wall.GetComponent<Renderer> ().material.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+                //GetComponent(typeof(MazeRoom)) as MazeRoom
 
-				//gameobject.renderer.color.a=0.5;
-
-				//mazeInstance.GetComponent<MazeRoom>.renderer.color.a=0.5;
-			} else {
-				GM.revertWallTransSkill();
-			}
+                //gameobject.renderer.color.a=0.5;
+                
+                //Invoke("endSkill", wallTransSkillTime);
+            }
 		}
-
-
 	}
+
+    public void endSkill()
+    {
+        GM.revertWallTransSkill();
+    }
 
 
 

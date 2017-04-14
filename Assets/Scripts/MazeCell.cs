@@ -75,14 +75,14 @@ public class MazeCell : MonoBehaviour {
 	}
 
 	public void Show(){
-		gameObject.SetActive (true);
+		//gameObject.SetActive (true);
 		//gameObject.get
-		//gameObject.GetComponent<Renderer>().material.color= new Color(1.0f, 1.0f, 1.0f, 0.0f);
+		gameObject.GetComponent<Renderer>().material.color= new Color(1.0f, 1.0f, 1.0f, 0.0f);
 	}
 
 	public void Hide(){
-		
-		if (gameObject.GetComponent<MazeWall> () != null) {
+		gameObject.GetComponent<Renderer>().material.color = new Color(0.1f, 0.1f, 0.1f, 0.1f);
+        if (gameObject.GetComponent<MazeWall> () != null) {
 			//gameObject.GetComponent<MazeWall> ().transparent();
 			//gameObject.GetComponentInChildren<MazeWall>().
 
