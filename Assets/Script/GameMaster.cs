@@ -279,6 +279,7 @@ public class GameMaster : MonoBehaviour {
 		Debug.Log ("Apply trans skills");
 		//sweep all cells
 		IntVector2 currentWall;
+        
         mazeInstance.GetComponent<Renderer>().material.SetColor("_Color", new Color(0,0,0,0));
         /*
 		for (int x = 0; x < 20; x++) {
