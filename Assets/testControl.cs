@@ -35,6 +35,8 @@ public class testControl : MonoBehaviour
 
     void Update()
     {
+        if(thisObject == null) thisObject = GameObject.FindGameObjectWithTag("Enemy");
+
         LookAtTarget();
         // If the enemy and the player have health left...
         if (playerHealth.current_health > 0)
@@ -95,6 +97,15 @@ public class testControl : MonoBehaviour
         transform.localPosition = spawnLocation;
     }
 
+    public void setIdle()
+    {
+        thisObject.SetActive(false);
+    }
+
+    public void setActive()
+    {
+        thisObject.SetActive(true);
+    }
 
     // enemy looking at player code below:
 
