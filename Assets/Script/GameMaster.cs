@@ -19,18 +19,19 @@ public class GameMaster : MonoBehaviour {
     Transform enemy_spawn_location;
     public GameObject chest;
     bool chest_opened = false;
+    public GameObject playerPrefab;
+    public GameObject enemyPrefab;
+    public GameObject R1EnemyPrefab;
+    public GameObject cubePrefab;
+    private OwnCharacterController player;
+    private GameObject Max;
+    private testControl enemy;
+    private CubeControl cube;
     ///////////////////////////maze variable//////////////////////////
     private MazeDoor R1Door;
     public Maze R1Maze;
     public Maze R2Maze;
     public Maze mazePrefab;
-    public GameObject playerPrefab;
-    public GameObject enemyPrefab;
-    public GameObject cubePrefab;
-    private OwnCharacterController player ;
-    private GameObject Max;
-    private testControl enemy;
-    private CubeControl cube;
     private Maze mazeInstance;
     private GameObject playerInstance;
     private GameObject enemyInstance;
@@ -64,7 +65,11 @@ public class GameMaster : MonoBehaviour {
         }
         else if (game_round == 1)
         {
-            BeginGameR1();
+            BeginGameR1();  //init gameplay
+            if (enemyPrefab != null)
+            {
+                R1EnemyPrefab = enemyPrefab;
+            }
         }
         else if (game_round == 2)
         {
@@ -88,6 +93,8 @@ public class GameMaster : MonoBehaviour {
             mManger.name = musicPrefab.name;
             DontDestroyOnLoad(mManger);
         }
+
+
 
 
 
@@ -175,10 +182,13 @@ public class GameMaster : MonoBehaviour {
         //playerInstance = Instantiate(playerPrefab) as GameObject;
         //enemyInstance = Instantiate(enemyPrefab) as GameObject;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
-        enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
+        enemyInstance = Instantiate(R1EnemyPrefab) as GameObject;
+        enemy = R1EnemyPrefab.GetComponent(typeof(testControl)) as testControl;
+        enemyInstance.SetActive(false);
         //player.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
-        StartCoroutine(spawnEnemy(5));
+        //StartCoroutine(spawnEnemy(5));
     }
+
 
     private void RestartGame()
     {
@@ -309,7 +319,6 @@ public class GameMaster : MonoBehaviour {
 		}
 	}
 
-	
     public void control_chest()
     {
         if (!chest_opened)
