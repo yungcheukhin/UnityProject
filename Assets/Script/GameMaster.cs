@@ -304,8 +304,7 @@ public class GameMaster : MonoBehaviour {
 		}
 	}
 
-	}
-
+	
     public void control_chest()
     {
         if (!chest_opened)
