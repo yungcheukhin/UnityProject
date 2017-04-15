@@ -25,7 +25,6 @@ public class GameMaster : MonoBehaviour {
     private OwnCharacterController player;
     private GameObject Max;
     private testControl enemy;
-    private CubeControl cube;
     ///////////////////////////maze variable//////////////////////////
     private MazeDoor R1Door;
     public Maze R1Maze;
@@ -174,14 +173,11 @@ public class GameMaster : MonoBehaviour {
     private void BeginGameR1()  // for stage 1 init
     {
         mazeInstance = R1Maze;
-        //playerInstance = Instantiate(playerPrefab) as GameObject;
-        //enemyInstance = Instantiate(enemyPrefab) as GameObject;
+
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         enemyInstance = Instantiate(R1EnemyPrefab) as GameObject;
         enemy = R1EnemyPrefab.GetComponent(typeof(testControl)) as testControl;
         enemyInstance.SetActive(false);
-        //player.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
-        //StartCoroutine(spawnEnemy(5));
     }
 
 
