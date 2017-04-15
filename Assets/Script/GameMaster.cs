@@ -22,7 +22,6 @@ public class GameMaster : MonoBehaviour {
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
     public GameObject R1EnemyPrefab;
-    public GameObject cubePrefab;
     private OwnCharacterController player;
     private GameObject Max;
     private testControl enemy;
@@ -139,8 +138,8 @@ public class GameMaster : MonoBehaviour {
 
     public void setRestart()
     {
-        RestartFlag = true;
-    }    //command to restart game
+        RestartFlag = true;//command to restart game
+    }    
 
     public void restartLevel()
     {
@@ -154,13 +153,10 @@ public class GameMaster : MonoBehaviour {
         yield return StartCoroutine(mazeInstance.Generate());
         playerInstance = Instantiate(playerPrefab) as GameObject;
         enemyInstance = Instantiate(enemyPrefab) as GameObject;
-        //cubeInstance = Instantiate(cubePrefab) as GameObject;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
         player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
-        //cube.SetCubeLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
         StartCoroutine(spawnEnemy(5));
-        //enemy.SetEnemyLocation(enemy_spawn_location.position);
     }
 
     private void BeginGameR2()  //for stage 2 init

@@ -22,6 +22,8 @@ public class testControl : MonoBehaviour
     public float enemy_movement_speed = 2f;
     private MazeCell currentCell;
 
+    NavMeshPath path = new NavMeshPath(); //get path
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -41,20 +43,32 @@ public class testControl : MonoBehaviour
         // If the enemy and the player have health left...
         if (playerHealth.current_health > 0)
         {
-            
-            nav.SetDestination(player_location.position);// set the destination of the nav mesh agent to the player.
-            NavMeshPath path = new NavMeshPath(); //get path
-            GetComponent<NavMeshAgent>().CalculatePath(destination, path);
-            if (path.status == NavMeshPathStatus.PathPartial)
+            if (CalculatePath()) //path available
             {
-                Stall(); //if no path is detected, stay at the current position
+                Track();
             }
-            else Track();
+            else //path not available
+            {
+                Stall();
+            }
         }
         else
         {
             // disable the nav mesh agent.
             nav.enabled = false;
+        }
+    }
+
+    bool CalculatePath() //Check if full path is available
+    {
+        nav.CalculatePath(player_location.position, path);
+        if (path.status != NavMeshPathStatus.PathComplete)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 
@@ -66,6 +80,7 @@ public class testControl : MonoBehaviour
 
     void Track()
     {
+        nav.SetDestination(player_location.position);// set the destination of the nav mesh agent to the player.
         if (flag && !underattack)
         {   
 			// not in collision
