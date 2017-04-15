@@ -1295,7 +1295,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013444896288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5, y: 0, z: 5.5}
+  m_LocalPosition: {x: -8.5, y: 0, z: 6.5}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 4000010560199924}
@@ -2320,6 +2320,7 @@ MonoBehaviour:
   runVel: 1.6
   horizontalVel: 0.8
   anim: {fileID: 111000011205308162}
+  wallTransSkillTime: 3
   death_animation: death
   flip_animation: flip
   idle_animation: idle
@@ -2329,12 +2330,9 @@ MonoBehaviour:
   run_animation: run
   walk_animation: walk
   sensitivityX: 100
+  countKey: 0
   turnmin: -90
   turnmax: 90
-  target: {fileID: 0}
-  door: {fileID: 0}
-  doorInstance: {fileID: 0}
-  doorPrefab: {fileID: 0}
 --- !u!114 &114000012872812728
 MonoBehaviour:
   m_ObjectHideFlags: 1
