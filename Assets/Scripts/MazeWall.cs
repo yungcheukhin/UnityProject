@@ -7,7 +7,12 @@ public class MazeWall : MazeCellEdge {
 	public override void Initialize (MazeCell cell, MazeCell otherCell, MazeDirection direction) {
 		base.Initialize (cell, otherCell, direction);
 		wall.GetComponent<Renderer>().material = cell.room.settings.wallMaterial;
-	}
+        Color color_l = new Color(0.1f, 0.0f, 0.0f, 0.0f);
+        wall.GetComponent<Renderer>().material.SetColor("Standard", color_l);
+        //Color color = GetComponent<Renderer>().material.GetColor()
+        //color.a = 0.2f;
+        //wall.GetComponent<Renderer>().material.color=color;
+    }
 	public override void transSkills(){
 		wall.GetComponent<Renderer>().material.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
 		Debug.Log("Wall Transparented");
