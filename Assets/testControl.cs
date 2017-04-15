@@ -41,15 +41,27 @@ public class testControl : MonoBehaviour
         // If the enemy and the player have health left...
         if (playerHealth.current_health > 0)
         {
-            // set the destination of the nav mesh agent to the player.
-            nav.SetDestination(player_location.position);
-            Track();
+            
+            nav.SetDestination(player_location.position);// set the destination of the nav mesh agent to the player.
+            NavMeshPath path = new NavMeshPath(); //get path
+            GetComponent<NavMeshAgent>().CalculatePath(destination, path);
+            if (path.status == NavMeshPathStatus.PathPartial)
+            {
+                Stall(); //if no path is detected, stay at the current position
+            }
+            else Track();
         }
         else
         {
             // disable the nav mesh agent.
             nav.enabled = false;
         }
+    }
+
+    void Stall()
+    {
+        enemy_movement_speed = 0;
+        anim.CrossFade(idle_animation);
     }
 
     void Track()
