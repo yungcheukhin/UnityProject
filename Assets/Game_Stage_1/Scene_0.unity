@@ -1637,6 +1637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 426659553}
   - component: {fileID: 426659551}
+  - component: {fileID: 426659552}
   m_Layer: 0
   m_Name: GM
   m_TagString: GM
@@ -1671,6 +1672,17 @@ MonoBehaviour:
   R1Maze: {fileID: 114356632683899446, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
   R2Maze: {fileID: 0}
   mazePrefab: {fileID: 0}
+--- !u!114 &426659552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 426659550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1894a2e99f8d24949b0e75260761f6aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &426659553
 Transform:
   m_ObjectHideFlags: 0
@@ -1782,6 +1794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 1394226405}
   isShowing: 0
+  settingisshowing: 0
 --- !u!4 &527937481
 Transform:
   m_ObjectHideFlags: 0
