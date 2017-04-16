@@ -9,7 +9,6 @@ public class CharacterHealth : MonoBehaviour {
     public int starting_health = 100;
     public int current_health = 100;
     public Animation anim;
-    public string death_animation = "death";
     private GameMaster gm;
     
     private bool damaged = false;
@@ -24,7 +23,7 @@ public class CharacterHealth : MonoBehaviour {
 
         if (current_health <= 0)
         {
-            anim.CrossFade("death");
+            gm.death();
             if (!IsInvoking("restartLevel"))
             {
                 Invoke("restartLevel", 3);

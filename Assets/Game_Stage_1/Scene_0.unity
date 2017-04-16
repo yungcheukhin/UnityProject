@@ -3780,7 +3780,6 @@ MonoBehaviour:
     type: 2}
   R1EnemyPrefab: {fileID: 1000011176706658, guid: 6a0e2de80b4c4044897a5aeb17014e0e,
     type: 2}
-  cubePrefab: {fileID: 0}
   R1Maze: {fileID: 114356632683899446, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
   R2Maze: {fileID: 0}
   mazePrefab: {fileID: 0}
@@ -8229,7 +8228,7 @@ Prefab:
     - target: {fileID: 20000010879609916, guid: 980d43d0c8a90b042a56ddf19af12af8,
         type: 2}
       propertyPath: m_ClearFlags
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 20000010879609916, guid: 980d43d0c8a90b042a56ddf19af12af8,
         type: 2}
@@ -8245,6 +8244,11 @@ Prefab:
         type: 2}
       propertyPath: m_BackGroundColor.b
       value: 0.19074395
+      objectReference: {fileID: 0}
+    - target: {fileID: 54000013206074778, guid: 980d43d0c8a90b042a56ddf19af12af8,
+        type: 2}
+      propertyPath: m_UseGravity
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 980d43d0c8a90b042a56ddf19af12af8, type: 2}

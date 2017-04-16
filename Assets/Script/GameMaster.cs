@@ -318,4 +318,9 @@ public class GameMaster : MonoBehaviour {
         }
 
     }
+
+    public void death()
+    {
+        player.Death();
+    }
 }

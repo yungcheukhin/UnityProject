@@ -35,8 +35,9 @@ public class OwnCharacterController : MonoBehaviour {
 	private static bool loggedInputInfo = false;
 	public float turnmin = -90.0f;
 	public float turnmax = 90.0f;
+    private Vector3 prevMaxLocation = new Vector3(0,0,0);
 
-	Vector3 leftright;
+    Vector3 leftright;
 
 	Quaternion originalRotation;
     Quaternion targetRotation;
@@ -84,7 +85,6 @@ public class OwnCharacterController : MonoBehaviour {
         Vector3 angles = transform.eulerAngles;
 		x = angles.y;
 		y = angles.x;
-		rBody = GetComponent<Rigidbody>();
 		//motor = GetComponent(typeof(CharacterMotor)) as CharacterMotor;
 		//if (motor==null) Debug.Log("Motor is null!!");
 		originalRotation = transform.localRotation;
@@ -110,16 +110,16 @@ public class OwnCharacterController : MonoBehaviour {
 
     void GetInput()
     {
+        haveInput = Input.anyKey;
         forwardInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
         //directionInput = Input.GetAxis("Horizontal");
         canRun = Input.GetKey("left shift");
-		flipInput = Input.GetKey("space");
-        haveInput = Input.anyKey;
-		transSkillInput = (Input.GetKey (KeyCode.E)) ? true : false;
-		openDoor = (Input.GetKey (KeyCode.Q)) ? true : false;
+        flipInput = Input.GetKey("space");
+        mouseX = Input.GetAxis("Mouse X");
+        transSkillInput = (Input.GetKey(KeyCode.E)) ? true : false;
+        openDoor = (Input.GetKey(KeyCode.Q)) ? true : false;
         open_chest = (Input.GetKey(KeyCode.F)) ? true : false;
-
     }
 
     void Update()   //dont require physic
@@ -127,8 +127,6 @@ public class OwnCharacterController : MonoBehaviour {
 
 		oldMouseX = mouseX;
 		GetInput();
-		mouseX = Input.GetAxis ("Mouse X");
-
 		//Check mouse orbit delta and stop rotating when mouse not moving
 		if (Mathf.Abs(mouseX-oldMouseX)>0) {
 			rotationX += mouseX * sensitivityX;
@@ -161,8 +159,9 @@ public class OwnCharacterController : MonoBehaviour {
 
     void FixedUpdate()  //need physic calculation
     {
-        if(!isDead) Move();
-		wallTransSkill();
+        if (isDead != true) Move();
+        else rBody.MovePosition(prevMaxLocation);
+        wallTransSkill();
     }
 
 
@@ -182,11 +181,13 @@ public class OwnCharacterController : MonoBehaviour {
                 rBody.velocity = transform.right * horizontalInput * horizontalVel + transform.forward * forwardInput * forwardVel;
                 anim.CrossFade(walk_animation);
             }
+            prevMaxLocation = rBody.position;
         }
         else if (Mathf.Abs(horizontalInput) > inputDelay)
         {
             rBody.velocity = transform.right * horizontalInput * horizontalVel;
             anim.CrossFade(walk_animation);
+            prevMaxLocation = rBody.position;
         }
         else if (Mathf.Abs(forwardInput) > inputDelay)
         {
@@ -201,25 +202,25 @@ public class OwnCharacterController : MonoBehaviour {
                 rBody.velocity = transform.forward * forwardInput * forwardVel;
                 anim.CrossFade(walk_animation);
             }
+            prevMaxLocation = rBody.position;
         }
         else
         {
             //dont move
             rBody.velocity = Vector3.zero;
+            if(prevMaxLocation != Vector3.zero)
+                rBody.MovePosition(prevMaxLocation);
             anim.CrossFade(idle_animation);
         }
     }
 
 	//Extra Turning function
-    void Turn()
+    void Turn() //not in use
     {
-        //if(Mathf.Abs(turnInput) > inputDelay)
-        //{
-			turn = turnInput * Time.deltaTime;
-			turn = Mathf.Clamp(turn, turnmin, turnmax);
-			//turn *= rotateVel;
-            targetRotation *= Quaternion.AngleAxis(turn, Vector3.up);
-        //}
+		turn = turnInput * Time.deltaTime;
+		turn = Mathf.Clamp(turn, turnmin, turnmax);
+		//turn *= rotateVel;
+        targetRotation *= Quaternion.AngleAxis(turn, Vector3.up);
 		transform.rotation = targetRotation;
     }
 
