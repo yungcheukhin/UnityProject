@@ -53,6 +53,12 @@ public class Maze : MonoBehaviour {
 			yield return 0;
 			DoNextGenerationStep(activeCells);
 		}
+        MazeWall[] wall;
+        wall = this.GetComponents<MazeWall>();
+        for (int i=0; i< wall.Length; i++)
+        {
+            wall[i].transSkills();
+        }
 //		for (int i = 0; i < rooms.Count; i++) {
 //			rooms [i].Hide();
 //		}
@@ -154,7 +160,7 @@ public class Maze : MonoBehaviour {
 	}
 
 	public void transSkills(){
-		
+       // MazeWall wall = 
 		for (int i = 0; i < rooms.Count; i++) {
 			rooms [i].transSkills ();
 		}

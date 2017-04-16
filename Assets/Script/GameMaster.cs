@@ -36,6 +36,8 @@ public class GameMaster : MonoBehaviour {
     private MazeCell currentCell;
 	private MazeCell transWallCell;
 	private MazeCell revertTransWall;
+    public MazeWall[] wallPrefabs;
+    private MazeWall[] wall;
     private bool doorOpened = false;
 
     //private GameObject cubeInstance;
@@ -280,8 +282,16 @@ public class GameMaster : MonoBehaviour {
 		Debug.Log ("Apply trans skills");
 		//sweep all cells
 		IntVector2 currentWall;
-        
-        mazeInstance.GetComponent<Renderer>().material.SetColor("_Color", new Color(0,0,0,0));
+        //if (wall == null) 
+        wall = mazeInstance.GetComponents<MazeWall>();
+        for (int i=0; i<19; i++)
+        {
+            wall[i] = Instantiate(wallPrefabs[i]) as MazeWall;
+        }
+        for (int i=0; i<wall.Length; i++)
+        {
+            wall[i].transSkills();
+        }
         /*
 		for (int x = 0; x < 20; x++) {
 			for (int y = 0; y < 20; y++) {
@@ -300,6 +310,13 @@ public class GameMaster : MonoBehaviour {
 		Debug.Log ("De-apply trans skills");
 		//sweep all cells
 		IntVector2 currentWall;
+        //if (wall == null)
+        wall = mazeInstance.GetComponents<MazeWall>();
+        for (int i = 0; i < wall.Length; i++)
+        {
+            wall[i].revertTransSkill();
+        }
+        /*
 		for (int x = 0; x < 20; x++) {
 			for (int y = 0; y < 20; y++) {
 				currentWall.x = x;
@@ -308,7 +325,8 @@ public class GameMaster : MonoBehaviour {
 				revertTransWall.revertTransSkill();
 			}
 		}
-	}
+        */
+    }
 
     public void control_chest()
     {
