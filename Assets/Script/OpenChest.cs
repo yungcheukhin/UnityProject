@@ -15,6 +15,7 @@ public class OpenChest : MonoBehaviour {
     private GameObject player;
     private GameObject close_chest;
     private GameObject open_chest_object;
+    private MazeCell currentCell;
 
     void Awake()
     {
@@ -60,4 +61,11 @@ public class OpenChest : MonoBehaviour {
             Destroy(close_chest);
         }
     }
+
+    public void SetLocation(MazeCell cell)
+    {
+        currentCell = cell;
+        transform.localPosition = cell.transform.localPosition;
+    }
+
 }

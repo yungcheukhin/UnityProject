@@ -17,12 +17,13 @@ public class GameMaster : MonoBehaviour {
     bool RestartFlag = false;   //true if the game needa restart
     Queue <Transform> previous_locations = new Queue<Transform>();
     Transform enemy_spawn_location;
-    public GameObject chest;
+    public GameObject chestPrefab;
     bool chest_opened = false;
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
     public GameObject R1EnemyPrefab;
     private OwnCharacterController player;
+    private OpenChest chest;
     private GameObject Max;
     private testControl enemy;
     ///////////////////////////maze variable//////////////////////////
@@ -33,6 +34,7 @@ public class GameMaster : MonoBehaviour {
     private Maze mazeInstance;
     private GameObject playerInstance;
     private GameObject enemyInstance;
+    private GameObject chestInstance;
     private MazeCell currentCell;
 	private MazeCell transWallCell;
 	private MazeCell revertTransWall;
@@ -166,9 +168,12 @@ public class GameMaster : MonoBehaviour {
         mazeInstance = R2Maze;
         playerInstance = Instantiate(playerPrefab) as GameObject;
         enemyInstance = Instantiate(enemyPrefab) as GameObject;
+        chestInstance = Instantiate(chestPrefab);
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
+        chest = chestPrefab.GetComponent(typeof(OpenChest)) as OpenChest;
         player.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
+        chest.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
         StartCoroutine(spawnEnemy(5));
     }
 
