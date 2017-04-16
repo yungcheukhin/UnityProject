@@ -15,7 +15,7 @@ public class MazeWall : MazeCellEdge {
 
     }
 	public override void transSkills(){
-        cell.room.settings.wallMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.2f);
+        cell.room.settings.wallMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.09f);
         wall.GetComponent<Renderer>().material = cell.room.settings.wallMaterial;
         Debug.Log("Wall Transparented");
 

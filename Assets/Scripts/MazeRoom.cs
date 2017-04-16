@@ -35,6 +35,15 @@ public class MazeRoom : ScriptableObject {
 		}
 	}
 
+    public void reverTransSkills()
+    {
+        for (int i = 0; i < cells.Count; i++)
+        {
+
+            cells[i].revertTransSkill();
+        }
+    }
+
     public void Show()
     {
         for (int i = 0; i < cells.Count; i++)
