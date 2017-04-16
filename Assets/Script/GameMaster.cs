@@ -284,10 +284,12 @@ public class GameMaster : MonoBehaviour {
 		IntVector2 currentWall;
         //if (wall == null) 
         wall = mazeInstance.GetComponents<MazeWall>();
+        /*
         for (int i=0; i<19; i++)
         {
             wall[i] = Instantiate(wallPrefabs[i]) as MazeWall;
         }
+        */
         for (int i=0; i<wall.Length; i++)
         {
             wall[i].transSkills();
