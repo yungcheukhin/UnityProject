@@ -134,34 +134,32 @@ public class OwnCharacterController : MonoBehaviour {
         if (!isDead)
         {
             Move();
-            //Check mouse orbit delta and stop rotating when mouse not moving
+            if (Mathf.Abs(mouseX - oldMouseX) > 0)
+            {
+                rotationX += mouseX * sensitivityX;
+            }
+            else
+            {
+                rotationX = 0;
+            }
+            //Convert Mouse X rotation into Quaternion
+            Quaternion rotation = Quaternion.Euler(0, rotationX, 0);
+            turnInput = rotationX;
+            //turn = turnInput;
+            turn = turnInput * Time.deltaTime;
+            turn = Mathf.Clamp(turn, turnmin, turnmax);
+
+            //Rotate the player centering at it's Y-axis
+            targetRotation *= Quaternion.AngleAxis(turn, Vector3.up);
+            transform.rotation = targetRotation;
+
+            //Flip animation Input
+            if (flipInput) anim.CrossFade(flip_animation);
+            if (openDoor) checkCellHvDoor(T2IntVector2());
+            if (open_chest) GM.control_chest();
 
         }
-        if (Mathf.Abs(mouseX - oldMouseX) > 0)
-        {
-            //if (mouseX > oldMouseX) rotationX += Mathf.Abs(mouseX - oldMouseX) * sensitivityX;
-            //if (mouseX <= oldMouseX) rotationX -= Mathf.Abs(oldMouseX - mouseX) * sensitivityX;
-            rotationX += mouseX * sensitivityX;
-        }
-        else
-        {
-            rotationX = 0;
-        }
-        //Convert Mouse X rotation into Quaternion
-        Quaternion rotation = Quaternion.Euler(0, rotationX, 0);
-        turnInput = rotationX;
-        //turn = turnInput;
-        turn = turnInput * Time.deltaTime;
-        turn = Mathf.Clamp(turn, turnmin, turnmax);
-
-        //Rotate the player centering at it's Y-axis
-        targetRotation *= Quaternion.AngleAxis(turn, Vector3.up);
-        transform.rotation = targetRotation;
-
-        //Flip animation Input
-        if (flipInput) anim.CrossFade(flip_animation);
-        if (openDoor) checkCellHvDoor(T2IntVector2());
-        if (open_chest) GM.control_chest();
+        
         
     }
 
