@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Menu/Menu.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/First Game Stage/Scene_1.unity

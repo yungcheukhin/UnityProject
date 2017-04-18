@@ -26,7 +26,7 @@ public class Maze : MonoBehaviour {
 
 	public MazeCell[,] cells;
 
-	private List<MazeRoom> rooms = new List<MazeRoom>();
+	public List<MazeRoom> rooms = new List<MazeRoom>();
 
 	public IntVector2 RandomCoordinates {
 		get {
@@ -66,13 +66,13 @@ public class Maze : MonoBehaviour {
 	}
 
 
-	private void DoFirstGenerationStep (List<MazeCell> activeCells) {
+    public void DoFirstGenerationStep (List<MazeCell> activeCells) {
 		MazeCell newCell = CreateCell(RandomCoordinates);
 		newCell.Initialize(CreateRoom(-1));
 		activeCells.Add(newCell);
 	}
 
-	private void DoNextGenerationStep (List<MazeCell> activeCells) {
+    public void DoNextGenerationStep (List<MazeCell> activeCells) {
 		int currentIndex = activeCells.Count - 1;
 		MazeCell currentCell = activeCells[currentIndex];
 		if (currentCell.IsFullyInitialized) {
@@ -104,7 +104,7 @@ public class Maze : MonoBehaviour {
 		}
 	}
 
-	private MazeCell CreateCell (IntVector2 coordinates) {
+    public MazeCell CreateCell (IntVector2 coordinates) {
 		MazeCell newCell = Instantiate(cellPrefab) as MazeCell;
 		cells[coordinates.x, coordinates.z] = newCell;
 		newCell.coordinates = coordinates;
@@ -114,7 +114,7 @@ public class Maze : MonoBehaviour {
 		return newCell;
 	}
 
-	private void CreatePassage (MazeCell cell, MazeCell otherCell, MazeDirection direction) {
+    public void CreatePassage (MazeCell cell, MazeCell otherCell, MazeDirection direction) {
 		MazePassage prefab = Random.value < doorProbability ? doorPrefab : passagePrefab;
 		MazePassage passage = Instantiate(prefab) as MazePassage;
 		passage.Initialize(cell, otherCell, direction);
@@ -128,7 +128,7 @@ public class Maze : MonoBehaviour {
 		passage.Initialize(otherCell, cell, direction.GetOpposite());
 	}
 
-	private void CreatePassageInSameRoom (MazeCell cell, MazeCell otherCell, MazeDirection direction) {
+    public void CreatePassageInSameRoom (MazeCell cell, MazeCell otherCell, MazeDirection direction) {
 		MazePassage passage = Instantiate(passagePrefab) as MazePassage;
 		passage.Initialize(cell, otherCell, direction);
 		passage = Instantiate(passagePrefab) as MazePassage;
@@ -141,7 +141,7 @@ public class Maze : MonoBehaviour {
 		}
 	}
 
-	private void CreateWall (MazeCell cell, MazeCell otherCell, MazeDirection direction) {
+    public void CreateWall (MazeCell cell, MazeCell otherCell, MazeDirection direction) {
 		MazeWall wall = Instantiate(wallPrefabs[Random.Range(0, wallPrefabs.Length)]) as MazeWall;
 		wall.Initialize(cell, otherCell, direction);
 		if (otherCell != null) {
@@ -150,7 +150,7 @@ public class Maze : MonoBehaviour {
 		}
 	}
 
-	private MazeRoom CreateRoom (int indexToExclude) {
+    public MazeRoom CreateRoom (int indexToExclude) {
 		MazeRoom newRoom = ScriptableObject.CreateInstance<MazeRoom>();
 		newRoom.settingsIndex = Random.Range(0, roomSettings.Length);
 		if (newRoom.settingsIndex == indexToExclude) {
@@ -161,19 +161,29 @@ public class Maze : MonoBehaviour {
 		return newRoom;
 	}
 
-    public IEnumerator transSkills(){
+    public Maze copyMazeToTrans(Maze des)
+    {
+        for (int i = 0; i < des.rooms.Count; i++)
+        {
+            des.rooms[i].transSkills();
+        }
+        return des;
+    }
+
+    public void transSkills(){
         // MazeWall wall = 
         Debug.Log("Apply trans skills hahahaha");
         for (int i = 0; i < rooms.Count; i++)
         {
-            rooms[i].transSkills();
+            //rooms[i].transSkills();
         }
-        yield return null;
+        //yield return null;
     }
+
 	public void revertTransSkills(){
         Debug.Log("De-apply trans skills haha");
         for (int i = 0; i < rooms.Count; i++) {
-            rooms[i].reverTransSkills();
+            //rooms[i].reverTransSkills();
 
         }
 	}

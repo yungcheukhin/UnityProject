@@ -27,20 +27,21 @@ public class GameMaster : MonoBehaviour {
     private GameObject Max;
     private testControl enemy;
     ///////////////////////////maze variable//////////////////////////
-    private MazeDoor R1Door;
+    public MazeDoor R1Door;
     public Maze R1Maze;
     public Maze R2Maze;
     public Maze mazePrefab;
-    private Maze mazeInstance;
-    private Maze transMaze;
+    public Maze mazeInstance;
+    public Maze transMaze;
+    public Maze Maze_clone_source;
     private GameObject playerInstance;
     private GameObject enemyInstance;
     private GameObject chestInstance;
     private MazeCell currentCell;
-	private MazeCell transWallCell;
-	private MazeCell revertTransWall;
+	public MazeCell transWallCell;
+	public MazeCell revertTransWall;
     public MazeWall[] wallPrefabs;
-    private MazeWall[] wall;
+    public MazeWall[] wall;
     private bool doorOpened = false;
 
     //private GameObject cubeInstance;
@@ -156,29 +157,30 @@ public class GameMaster : MonoBehaviour {
     {
         mazeInstance = Instantiate(mazePrefab) as Maze;
         yield return StartCoroutine(mazeInstance.Generate());
-
+        mazeInstance.tag = "Maze";
+        transMaze = Instantiate(mazeInstance) as Maze;
+        //mazeInstance.enabled = false;
+        transMaze = transMaze.copyMazeToTrans(transMaze);
+        transMaze.tag = "MazeClone";
+        //yield return StartCoroutine(instantiateMaze(transMaze));
+        //transMaze.transSkills();
         playerInstance = Instantiate(playerPrefab) as GameObject;
-        enemyInstance = Instantiate(enemyPrefab) as GameObject;
+        //enemyInstance = Instantiate(enemyPrefab) as GameObject;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
-        enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
+        //enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
         player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
-        StartCoroutine(spawnEnemy(5));
-        //HERE
-        // Missile missileCopy = Instantiate<Missile>(missile);
-        //mazeInstance.
-        //transMaze = Instantiate<Maze>(mazeInstance);
-        //yield return StartCoroutine(transMaze.transSkills());
+        //StartCoroutine(spawnEnemy(5));
+    }
 
-        //// initialization
-        Maze  Maze_clone_source = GetComponent(typeof(Maze)) as Maze;
-        // cloning
-        Maze Maze_clone = (Maze)
-            UnityEngine.Object.Instantiate(Maze_clone_source, Maze_clone_source.transform.position,
-                                           Maze_clone_source.transform.rotation);
-
-        //Maze_clone.transSkills();
-        yield return StartCoroutine(Maze_clone.transSkills());
-        //
+    private IEnumerator instantiateMaze(Maze instance)
+    {
+        //Maze Maze_clone_source = GameObject.FindGameObjectWithTag("Maze").GetComponentInParent<Maze>();
+        //instance = (Maze) UnityEngine.Object.Instantiate(Maze_clone_source, Maze_clone_source.transform.position, Maze_clone_source.transform.rotation);
+        //instance = Maze_clone_source;
+        //instance.tag = "MazeClone";
+        //Maze clone = GameObject.FindGameObjectWithTag("MazeClone").GetComponentInParent<Maze>();
+        //instance.transSkills();
+        yield return 0;
     }
 
     private void BeginGameR2()  //for stage 2 init

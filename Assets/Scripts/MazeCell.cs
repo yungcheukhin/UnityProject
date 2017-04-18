@@ -8,9 +8,9 @@ public class MazeCell : MonoBehaviour {
 
 	public MazeWall wall;
 
-	private MazeCellEdge[] edges = new MazeCellEdge[MazeDirections.Count];
+	public MazeCellEdge[] edges = new MazeCellEdge[MazeDirections.Count];
 
-	private int initializedEdgeCount;
+	public int initializedEdgeCount;
 
 	public bool IsFullyInitialized {
 		get {

@@ -2,13 +2,13 @@
 
 public class MazeDoor : MazePassage {
 
-	private static Quaternion
+	public static Quaternion
 		normalRotation = Quaternion.Euler(0f, -90f, 0f),
 		mirroredRotation = Quaternion.Euler(0f, 90f, 0f);
 
 	public Transform hinge;
 
-	private bool isMirrored;
+	public bool isMirrored;
 
 	public MazeDoor OtherSideOfDoor {
 		get {

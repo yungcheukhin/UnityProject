@@ -110,7 +110,6 @@ public class OwnCharacterController : MonoBehaviour {
         haveInput = Input.anyKey;
         forwardInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
-        //directionInput = Input.GetAxis("Horizontal");
         canRun = Input.GetKey("left shift");
         flipInput = Input.GetKey("space");
         mouseX = Input.GetAxis("Mouse X");
@@ -151,8 +150,9 @@ public class OwnCharacterController : MonoBehaviour {
 
             //Rotate the player centering at it's Y-axis
             targetRotation *= Quaternion.AngleAxis(turn, Vector3.up);
+            targetRotation *= Quaternion.AngleAxis(0, Vector3.right);
+            targetRotation *= Quaternion.AngleAxis(0, Vector3.forward);
             transform.rotation = targetRotation;
-
             //Flip animation Input
             if (flipInput) anim.CrossFade(flip_animation);
             if (openDoor) checkCellHvDoor(T2IntVector2());
@@ -213,16 +213,6 @@ public class OwnCharacterController : MonoBehaviour {
         }
     }
 
-	//Extra Turning function
-    void Turn() //not in use
-    {
-		turn = turnInput * Time.deltaTime;
-		turn = Mathf.Clamp(turn, turnmin, turnmax);
-		//turn *= rotateVel;
-        targetRotation *= Quaternion.AngleAxis(turn, Vector3.up);
-		transform.rotation = targetRotation;
-    }
-
 	//Death animation
     public void Death()
     {
@@ -274,13 +264,6 @@ public class OwnCharacterController : MonoBehaviour {
 			countKey += 1;
 			if (countKey % 2==1) {
                 mazeInstance.transSkills();
-                //Invoke ("GM.revertWallTransSkill", wallTransSkillTime);
-                //wall.GetComponent<Renderer> ().material.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-                //GetComponent(typeof(MazeRoom)) as MazeRoom
-
-                //gameobject.renderer.color.a=0.5;
-
-                //Invoke("endSkill", wallTransSkillTime);
             }else
             {
                 mazeInstance.revertTransSkills();

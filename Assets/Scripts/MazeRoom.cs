@@ -7,7 +7,7 @@ public class MazeRoom : ScriptableObject {
 
 	public MazeRoomSettings settings;
 	
-	private List<MazeCell> cells = new List<MazeCell>();
+	public List<MazeCell> cells = new List<MazeCell>();
 	
 	public void Add (MazeCell cell) {
 		cell.room = this;
@@ -29,8 +29,9 @@ public class MazeRoom : ScriptableObject {
 	}
 
 	public void transSkills(){
+        
 		for (int i = 0; i < cells.Count; i++) {
-
+            
 			cells [i].transSkills();
 		}
 	}

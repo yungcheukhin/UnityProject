@@ -13,6 +13,8 @@ TagManager:
   - R1Door
   - R1Door_r
   - Chest
+  - Maze
+  - MazeClone
   layers:
   - Default
   - TransparentFX

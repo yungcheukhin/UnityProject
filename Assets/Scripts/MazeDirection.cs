@@ -17,7 +17,7 @@ public static class MazeDirections {
 		}
 	}
 
-	private static MazeDirection[] opposites = {
+	public static MazeDirection[] opposites = {
 		MazeDirection.South,
 		MazeDirection.West,
 		MazeDirection.North,
@@ -36,7 +36,7 @@ public static class MazeDirections {
 		return (MazeDirection)(((int)direction + Count - 1) % Count);
 	}
 	
-	private static IntVector2[] vectors = {
+	public static IntVector2[] vectors = {
 		new IntVector2(0, 1),
 		new IntVector2(1, 0),
 		new IntVector2(0, -1),
@@ -47,7 +47,7 @@ public static class MazeDirections {
 		return vectors[(int)direction];
 	}
 
-	private static Quaternion[] rotations = {
+	public static Quaternion[] rotations = {
 		Quaternion.identity,
 		Quaternion.Euler(0f, 90f, 0f),
 		Quaternion.Euler(0f, 180f, 0f),
