@@ -41,7 +41,7 @@ public class CameraController : MonoBehaviour {
 	float y = 0.0f;
 	float xyOffset = 0.02f;
 
-	float height = 5.0f;
+	float height = 6.0f;
 	float heightDamping = 2.0f;
 	float rotationDamping = 3.0f;
 

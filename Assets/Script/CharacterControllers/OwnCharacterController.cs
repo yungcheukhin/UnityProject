@@ -45,6 +45,7 @@ public class OwnCharacterController : MonoBehaviour {
     float forwardInput, turnInput, directionInput, horizontalInput;
 	bool flipInput;
 	bool transSkillInput;
+    bool activeInput;
     private bool canRun = false;    //store flag to determine run
     private bool haveInput = false;
     private bool isDead = false;
@@ -60,8 +61,9 @@ public class OwnCharacterController : MonoBehaviour {
 	private MazeDoor door;
 	private MazeDoor doorInstance;
 	private MazeDoor doorPrefab;
+    private int countActive = 0;
 
-	float x = 0.0f;
+    float x = 0.0f;
 	float y = 0.0f;
 
     private bool open_chest = false;
@@ -74,9 +76,6 @@ public class OwnCharacterController : MonoBehaviour {
     void Start()
     {
         Cursor.visible = false;
-        //doorInstance = Instantiate (doorPrefab) as MazeDoor;
-        //door = doorPrefab.GetComponent (typeof(MazeDoor)) as MazeDoor;
-        //if (door == null) Debug.Log ("Door is null!");
         GM = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
     }
     void Awake()
@@ -85,8 +84,6 @@ public class OwnCharacterController : MonoBehaviour {
         Vector3 angles = transform.eulerAngles;
 		x = angles.y;
 		y = angles.x;
-		//motor = GetComponent(typeof(CharacterMotor)) as CharacterMotor;
-		//if (motor==null) Debug.Log("Motor is null!!");
 		originalRotation = transform.localRotation;
         targetRotation = transform.rotation;
 		mazeInstance = FindObjectOfType (typeof(Maze)) as Maze;
@@ -118,6 +115,7 @@ public class OwnCharacterController : MonoBehaviour {
         flipInput = Input.GetKey("space");
         mouseX = Input.GetAxis("Mouse X");
         transSkillInput = (Input.GetKey(KeyCode.E)) ? true : false;
+        activeInput = (Input.GetKey(KeyCode.F)) ? true : false;
         openDoor = (Input.GetKey(KeyCode.Q)) ? true : false;
         open_chest = (Input.GetKey(KeyCode.F)) ? true : false;
     }
@@ -125,6 +123,8 @@ public class OwnCharacterController : MonoBehaviour {
     void Update()   //dont require physic
     {
         wallTransSkill();
+        hideMaze();
+
     }
 
     void FixedUpdate()  //need physic calculation
@@ -262,7 +262,7 @@ public class OwnCharacterController : MonoBehaviour {
 
         //cell.transform.position=posIntVectorVar;
         //currentCell.GetComponent<MazeDoor>().OnPlayerEntered();
-        //currentCell.GetComponent<MazeDoor>().OnPlayerExited();
+
         GM.openCellDoor(posIntVectorVar);
 
     }
@@ -291,6 +291,20 @@ public class OwnCharacterController : MonoBehaviour {
     public void endSkill()
     {
         GM.revertWallTransSkill();
+    }
+
+    public void hideMaze()
+    {
+        if (activeInput) countActive++;
+        if (countActive > 100) countActive = 0;
+        if ((countActive%2)==1)
+        {
+            GM.mazeHide();
+
+        }else
+        {
+            GM.mazeShow();
+        }
     }
 
 

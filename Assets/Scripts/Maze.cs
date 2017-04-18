@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+//using System;
 
 public class Maze : MonoBehaviour {
 
@@ -53,14 +54,17 @@ public class Maze : MonoBehaviour {
 			yield return 0;
 			DoNextGenerationStep(activeCells);
 		}
+
+        /*
         MazeWall[] wall;
         wall = this.GetComponents<MazeWall>();
-        /*
+       
 		for (int i = 0; i < rooms.Count; i++) {
 			rooms [i].transSkills();
 		}
         */
 	}
+
 
 	private void DoFirstGenerationStep (List<MazeCell> activeCells) {
 		MazeCell newCell = CreateCell(RandomCoordinates);
@@ -157,13 +161,14 @@ public class Maze : MonoBehaviour {
 		return newRoom;
 	}
 
-	public void transSkills(){
+    public IEnumerator transSkills(){
         // MazeWall wall = 
         Debug.Log("Apply trans skills hahahaha");
         for (int i = 0; i < rooms.Count; i++)
         {
             rooms[i].transSkills();
         }
+        yield return null;
     }
 	public void revertTransSkills(){
         Debug.Log("De-apply trans skills haha");
@@ -173,4 +178,24 @@ public class Maze : MonoBehaviour {
         }
 	}
 
+    public void hideAll()
+    {
+        for (int i = 0; i < rooms.Count; i++)
+        {
+            rooms[i].Hide();
+        }
+    }
+
+    public void showAll()
+    {
+        for (int i = 0; i < rooms.Count; i++)
+        {
+            rooms[i].Show();
+        }
+    }
+
+    public static implicit operator GameObject(Maze v)
+    {
+        throw new System.NotImplementedException();
+    }
 }

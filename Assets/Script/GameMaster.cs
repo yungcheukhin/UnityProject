@@ -32,6 +32,7 @@ public class GameMaster : MonoBehaviour {
     public Maze R2Maze;
     public Maze mazePrefab;
     private Maze mazeInstance;
+    private Maze transMaze;
     private GameObject playerInstance;
     private GameObject enemyInstance;
     private GameObject chestInstance;
@@ -155,12 +156,20 @@ public class GameMaster : MonoBehaviour {
     {
         mazeInstance = Instantiate(mazePrefab) as Maze;
         yield return StartCoroutine(mazeInstance.Generate());
+
         playerInstance = Instantiate(playerPrefab) as GameObject;
         enemyInstance = Instantiate(enemyPrefab) as GameObject;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
         player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
         StartCoroutine(spawnEnemy(5));
+        //HERE
+        // Missile missileCopy = Instantiate<Missile>(missile);
+        //mazeInstance.
+        transMaze = Instantiate<Maze>(mazeInstance);
+        yield return StartCoroutine(transMaze.transSkills());
+        //yield return StartCoroutine(transMaze.transSkills());
+        //
     }
 
     private void BeginGameR2()  //for stage 2 init
@@ -347,5 +356,19 @@ public class GameMaster : MonoBehaviour {
     public void death()
     {
         player.Death();
+    }
+
+    public void mazeShow()
+    {
+        //mazeInstance = GameObject.FindObjectOfType(typeof(Maze)) as Maze;
+        mazeInstance.GetComponent<Maze>().enabled = true;
+        mazeInstance.showAll();
+        mazeInstance.enabled = true;
+    }
+    public void mazeHide()
+    {
+        mazeInstance.GetComponent<Maze>().enabled = false;
+        mazeInstance.hideAll();
+        mazeInstance.enabled = false;
     }
 }
