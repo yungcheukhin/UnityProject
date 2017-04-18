@@ -166,9 +166,18 @@ public class GameMaster : MonoBehaviour {
         //HERE
         // Missile missileCopy = Instantiate<Missile>(missile);
         //mazeInstance.
-        transMaze = Instantiate<Maze>(mazeInstance);
-        yield return StartCoroutine(transMaze.transSkills());
+        //transMaze = Instantiate<Maze>(mazeInstance);
         //yield return StartCoroutine(transMaze.transSkills());
+
+        //// initialization
+        Maze  Maze_clone_source = GetComponent(typeof(Maze)) as Maze;
+        // cloning
+        Maze Maze_clone = (Maze)
+            UnityEngine.Object.Instantiate(Maze_clone_source, Maze_clone_source.transform.position,
+                                           Maze_clone_source.transform.rotation);
+
+        //Maze_clone.transSkills();
+        yield return StartCoroutine(Maze_clone.transSkills());
         //
     }
 
