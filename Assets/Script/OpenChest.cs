@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class OpenChest : MonoBehaviour {
 
@@ -13,6 +12,7 @@ public class OpenChest : MonoBehaviour {
     private float openCloseTimer;
     private bool isSwitchable;
     private bool isOpen;
+
     private GameObject player;
     private GameObject close_chest;
     private GameObject open_chest_object;
@@ -61,19 +61,6 @@ public class OpenChest : MonoBehaviour {
         {
             open_chest_object = GameObject.Instantiate(open_chest_prefab, this.transform.position, this.transform.rotation);
             Destroy(close_chest);
-            //Teleport to the correct level
-            if(GM.GetComponent<GameMaster>().game_round == 1)
-            {
-                SceneManager.LoadScene("Scene_2");
-            }
-            else if (GM.GetComponent<GameMaster>().game_round == 2)
-            {
-                SceneManager.LoadScene("Scene_3");
-            }
-            else if (GM.GetComponent<GameMaster>().game_round == 3)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
         }
     }
 

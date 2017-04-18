@@ -97,19 +97,12 @@ public class GameMaster : MonoBehaviour {
             DontDestroyOnLoad(mManger);
         }
 
-
-
-
-
     }
-
-    private void Start ()
-    {
-
-	}
 
     private void Update()
     {
+        GameObject chest_teleport = GameObject.FindGameObjectWithTag("Teleport");
+        GameObject chest_check = GameObject.FindGameObjectWithTag("Chest"); //Check if the chest_closed object is destroyed
         if (!MapCreated && GameObject.FindGameObjectWithTag("MainCamera"))
         {
             Destroy(GameObject.Find("Loading Scene"));
@@ -121,6 +114,23 @@ public class GameMaster : MonoBehaviour {
         {
             RestartGame();
         }
+
+        //Teleport to the correct chest after opening the chest
+        if (chest_check == null)
+        {
+            if(chest_teleport.GetComponent<Teleport>().toScene2)
+                {
+                    chest_teleport.GetComponent<Teleport>().toScene2 = false;
+                    EditorSceneManager.LoadScene("Scene_3");
+                    BeginGameR2();
+                }
+            else if (chest_teleport.GetComponent<Teleport>().toScene3)
+                {
+                    chest_teleport.GetComponent<Teleport>().toScene3 = false;
+                    BeginGameR3();
+                }
+        }
+        
 
         PreviousLocation();
         if (previous_locations.Count == 15)

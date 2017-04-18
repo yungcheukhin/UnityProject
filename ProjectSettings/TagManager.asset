@@ -13,6 +13,7 @@ TagManager:
   - R1Door
   - R1Door_r
   - Chest
+  - Teleport
   layers:
   - Default
   - TransparentFX
