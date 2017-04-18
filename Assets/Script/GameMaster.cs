@@ -202,7 +202,6 @@ public class GameMaster : MonoBehaviour {
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         enemyInstance = Instantiate(R1EnemyPrefab) as GameObject;
         enemy = R1EnemyPrefab.GetComponent(typeof(testControl)) as testControl;
-        enemyInstance.SetActive(false);
     }
 
 

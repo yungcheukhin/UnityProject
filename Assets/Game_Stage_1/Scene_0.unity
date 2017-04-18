@@ -3774,7 +3774,7 @@ MonoBehaviour:
   sizeY: 40
   musicPrefab: {fileID: 4000010215273384, guid: ca555997b3da04d43aabb9212206f4f3,
     type: 2}
-  chest: {fileID: 770678927}
+  chestPrefab: {fileID: 770678927}
   playerPrefab: {fileID: 2146116658}
   enemyPrefab: {fileID: 1000011176706658, guid: 6a0e2de80b4c4044897a5aeb17014e0e,
     type: 2}
@@ -3783,6 +3783,7 @@ MonoBehaviour:
   R1Maze: {fileID: 114356632683899446, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
   R2Maze: {fileID: 0}
   mazePrefab: {fileID: 0}
+  wallPrefabs: []
 --- !u!4 &426659553
 Transform:
   m_ObjectHideFlags: 0
