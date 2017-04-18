@@ -64,11 +64,11 @@ public class OpenChest : MonoBehaviour {
             //Teleport to the correct level
             if(GM.GetComponent<GameMaster>().game_round == 1)
             {
-                SceneManager.LoadScene("Scene_1");
+                SceneManager.LoadScene("Scene_2");
             }
             else if (GM.GetComponent<GameMaster>().game_round == 2)
             {
-                SceneManager.LoadScene("Scene_2");
+                SceneManager.LoadScene("Scene_3");
             }
             else if (GM.GetComponent<GameMaster>().game_round == 3)
             {
