@@ -3749,6 +3749,7 @@ GameObject:
   m_Component:
   - component: {fileID: 426659553}
   - component: {fileID: 426659551}
+  - component: {fileID: 426659552}
   m_Layer: 0
   m_Name: GM
   m_TagString: GM
@@ -3784,6 +3785,19 @@ MonoBehaviour:
   R2Maze: {fileID: 114629878161084492, guid: 9154a52428443b44cb55c1d5d5763ce2, type: 2}
   mazePrefab: {fileID: 11400000, guid: a2395bb8a91944f21b621f2614d6db99, type: 2}
   wallPrefabs: []
+--- !u!114 &426659552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 426659550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1894a2e99f8d24949b0e75260761f6aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseclick: 0
+  wasdpress: 0
 --- !u!4 &426659553
 Transform:
   m_ObjectHideFlags: 0

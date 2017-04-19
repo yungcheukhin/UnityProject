@@ -3,13 +3,95 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class tutorialPopup : MonoBehaviour {
+public class tutorialPopup : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start ()
+    public bool mouseclick;
+
+    public bool wasdpress = wasdpresscheck();
+
+    // Use this for initialization
+    void Start()
     {
-        //start first canvas
-        //backgroundcanvas
+        welcome();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            mouseclick = true;
+        }
+        if (mouseclick == true)
+        {
+            Time.timeScale = 1.0f;
+            mouseclick = false;
+            DestroyObject(GameObject.Find("g"));
+            wasdshow();
+        }
+
+        /*while (!wasdpresscheck())
+        {
+            wasdpresscheck();
+        }*/
+
+        /*bool wasdpress = wasdpresscheck();
+
+        if (wasdpress == false)
+        {
+            wasdpresscheck();
+        }
+
+        if (wasdpresscheck())
+        {
+            DestroyObject(GameObject.Find("g"));
+        }*/
+
+        /*if (Input.GetKeyDown(KeyCode.W))
+        {
+            Debug.Log("press W");
+        }*/
+
+    }
+
+    public static bool wasdpresscheck()
+    {
+        bool wpress = false;
+        bool apress = false;
+        bool spress = false;
+        bool dpress = false;
+
+        if (Input.GetKeyDown("w"))
+        {
+            wpress = true;
+        }
+
+        if (Input.GetKeyDown("a"))
+        {
+            apress = true;
+        }
+
+        if (Input.GetKeyDown("s"))
+        {
+            spress = true;
+        }
+
+        if (Input.GetKeyDown("d"))
+        {
+            dpress = true;
+        }
+
+        if (wpress == true && apress == true && spress == true && dpress == true)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public void wasdshow()
+    {
         GameObject g = new GameObject("g");
         Canvas canvas = g.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -29,50 +111,58 @@ public class tutorialPopup : MonoBehaviour {
         RectTransform panelrec = panel.GetComponent<RectTransform>();
         panelrec.sizeDelta = new Vector2(200, 100);
         panelrec.position = new Vector3(-200, 100, 0);
-        
-        panel.transform.SetParent(g.transform, false);
 
-        GameObject g2 = new GameObject("welcome");
-        //g2.transform.parent = i.transform;
-        Text t = g2.AddComponent<Text>();
-        t.text = "Welcome";
+        GameObject wText = new GameObject("welcomeText");
+        wText.AddComponent<CanvasRenderer>();
+        Text t = wText.AddComponent<Text>();
+        t.text = "Please press 'W/A/S/D' to move your character.\n" + "You can move your cursor to adjust your view.\n" + "Try all 'W/A/S/D' to get next hint.";
         t.fontSize = 14;
         t.color = Color.black;
         t.font = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
-        g2.transform.SetParent(panel.transform, false);
-        //g2.GetComponent<RectTransform>().position = new Vector3(-200, 100, 0);
-
-
-        /*GameObject g2 = new GameObject();
-        g2.name = "text";
-        g2.transform.parent = g.transform;
-        Text t = g2.AddComponent<Text>();
-        g2.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 3.0f);
-        g2.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 3.0f);
         t.alignment = TextAnchor.MiddleCenter;
-        t.horizontalOverflow = HorizontalWrapMode.Overflow;
-        t.verticalOverflow = VerticalWrapMode.Overflow;
-        Font ArialFont = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
-        t.font = ArialFont;
-        t.fontSize = 7;
-        t.text = "Test";
-        t.enabled = true;
-        t.color = Color.black;
-    
+        wText.GetComponent<RectTransform>().sizeDelta = new Vector2(190, 100);
+        wText.GetComponent<RectTransform>().position = new Vector3(0, 0, 0);
 
-        g.name = "Text Label";
-        bool bWorldPosition = false;
-
-        g.GetComponent<RectTransform>().SetParent(this.transform, bWorldPosition);
-        g.transform.localPosition = new Vector3(0f, 1f, 0f);
-        g.transform.localScale = new Vector3(
-                                             1.0f / this.transform.localScale.x * 0.1f,
-                                             1.0f / this.transform.localScale.y * 0.1f,
-                                             1.0f / this.transform.localScale.z * 0.1f);*/
+        panel.transform.SetParent(g.transform, false);
+        wText.transform.SetParent(panel.transform, false);
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
+    public void welcome()
+    {
+        GameObject g = new GameObject("g");
+        Canvas canvas = g.AddComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        CanvasScaler cs = g.AddComponent<CanvasScaler>();
+        cs.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
+        cs.scaleFactor = 1.0f;
+        cs.referencePixelsPerUnit = 100f;
+        GraphicRaycaster gr = g.AddComponent<GraphicRaycaster>();
+        /*g.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 3.0f);
+        g.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 3.0f);*/
+
+        GameObject panel = new GameObject("Panel");
+        panel.AddComponent<CanvasRenderer>();
+        Image i = panel.AddComponent<Image>();
+        Color backg = new Color32(255, 255, 255, 95);
+        i.color = backg;
+        RectTransform panelrec = panel.GetComponent<RectTransform>();
+        panelrec.sizeDelta = new Vector2(200, 100);
+        panelrec.position = new Vector3(-200, 100, 0);
+
+        GameObject welcomeText = new GameObject("welcomeText");
+        welcomeText.AddComponent<CanvasRenderer>();
+        Text t = welcomeText.AddComponent<Text>();
+        t.text = "Welcome To Dark Maze! \n \n" + "This tutorial will teach you how to control your character and use different skills. Left click mouse to continue.";
+        t.fontSize = 14;
+        t.color = Color.black;
+        t.font = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
+        t.alignment = TextAnchor.MiddleCenter;
+        welcomeText.GetComponent<RectTransform>().sizeDelta = new Vector2(190, 100);
+        welcomeText.GetComponent<RectTransform>().position = new Vector3(0, 0, 0);
+
+        panel.transform.SetParent(g.transform, false);
+        welcomeText.transform.SetParent(panel.transform, false);
+
+        Time.timeScale = 0.0f;
+    }
 }
