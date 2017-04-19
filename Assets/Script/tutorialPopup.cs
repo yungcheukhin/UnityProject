@@ -8,7 +8,7 @@ public class tutorialPopup : MonoBehaviour
 
     public bool mouseclick;
 
-    public bool wasdpress = wasdpresscheck();
+    public bool wasd;
 
     // Use this for initialization
     void Start()
@@ -53,6 +53,28 @@ public class tutorialPopup : MonoBehaviour
             Debug.Log("press W");
         }*/
 
+        /*if (Input.GetKeyDown("w"))
+        {
+            bool wpress = true;
+        }*/
+
+        //wasdpresscheck();
+
+        
+
+        if (!wasd)
+        {
+            if (!wasdpresscheck())
+            {
+                wasdpresscheck();
+            }
+            else
+            {
+                DestroyObject(GameObject.Find("g"));
+                wasd = true;
+            }
+        }
+
     }
 
     public static bool wasdpresscheck()
@@ -72,7 +94,7 @@ public class tutorialPopup : MonoBehaviour
             apress = true;
         }
 
-        if (Input.GetKeyDown("s"))
+        /*if (Input.GetKeyDown("s"))
         {
             spress = true;
         }
@@ -80,9 +102,9 @@ public class tutorialPopup : MonoBehaviour
         if (Input.GetKeyDown("d"))
         {
             dpress = true;
-        }
+        }*/
 
-        if (wpress == true && apress == true && spress == true && dpress == true)
+        if (wpress == true && apress == true/* && spress == true && dpress == true*/)
         {
             return true;
         }
@@ -152,7 +174,7 @@ public class tutorialPopup : MonoBehaviour
         GameObject welcomeText = new GameObject("welcomeText");
         welcomeText.AddComponent<CanvasRenderer>();
         Text t = welcomeText.AddComponent<Text>();
-        t.text = "Welcome To Dark Maze! \n \n" + "This tutorial will teach you how to control your character and use different skills. Left click mouse to continue.";
+        t.text = "Welcome To Dark Maze! \n \n" + "This tutorial will teach you how to control your character and use different skills. Left click your mouse to continue.";
         t.fontSize = 14;
         t.color = Color.black;
         t.font = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
