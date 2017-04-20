@@ -21,11 +21,9 @@ public class testControl : MonoBehaviour
     //Speed of enemy
     public float enemy_movement_speed = 2f;
     private MazeCell currentCell;
-    NavMeshPath path;
 
     void Start()
     {
-        path = new NavMeshPath(); //get path
         player = GameObject.FindGameObjectWithTag("Player");
         thisObject = GameObject.FindGameObjectWithTag("Enemy");
         target = player.transform;
@@ -61,6 +59,7 @@ public class testControl : MonoBehaviour
 
     bool CalculatePath() //Check if full path is available
     {
+        NavMeshPath path = new NavMeshPath(); //get path
         nav.CalculatePath(player_location.position, path);
         if (path.status != NavMeshPathStatus.PathComplete)
         {

@@ -15,6 +15,7 @@ TagManager:
   - Chest
   - Maze
   - MazeClone
+  - Teleport
   layers:
   - Default
   - TransparentFX

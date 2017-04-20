@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 33000010173296714}
   - component: {fileID: 23000010096557720}
   - component: {fileID: 65602792022283226}
+  - component: {fileID: 114454581491425890}
   m_Layer: 0
   m_Name: chest_open
-  m_TagString: Untagged
+  m_TagString: Teleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,3 +93,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.88040495, y: 0.7238002, z: 0.66085273}
   m_Center: {x: 0.16572809, y: 0.0020999913, z: 0.33042637}
+--- !u!114 &114454581491425890
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014099110386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b860ea4cc00f4a441b657325a4bcd279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toScene2: 0
+  toScene3: 0

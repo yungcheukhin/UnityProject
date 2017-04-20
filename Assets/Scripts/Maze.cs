@@ -175,7 +175,7 @@ public class Maze : MonoBehaviour {
         Debug.Log("Apply trans skills hahahaha");
         for (int i = 0; i < rooms.Count; i++)
         {
-            //rooms[i].transSkills();
+            rooms[i].transSkills();
         }
         //yield return null;
     }
@@ -183,7 +183,7 @@ public class Maze : MonoBehaviour {
 	public void revertTransSkills(){
         Debug.Log("De-apply trans skills haha");
         for (int i = 0; i < rooms.Count; i++) {
-            //rooms[i].reverTransSkills();
+            rooms[i].reverTransSkills();
 
         }
 	}

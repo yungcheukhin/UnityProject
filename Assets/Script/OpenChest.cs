@@ -12,16 +12,18 @@ public class OpenChest : MonoBehaviour {
     private float openCloseTimer;
     private bool isSwitchable;
     private bool isOpen;
+
     private GameObject player;
     private GameObject close_chest;
     private GameObject open_chest_object;
     private MazeCell currentCell;
-
+    private GameObject GM;
     void Awake()
     {
 
         isSwitchable = false;
         openCloseTimer = 0;
+        GM = GameObject.FindGameObjectWithTag("GM");
         player = GameObject.FindGameObjectWithTag("Player");
         close_chest = GameObject.FindGameObjectWithTag("Chest");
 
