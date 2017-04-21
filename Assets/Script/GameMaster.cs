@@ -123,7 +123,7 @@ public class GameMaster : MonoBehaviour {
                 {
                     chest_teleport.GetComponent<Teleport>().toScene2 = false;
                     EditorSceneManager.LoadScene("Scene_3");
-                    BeginGameR2();
+                    BeginGameR3();
                 }
             else if (chest_teleport.GetComponent<Teleport>().toScene3)
                 {
