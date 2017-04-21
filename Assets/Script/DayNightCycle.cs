@@ -13,8 +13,12 @@ public class DayNightCycle : MonoBehaviour {
     public int days;
 
     public float intensity;
-    public Color fogDay = Color.grey;
-    public Color fogNight = Color.black;
+    public Material midnight;
+    public Material morning;
+    public Material noon;
+    public Material afternoon;
+    public Material sunset;
+    public Material night;
 
     public int speed;
 
@@ -42,7 +46,33 @@ public class DayNightCycle : MonoBehaviour {
         {
             intensity = 1 - (43200 - time) / 43200*-1;
         }
-        RenderSettings.fogColor = Color.Lerp(fogNight, fogDay, intensity * intensity);
+
+        //Sky at different time periods
+        if (time < 18000)
+        {
+            RenderSettings.skybox = midnight;
+        }
+        if (time >= 18000 && time < 39600)
+        {
+            RenderSettings.skybox = morning;
+        }
+        if (time >= 39600 && time < 46800)
+        {
+            RenderSettings.skybox = noon;
+        }
+        if (time >= 46800 && time < 64800)
+        {
+            RenderSettings.skybox = afternoon;
+        }
+        if (time >= 64800 && time < 70200)
+        {
+            RenderSettings.skybox = sunset;
+        }
+        if (time >= 70200)
+        {
+            RenderSettings.skybox = night;
+        }
+        
         Sun.intensity = intensity;
     }
 }
