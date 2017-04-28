@@ -71,21 +71,21 @@ public class tutorialPopup : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown("w") && wasd == false)
+        if(Input.GetKeyDown("w") && wasd == false && mouseclick1 == true)
         {
             DestroyObject(GameObject.Find("wasdo"));
             wasd = true;
             skillshow();
         }
 
-        if (Input.GetKeyDown("e") && useskill == false && wasd == true)
+        if (Input.GetKeyDown("e") && useskill == false && wasd == true && mouseclick1 == true)
         {
             DestroyObject(GameObject.Find("skillo"));
             useskill = true;
             opendoorshow();
         }
 
-        if (Input.GetKeyDown("q") && opendoor == false && wasd == true && useskill == true)
+        if (Input.GetKeyDown("q") && opendoor == false && wasd == true && useskill == true && mouseclick1 == true)
         {
             DestroyObject(GameObject.Find("opendooro"));
             opendoor = true;
