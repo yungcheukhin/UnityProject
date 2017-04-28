@@ -2022,12 +2022,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 2015137421}
+        m_MethodName: restartLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3750,6 +3750,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   game_round: 3
   doorOpenTime: 4
+  tranSkillPersist: 3
+  tranSkillCD: 5
   escapeTime: 301
   escapeTimeReduce: 25
   offsetY: 40
@@ -3760,20 +3762,12 @@ MonoBehaviour:
   chestPrefab: {fileID: 0}
   playerPrefab: {fileID: 1000013444896288, guid: 980d43d0c8a90b042a56ddf19af12af8,
     type: 2}
-  enemyPrefab: {fileID: 1000011176706658, guid: 71d043cbbfd8bb040ba53c298effa75a,
-    type: 2}
   R1EnemyPrefab: {fileID: 0}
-  R1Door: {fileID: 0}
   R1Maze: {fileID: 0}
   R2Maze: {fileID: 0}
   mazePrefab: {fileID: 11400000, guid: a2395bb8a91944f21b621f2614d6db99, type: 2}
-  mazeInstance: {fileID: 0}
-  transMaze: {fileID: 0}
-  Maze_clone_source: {fileID: 0}
-  transWallCell: {fileID: 0}
-  revertTransWall: {fileID: 0}
-  wallPrefabs: []
-  wall: []
+  WinScreen: {fileID: 0}
+  LoseScreen: {fileID: 0}
 --- !u!4 &2015137422
 Transform:
   m_ObjectHideFlags: 0

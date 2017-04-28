@@ -128,7 +128,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4190393332642190, guid: fa0834ce584ff3245af560cbae4f71e5, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 114251970557638598, guid: fa0834ce584ff3245af560cbae4f71e5,
         type: 2}
@@ -138,6 +138,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa0834ce584ff3245af560cbae4f71e5, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &7170718 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114251970557638598, guid: fa0834ce584ff3245af560cbae4f71e5,
+    type: 2}
+  m_PrefabInternal: {fileID: 7170717}
+  m_Script: {fileID: 11500000, guid: b44945707fadb1a47babf09685c2b19b, type: 3}
 --- !u!1 &9624518
 GameObject:
   m_ObjectHideFlags: 0
@@ -3824,84 +3830,6 @@ MonoBehaviour:
   cell: {fileID: 1785737452}
   otherCell: {fileID: 46586351}
   direction: 1
---- !u!1 &426659550
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 426659553}
-  - component: {fileID: 426659551}
-  - component: {fileID: 426659552}
-  m_Layer: 0
-  m_Name: GM
-  m_TagString: GM
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &426659551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 426659550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b44945707fadb1a47babf09685c2b19b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  game_round: 1
-  doorOpenTime: 4
-  offsetY: 40
-  sizeX: 100
-  sizeY: 40
-  musicPrefab: {fileID: 4000010215273384, guid: ca555997b3da04d43aabb9212206f4f3,
-    type: 2}
-  chestPrefab: {fileID: 770678927}
-  playerPrefab: {fileID: 1733464587}
-  enemyPrefab: {fileID: 1000011176706658, guid: 6a0e2de80b4c4044897a5aeb17014e0e,
-    type: 2}
-  R1EnemyPrefab: {fileID: 1000011176706658, guid: 6a0e2de80b4c4044897a5aeb17014e0e,
-    type: 2}
-  R1Door: {fileID: 0}
-  R1Maze: {fileID: 114356632683899446, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
-  R2Maze: {fileID: 114629878161084492, guid: 9154a52428443b44cb55c1d5d5763ce2, type: 2}
-  mazePrefab: {fileID: 11400000, guid: a2395bb8a91944f21b621f2614d6db99, type: 2}
-  mazeInstance: {fileID: 0}
-  transMaze: {fileID: 0}
-  Maze_clone_source: {fileID: 0}
-  transWallCell: {fileID: 0}
-  revertTransWall: {fileID: 0}
-  wallPrefabs: []
-  wall: []
---- !u!114 &426659552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 426659550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1894a2e99f8d24949b0e75260761f6aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseclick: 0
-  wasd: 0
---- !u!4 &426659553
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 426659550}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &430930921
 GameObject:
   m_ObjectHideFlags: 0
@@ -4869,7 +4797,7 @@ Transform:
   m_Children:
   - {fileID: 1394226409}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &554298774
 GameObject:
@@ -5070,7 +4998,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseclick: 0
+  mouseclick1: 0
   wasd: 0
+  wasd1: 0
+  wasd2: 0
+  opendoor: 0
+  opendoor1: 0
+  useskill: 0
+  useskill1: 0
+  openchest: 0
+  openchest1: 0
 --- !u!1 &625493461
 GameObject:
   m_ObjectHideFlags: 0
@@ -6223,12 +6160,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 7170718}
+        m_MethodName: restartLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
