@@ -8,14 +8,10 @@ public class tutorialPopup : MonoBehaviour
 
     public bool mouseclick = false;
     public bool mouseclick1 = false;
-    public bool wasd = false; //press
-    public bool wasd1 = false;
-    public bool opendoor;
-    public bool opendoor1 = false;
-    public bool useskill;
-    public bool useskill1 = false;
-    public bool openchest;
-    public bool openchest1 = false;
+    public bool wasd = false;
+    public bool useskill = false;
+    public bool opendoor = false;
+    public bool openchest = false;
 
     // Use this for initialization
     void Start()
@@ -79,14 +75,21 @@ public class tutorialPopup : MonoBehaviour
         {
             DestroyObject(GameObject.Find("wasdo"));
             wasd = true;
+            skillshow();
+        }
+
+        if (Input.GetKeyDown("e") && useskill == false && wasd == true)
+        {
+            DestroyObject(GameObject.Find("skillo"));
+            useskill = true;
             opendoorshow();
         }
 
-        if (Input.GetKeyDown("q") && opendoor == false)
+        if (Input.GetKeyDown("q") && opendoor == false && wasd == true && useskill == true)
         {
             DestroyObject(GameObject.Find("opendooro"));
             opendoor = true;
-            skillshow();
+            openchestshow();
         }
 
     }
@@ -128,41 +131,6 @@ public class tutorialPopup : MonoBehaviour
         wText.transform.SetParent(panel.transform, false);
     }
 
-    public void opendoorshow()
-    {
-        GameObject g = new GameObject("opendooro");
-        Canvas canvas = g.AddComponent<Canvas>();
-        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        CanvasScaler cs = g.AddComponent<CanvasScaler>();
-        cs.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
-        cs.scaleFactor = 1.0f;
-        cs.referencePixelsPerUnit = 100f;
-        GraphicRaycaster gr = g.AddComponent<GraphicRaycaster>();
-
-        GameObject panel = new GameObject("Panel");
-        panel.AddComponent<CanvasRenderer>();
-        Image i = panel.AddComponent<Image>();
-        Color backg = new Color32(255, 255, 255, 95);
-        i.color = backg;
-        RectTransform panelrec = panel.GetComponent<RectTransform>();
-        panelrec.sizeDelta = new Vector2(200, 100);
-        panelrec.position = new Vector3(-200, 100, 0);
-
-        GameObject wText = new GameObject("opendoorText");
-        wText.AddComponent<CanvasRenderer>();
-        Text t = wText.AddComponent<Text>();
-        t.text = "Please press 'Q' to open the door.\n\n" + "Tips: you can hold SHIFT while walking to run.";
-        t.fontSize = 14;
-        t.color = Color.black;
-        t.font = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
-        t.alignment = TextAnchor.MiddleCenter;
-        wText.GetComponent<RectTransform>().sizeDelta = new Vector2(190, 100);
-        wText.GetComponent<RectTransform>().position = new Vector3(0, 0, 0);
-
-        panel.transform.SetParent(g.transform, false);
-        wText.transform.SetParent(panel.transform, false);
-    }
-
     public void skillshow()
     {
         GameObject g = new GameObject("skillo");
@@ -186,7 +154,77 @@ public class tutorialPopup : MonoBehaviour
         GameObject wText = new GameObject("opendoorText");
         wText.AddComponent<CanvasRenderer>();
         Text t = wText.AddComponent<Text>();
-        t.text = "Please press 'E' to use the skill.\n" + "The skill effect will sustain for 3 seconds.";
+        t.text = "Please press 'E' to use the skill.\n" + "The skill effect will sustain for 3 seconds.\n" + "Tips: you can hold SHIFT while walking to run.";
+        t.fontSize = 14;
+        t.color = Color.black;
+        t.font = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
+        t.alignment = TextAnchor.MiddleCenter;
+        wText.GetComponent<RectTransform>().sizeDelta = new Vector2(190, 100);
+        wText.GetComponent<RectTransform>().position = new Vector3(0, 0, 0);
+
+        panel.transform.SetParent(g.transform, false);
+        wText.transform.SetParent(panel.transform, false);
+    }
+
+    public void opendoorshow()
+    {
+        GameObject g = new GameObject("opendooro");
+        Canvas canvas = g.AddComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        CanvasScaler cs = g.AddComponent<CanvasScaler>();
+        cs.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
+        cs.scaleFactor = 1.0f;
+        cs.referencePixelsPerUnit = 100f;
+        GraphicRaycaster gr = g.AddComponent<GraphicRaycaster>();
+
+        GameObject panel = new GameObject("Panel");
+        panel.AddComponent<CanvasRenderer>();
+        Image i = panel.AddComponent<Image>();
+        Color backg = new Color32(255, 255, 255, 95);
+        i.color = backg;
+        RectTransform panelrec = panel.GetComponent<RectTransform>();
+        panelrec.sizeDelta = new Vector2(200, 100);
+        panelrec.position = new Vector3(-200, 100, 0);
+
+        GameObject wText = new GameObject("opendoorText");
+        wText.AddComponent<CanvasRenderer>();
+        Text t = wText.AddComponent<Text>();
+        t.text = "Please press 'Q' to open the door.\n\n Beware of the enemy and \n RUN FOR YOUR LIFE.";
+        t.fontSize = 14;
+        t.color = Color.black;
+        t.font = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
+        t.alignment = TextAnchor.MiddleCenter;
+        wText.GetComponent<RectTransform>().sizeDelta = new Vector2(190, 100);
+        wText.GetComponent<RectTransform>().position = new Vector3(0, 0, 0);
+
+        panel.transform.SetParent(g.transform, false);
+        wText.transform.SetParent(panel.transform, false);
+    }
+
+    public void openchestshow()
+    {
+        GameObject g = new GameObject("openchesto");
+        Canvas canvas = g.AddComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        CanvasScaler cs = g.AddComponent<CanvasScaler>();
+        cs.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
+        cs.scaleFactor = 1.0f;
+        cs.referencePixelsPerUnit = 100f;
+        GraphicRaycaster gr = g.AddComponent<GraphicRaycaster>();
+
+        GameObject panel = new GameObject("Panel");
+        panel.AddComponent<CanvasRenderer>();
+        Image i = panel.AddComponent<Image>();
+        Color backg = new Color32(255, 255, 255, 95);
+        i.color = backg;
+        RectTransform panelrec = panel.GetComponent<RectTransform>();
+        panelrec.sizeDelta = new Vector2(200, 100);
+        panelrec.position = new Vector3(-200, 100, 0);
+
+        GameObject wText = new GameObject("opendoorText");
+        wText.AddComponent<CanvasRenderer>();
+        Text t = wText.AddComponent<Text>();
+        t.text = "Please press 'F' to open the chest.\n\n" + "Tips: you can hold SHIFT while walking to run.";
         t.fontSize = 14;
         t.color = Color.black;
         t.font = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
