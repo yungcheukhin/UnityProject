@@ -145,7 +145,9 @@ public class GameMaster : MonoBehaviour {
         StartCoroutine(Delay(3));
         mazeInstance = Instantiate(mazePrefab) as Maze;
         yield return StartCoroutine(mazeInstance.Generate());
+        enemyPrefab = R1EnemyPrefab;
         playerInstance = Instantiate(playerPrefab) as GameObject;
+        chest = chestPrefab.GetComponent(typeof(OpenChest)) as OpenChest;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
 		chest = chestPrefab.GetComponent(typeof(OpenChest)) as OpenChest;
@@ -157,7 +159,9 @@ public class GameMaster : MonoBehaviour {
         StartCoroutine(Delay(3));
         mazeInstance = Instantiate(mazePrefab) as Maze;
         yield return StartCoroutine(mazeInstance.Generate());
+        enemyPrefab = R1EnemyPrefab;
         playerInstance = Instantiate(playerPrefab) as GameObject;
+        chest = chestPrefab.GetComponent(typeof(OpenChest)) as OpenChest;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
         escapeTime -= escaped_count * escapeTimeReduce;
@@ -171,11 +175,12 @@ public class GameMaster : MonoBehaviour {
         StartCoroutine(Delay(3));
         mazeInstance = R2Maze;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
-        enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
         chest = chestPrefab.GetComponent(typeof(OpenChest)) as OpenChest;
-        player.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
-        chest.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
-        StartCoroutine(spawnEnemy(5));
+        enemyPrefab = R1EnemyPrefab;
+        enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
+        //player.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
+        //chest.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
+        //StartCoroutine(spawnEnemy(5));
     }
 
     private void BeginGameR1()  // for stage 1 init
