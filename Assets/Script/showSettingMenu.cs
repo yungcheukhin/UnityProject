@@ -9,6 +9,7 @@ public class showSettingMenu : MonoBehaviour {
 
     void Start() {
         setting = GameObject.Find("SettingMenu").GetComponent<MainMenuSetting>();
+        Cursor.visible = true;
     }
 
     void Update () {
@@ -21,7 +22,6 @@ public class showSettingMenu : MonoBehaviour {
     {
         if (flag) flag = false;
         else flag = true;
-
-
+        
     }
 }

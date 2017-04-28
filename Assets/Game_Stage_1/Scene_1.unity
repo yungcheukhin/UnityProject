@@ -1408,7 +1408,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 175227309}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7170718}
+        m_MethodName: goToStage
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &175227309
@@ -5000,14 +5011,9 @@ MonoBehaviour:
   mouseclick: 0
   mouseclick1: 0
   wasd: 0
-  wasd1: 0
-  wasd2: 0
-  opendoor: 0
-  opendoor1: 0
   useskill: 0
-  useskill1: 0
+  opendoor: 0
   openchest: 0
-  openchest1: 0
 --- !u!1 &625493461
 GameObject:
   m_ObjectHideFlags: 0
@@ -6161,12 +6167,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7170718}
-        m_MethodName: restartLevel
-        m_Mode: 1
+        m_MethodName: goToStage
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -11313,7 +11319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1372297698
 RectTransform:
   m_ObjectHideFlags: 0
