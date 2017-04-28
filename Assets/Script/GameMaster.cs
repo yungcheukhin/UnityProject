@@ -66,7 +66,7 @@ public class GameMaster : MonoBehaviour {
                 BeginGameR2();
                 break;
             case 3:
-                BeginGameR3();
+                StartCoroutine(BeginGameR3());
                 break;
             default:
 
@@ -206,7 +206,7 @@ public class GameMaster : MonoBehaviour {
                 break;
             case 3:
                 SceneManager.LoadScene(3);
-                BeginGameR3();
+                StartCoroutine(BeginGameR3());
                 break;
             default:
                 SceneManager.LoadScene(0);
@@ -227,7 +227,7 @@ public class GameMaster : MonoBehaviour {
                 break;
             case 2:
                 SceneManager.LoadScene(3);
-                RestartGameR3(success_escape);
+                StartCoroutine(RestartGameR3(success_escape));
                 break;
             default:
                 SceneManager.LoadScene(0);
