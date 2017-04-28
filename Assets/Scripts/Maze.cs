@@ -11,7 +11,7 @@ public class Maze : MonoBehaviour {
 
 	public MazeCell cellPrefab;
 
-	// public float generationStepDelay;
+	//public float generationStepDelay = 0.5f;
 
 	public MazePassage passagePrefab;
 
@@ -64,6 +64,7 @@ public class Maze : MonoBehaviour {
 	}
 
     public void DoNextGenerationStep (List<MazeCell> activeCells) {
+		//WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
 		int currentIndex = activeCells.Count - 1;
 		MazeCell currentCell = activeCells[currentIndex];
 		if (currentCell.IsFullyInitialized) {

@@ -18,6 +18,8 @@ public class GameMaster : MonoBehaviour {
     public float sizeX  = 100;
     public float sizeY = 40;
     public Transform musicPrefab;
+	public GameObject wallTrans;
+	private loopWall wallTransAll;
     private int current_health;
     bool RestartFlag = false;   //true if the game needa restart
     Queue <Transform> previous_locations = new Queue<Transform>();
@@ -33,6 +35,8 @@ public class GameMaster : MonoBehaviour {
     private testControl enemy;
     private int success_escape = 0; // times that successfully escape the maze
     ///////////////////////////maze variable//////////////////////////
+	/// 
+	private int skillPersist = 3;
     private MazeDoor R1Door;
     public Maze R1Maze;
     public Maze R2Maze;
@@ -336,6 +340,15 @@ public class GameMaster : MonoBehaviour {
     {
         player.Death();
     }
+
+	public void walltransAll(){
+		wallTransAll.GetComponent<loopWall>().transAll();
+		Invoke("wallRevertTrans", skillPersist);
+	}
+
+	public void wallRevertTrans(){
+		wallTransAll.GetComponent<loopWall>().unTransAll();
+	}
 
     public void mazeShow()
     {
