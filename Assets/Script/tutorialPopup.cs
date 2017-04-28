@@ -67,6 +67,7 @@ public class tutorialPopup : MonoBehaviour
             {
                 DestroyObject(GameObject.Find("welcomeo"));
                 wasdshow();
+                tips();
                 mouseclick1 = true;
             }
         }
@@ -230,6 +231,41 @@ public class tutorialPopup : MonoBehaviour
         t.font = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
         t.alignment = TextAnchor.MiddleCenter;
         wText.GetComponent<RectTransform>().sizeDelta = new Vector2(190, 100);
+        wText.GetComponent<RectTransform>().position = new Vector3(0, 0, 0);
+
+        panel.transform.SetParent(g.transform, false);
+        wText.transform.SetParent(panel.transform, false);
+    }
+
+    public void tips()
+    {
+        GameObject g = new GameObject("tipso");
+        Canvas canvas = g.AddComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        CanvasScaler cs = g.AddComponent<CanvasScaler>();
+        cs.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
+        cs.scaleFactor = 1.0f;
+        cs.referencePixelsPerUnit = 100f;
+        GraphicRaycaster gr = g.AddComponent<GraphicRaycaster>();
+
+        GameObject panel = new GameObject("Panel");
+        panel.AddComponent<CanvasRenderer>();
+        Image i = panel.AddComponent<Image>();
+        Color backg = new Color32(255, 255, 255, 95);
+        i.color = backg;
+        RectTransform panelrec = panel.GetComponent<RectTransform>();
+        panelrec.sizeDelta = new Vector2(140, 120);
+        panelrec.position = new Vector3(300, 100, 0);
+
+        GameObject wText = new GameObject("opendoorText");
+        wText.AddComponent<CanvasRenderer>();
+        Text t = wText.AddComponent<Text>();
+        t.text = "Quick Tips! \n \n 'W/A/S/D' : move \n 'Shift' : Run \n 'E' : Skill \n 'Q' : Open Door \n 'F' : Open Chest";
+        t.fontSize = 14;
+        t.color = Color.black;
+        t.font = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
+        t.alignment = TextAnchor.MiddleCenter;
+        wText.GetComponent<RectTransform>().sizeDelta = new Vector2(130, 100);
         wText.GetComponent<RectTransform>().position = new Vector3(0, 0, 0);
 
         panel.transform.SetParent(g.transform, false);
