@@ -148,6 +148,8 @@ public class GameMaster : MonoBehaviour {
         playerInstance = Instantiate(playerPrefab) as GameObject;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
+		chest = chestPrefab.GetComponent(typeof(OpenChest)) as OpenChest;
+		chest.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
     }
 
     private IEnumerator RestartGameR3(int escaped_count)   
@@ -160,6 +162,8 @@ public class GameMaster : MonoBehaviour {
         player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
         escapeTime -= escaped_count * escapeTimeReduce;
         success_escape = escaped_count;
+		chest = chestPrefab.GetComponent(typeof(OpenChest)) as OpenChest;
+		chest.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
     }
 
     private void BeginGameR2()  //for stage 2 init
