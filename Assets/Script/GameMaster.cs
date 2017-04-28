@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEditor.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,9 +55,8 @@ public class GameMaster : MonoBehaviour {
 
     /////////////////////////////////End///////////////////////////////
     public GameObject WinScreen;
-    public GameObject LoseScreen;
-
-
+    public GameObject LoseCanvas;
+    public Text LoseText;
     // Update is called once per frame
     private void Awake()
     {
@@ -240,6 +240,9 @@ public class GameMaster : MonoBehaviour {
                 break;
             case 2:
                 SceneManager.LoadScene(3);
+                success_escape = 0;
+                break;
+            case 3:
                 StartCoroutine(RestartGameR3(success_escape));
                 break;
             default:
@@ -366,5 +369,11 @@ public class GameMaster : MonoBehaviour {
     IEnumerator Delay(int second)
     {
         yield return new WaitForSeconds(second);
+    }
+
+    public void NoTime()
+    {
+        LoseText.text = "You Lose :(\n" + success_escape;
+        LoseCanvas.SetActive(true);
     }
 }
