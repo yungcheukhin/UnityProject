@@ -80,17 +80,17 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.1
-    agentHeight: 2
+    agentRadius: 0.06
+    agentHeight: 0.5
     agentSlope: 45
-    agentClimb: 0.877333
+    agentClimb: 0.17
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 1
     manualCellSize: 0
-    cellSize: 0.033333335
+    cellSize: 0.02
     accuratePlacement: 1
-  m_NavMeshData: {fileID: 23800000, guid: d6f385c8d94961a4580557591f54eb06, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 95432270cbaac3047a5a430cb228359b, type: 2}
 --- !u!1001 &7170717
 Prefab:
   m_ObjectHideFlags: 0
@@ -128,7 +128,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4190393332642190, guid: fa0834ce584ff3245af560cbae4f71e5, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114251970557638598, guid: fa0834ce584ff3245af560cbae4f71e5,
         type: 2}
@@ -3699,7 +3699,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &401667844
 GameObject:
@@ -4990,7 +4990,7 @@ Transform:
   - {fileID: 1564731237}
   - {fileID: 10018451}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &583365022 stripped
 GameObject:
@@ -6267,6 +6267,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 716645940}
+  - component: {fileID: 716645941}
   m_Layer: 0
   m_Name: Hinge
   m_TagString: Untagged
@@ -6290,6 +6291,21 @@ Transform:
   m_Father: {fileID: 40617818}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &716645941
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 716645939}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.56, y: 0.8, z: 0.04}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.3, y: 0.23, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &726814092
 GameObject:
   m_ObjectHideFlags: 0
@@ -8413,22 +8429,22 @@ Prefab:
     - target: {fileID: 65000011568856264, guid: 980d43d0c8a90b042a56ddf19af12af8,
         type: 2}
       propertyPath: m_Size.x
-      value: 0.79
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 65000011568856264, guid: 980d43d0c8a90b042a56ddf19af12af8,
         type: 2}
       propertyPath: m_Size.y
-      value: 1.8
+      value: 1.93
       objectReference: {fileID: 0}
     - target: {fileID: 65000011568856264, guid: 980d43d0c8a90b042a56ddf19af12af8,
         type: 2}
       propertyPath: m_Size.z
-      value: 0.78
+      value: 0.43
       objectReference: {fileID: 0}
     - target: {fileID: 114000011928078132, guid: 980d43d0c8a90b042a56ddf19af12af8,
         type: 2}
       propertyPath: runVel
-      value: 1.7
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 114000011928078132, guid: 980d43d0c8a90b042a56ddf19af12af8,
         type: 2}
@@ -10318,7 +10334,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1250223270
 GameObject:
@@ -14029,51 +14045,6 @@ MonoBehaviour:
   cell: {fileID: 201318335}
   otherCell: {fileID: 440134064}
   direction: 1
---- !u!1 &1854644156
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1854644158}
-  - component: {fileID: 1854644157}
-  m_Layer: 0
-  m_Name: EnemyManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1854644157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1854644156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9ba4caaedbd84e43ae818ca1c5e3a73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
-  spawnTime: 3
-  x_coordinate: -4.5
-  y_coordinate: 0
-  z_coordinate: 8.5
---- !u!4 &1854644158
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1854644156}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1874432992
 GameObject:
   m_ObjectHideFlags: 0
@@ -15140,7 +15111,7 @@ RectTransform:
   m_Children:
   - {fileID: 1818084237}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

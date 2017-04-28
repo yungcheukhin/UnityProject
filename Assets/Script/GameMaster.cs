@@ -142,6 +142,7 @@ public class GameMaster : MonoBehaviour {
 
     private IEnumerator BeginGameR3()   //for stage 3 init
     {
+        StartCoroutine(Delay(3));
         mazeInstance = Instantiate(mazePrefab) as Maze;
         yield return StartCoroutine(mazeInstance.Generate());
         playerInstance = Instantiate(playerPrefab) as GameObject;
@@ -151,6 +152,7 @@ public class GameMaster : MonoBehaviour {
 
     private IEnumerator RestartGameR3(int escaped_count)   
     {
+        StartCoroutine(Delay(3));
         mazeInstance = Instantiate(mazePrefab) as Maze;
         yield return StartCoroutine(mazeInstance.Generate());
         playerInstance = Instantiate(playerPrefab) as GameObject;
@@ -162,6 +164,7 @@ public class GameMaster : MonoBehaviour {
 
     private void BeginGameR2()  //for stage 2 init
     {
+        StartCoroutine(Delay(3));
         mazeInstance = R2Maze;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
@@ -173,6 +176,7 @@ public class GameMaster : MonoBehaviour {
 
     private void BeginGameR1()  // for stage 1 init
     {
+        StartCoroutine(Delay(3));
         mazeInstance = R1Maze;
         chest = chestPrefab.GetComponent(typeof(OpenChest)) as OpenChest;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
@@ -183,6 +187,7 @@ public class GameMaster : MonoBehaviour {
 
     private void RestartGame()
     {
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         RestartFlag = false;
     }
@@ -334,5 +339,10 @@ public class GameMaster : MonoBehaviour {
         mazeInstance.GetComponent<Maze>().enabled = false;
         mazeInstance.hideAll();
         mazeInstance.enabled = false;
+    }
+
+    IEnumerator Delay(int second)
+    {
+        yield return new WaitForSeconds(second);
     }
 }
