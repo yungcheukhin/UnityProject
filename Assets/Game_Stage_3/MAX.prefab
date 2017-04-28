@@ -1295,7 +1295,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013444896288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.5, y: 0, z: 8.5}
+  m_LocalPosition: {x: 2.5, y: 0, z: -0.5}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 4000010560199924}
@@ -2330,7 +2330,6 @@ MonoBehaviour:
   run_animation: run
   walk_animation: walk
   sensitivityX: 100
-  countKey: 0
   turnmin: -90
   turnmax: 90
 --- !u!114 &114000012872812728
@@ -2378,7 +2377,6 @@ MonoBehaviour:
   starting_health: 10000000
   current_health: 10000000
   anim: {fileID: 111000011205308162}
-  death_animation: death
 --- !u!114 &114000013774968676
 MonoBehaviour:
   m_ObjectHideFlags: 1

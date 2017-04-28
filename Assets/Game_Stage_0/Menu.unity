@@ -417,6 +417,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 107745756}
+--- !u!1 &250472974 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1630111986944806, guid: 930df54403ff605449281fffe97a2977,
+    type: 2}
+  m_PrefabInternal: {fileID: 667654651}
 --- !u!1001 &302218806
 Prefab:
   m_ObjectHideFlags: 0
@@ -460,13 +465,18 @@ Prefab:
         type: 2}
       propertyPath: playerPrefab
       value: 
-      objectReference: {fileID: 1000013444896288, guid: 980d43d0c8a90b042a56ddf19af12af8,
-        type: 2}
+      objectReference: {fileID: 250472974}
     - target: {fileID: 114251970557638598, guid: fa0834ce584ff3245af560cbae4f71e5,
         type: 2}
       propertyPath: game_round
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114251970557638598, guid: fa0834ce584ff3245af560cbae4f71e5,
+        type: 2}
+      propertyPath: chestPrefab
+      value: 
+      objectReference: {fileID: 1861666004417826, guid: f0bcc4ba1a63e924189e93521e07763c,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa0834ce584ff3245af560cbae4f71e5, type: 2}
   m_IsPrefabParent: 0
