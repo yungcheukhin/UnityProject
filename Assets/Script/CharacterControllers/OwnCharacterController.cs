@@ -157,8 +157,8 @@ public class OwnCharacterController : MonoBehaviour {
             if (open_chest) GM.control_chest();
 
         }
-        
-        
+
+
     }
 
 
@@ -252,12 +252,11 @@ public class OwnCharacterController : MonoBehaviour {
 	public void wallTransSkill(){
 
 		if (transSkillInput&& canUseTranSkill) {
-            canUseTranSkill = false;
-			GM.walltransAll();
+			         GM.walltransAll();
 
             //mazeInstance.transSkills();
             //Invoke("SkillCD", skillPersist);
-
+            canUseTranSkill = false;
         }
 	}
 
