@@ -4,28 +4,32 @@ using UnityEngine;
 using UnityEditor.SceneManagement;
 
 public class Teleport : MonoBehaviour {
-
-    private GameObject GM;
-    //Scene Change Boolean
-    public bool toScene2 = false;
-    public bool toScene3 = false;
+    private GameMaster GM;
 
     public void Awake()
     {
-        GM = GameObject.FindGameObjectWithTag("GM");
+        GM = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        StartCoroutine(win());
 
         //Teleport to the correct level after opening the chest
-        if (GM.GetComponent<GameMaster>().game_round == 1)
-        {
-            toScene2 = true;
-        }
-        else if (GM.GetComponent<GameMaster>().game_round == 2)
-        {
-            toScene3 = true;
-        }
-        else if (GM.GetComponent<GameMaster>().game_round == 3)
-        {
-            toScene3 = true;
-        }
     }
+
+    IEnumerator win()
+    {
+        showWinningCanvas();
+        yield return new WaitForSeconds(6);
+        hideWinningCanvas();
+        GM.nextStage();
+    }
+
+    private void showWinningCanvas()
+    {
+
+    }
+
+    private void hideWinningCanvas()
+    {
+
+    }
+
 }

@@ -2,13 +2,18 @@
 using UnityEditor.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 
 public class GameMaster : MonoBehaviour {
-
-    public int game_round; // 1 = round 1, 2 = round 2, 3 = round 3
+    private bool isFirstTime = true;
+    public int game_round = 1; // 1 = round 1, 2 = round 2, 3 = round 3, 0 = main menu
     public static GameMaster instance = null;//make the game master as an instance so that we can access it elsewhere
     public int doorOpenTime = 4; // time for door to auto close
+    public int tranSkillPersist = 3; //time for trans skill to persist
+    public int tranSkillCD = 5; //time for trans skill to cool down
+    public int escapeTime = 301; //time for escaping the maze
+    public int escapeTimeReduce = 25;   //every success escape reduce this amount of time
     public float offsetY = 40;
     public float sizeX  = 100;
     public float sizeY = 40;
@@ -20,40 +25,55 @@ public class GameMaster : MonoBehaviour {
     public GameObject chestPrefab;
     bool chest_opened = false;
     public GameObject playerPrefab;
-    public GameObject enemyPrefab;
+    private GameObject enemyPrefab;
     public GameObject R1EnemyPrefab;
     private OwnCharacterController player;
     private OpenChest chest;
     private GameObject Max;
     private testControl enemy;
+    private int success_escape = 0; // times that successfully escape the maze
     ///////////////////////////maze variable//////////////////////////
-    public MazeDoor R1Door;
+    private MazeDoor R1Door;
     public Maze R1Maze;
     public Maze R2Maze;
     public Maze mazePrefab;
-    public Maze mazeInstance;
-    public Maze transMaze;
-    public Maze Maze_clone_source;
+    private Maze mazeInstance;
     private GameObject playerInstance;
     private GameObject enemyInstance;
     private GameObject chestInstance;
     private MazeCell currentCell;
-	public MazeCell transWallCell;
-	public MazeCell revertTransWall;
-    public MazeWall[] wallPrefabs;
-    public MazeWall[] wall;
+    private MazeWall[] wall;
     private bool doorOpened = false;
 
     //private GameObject cubeInstance;
     bool MapCreated = false;
 
     /////////////////////////////////End///////////////////////////////
-
+    public GameObject WinScreen;
+    public GameObject LoseScreen;
 
 
     // Update is called once per frame
     private void Awake()
     {
+        int stage_number = SceneManager.GetActiveScene().buildIndex;
+        switch (stage_number)
+        {
+            case 1:
+                BeginGameR1();
+                break;
+            case 2:
+                BeginGameR2();
+                break;
+            case 3:
+                BeginGameR3();
+                break;
+            default:
+
+                break;
+
+        }
+        /*
         if (instance == null) //To check the existence of the GM to avoid two instances of GM
         {
             instance = this;
@@ -62,34 +82,7 @@ public class GameMaster : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-
-        if (game_round == 0)
-        {
-            // game main menu
-        }
-        else if (game_round == 1)
-        {
-            BeginGameR1();  //init gameplay
-            if (enemyPrefab != null)
-            {
-                R1EnemyPrefab = enemyPrefab;
-            }
-        }
-        else if (game_round == 2)
-        {
-            BeginGameR2();
-        }
-        else if (game_round == 3)
-        {
-            StartCoroutine(BeginGameR3());
-        }
-        else
-        {
-            //game main menu
-        }
-
-        //Instantiate(gameObject);
-        //DontDestroyOnLoad(gameObject); //Keep the GM persist between scenes
+        */
 
         if (!GameObject.FindGameObjectWithTag("MM"))
         {
@@ -102,38 +95,22 @@ public class GameMaster : MonoBehaviour {
 
     private void Update()
     {
-        GameObject chest_teleport = GameObject.FindGameObjectWithTag("Teleport");
         GameObject chest_check = GameObject.FindGameObjectWithTag("Chest"); //Check if the chest_closed object is destroyed
-        if (!MapCreated && GameObject.FindGameObjectWithTag("MainCamera"))
+
+        if(game_round == 3) //for stage 3, destory the camera watching the "loading" canvas and start using the character's camera view
         {
-            Destroy(GameObject.Find("Loading Scene"));
+            if (!MapCreated && GameObject.FindGameObjectWithTag("MainCamera"))
+            {
+                Destroy(GameObject.Find("Loading Scene"));
+                MapCreated = true;
+            }   //if maze finish generating, delete the camera
+        }
 
-            MapCreated = true;
-        }   //if maze finish generating, delete the camera
-
-        if (RestartFlag)
+        if (RestartFlag)    // a restart is triggered
         {
             RestartGame();
-        }
+        }        
 
-        //Teleport to the correct chest after opening the chest
-        if (chest_check == null)
-        {
-            if(chest_teleport.GetComponent<Teleport>().toScene2)
-                {
-                    chest_teleport.GetComponent<Teleport>().toScene2 = false;
-                    EditorSceneManager.LoadScene("Scene_3");
-                    BeginGameR2();
-                }
-            else if (chest_teleport.GetComponent<Teleport>().toScene3)
-                {
-                    chest_teleport.GetComponent<Teleport>().toScene3 = false;
-                    BeginGameR3();
-                }
-        }
-        
-
-        PreviousLocation();
         if (previous_locations.Count == 15)
         {
             enemy_spawn_location = previous_locations.Dequeue();
@@ -167,43 +144,30 @@ public class GameMaster : MonoBehaviour {
     {
         mazeInstance = Instantiate(mazePrefab) as Maze;
         yield return StartCoroutine(mazeInstance.Generate());
-        mazeInstance.tag = "Maze";
-        transMaze = Instantiate(mazeInstance) as Maze;
-        //mazeInstance.enabled = false;
-        transMaze = transMaze.copyMazeToTrans(transMaze);
-        transMaze.tag = "MazeClone";
-        //yield return StartCoroutine(instantiateMaze(transMaze));
-        //transMaze.transSkills();
         playerInstance = Instantiate(playerPrefab) as GameObject;
-        //enemyInstance = Instantiate(enemyPrefab) as GameObject;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
-        //enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
         player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
-        //StartCoroutine(spawnEnemy(5));
     }
 
-    private IEnumerator instantiateMaze(Maze instance)
+    private IEnumerator RestartGameR3(int escaped_count)   
     {
-        //Maze Maze_clone_source = GameObject.FindGameObjectWithTag("Maze").GetComponentInParent<Maze>();
-        //instance = (Maze) UnityEngine.Object.Instantiate(Maze_clone_source, Maze_clone_source.transform.position, Maze_clone_source.transform.rotation);
-        //instance = Maze_clone_source;
-        //instance.tag = "MazeClone";
-        //Maze clone = GameObject.FindGameObjectWithTag("MazeClone").GetComponentInParent<Maze>();
-        //instance.transSkills();
-        yield return 0;
+        mazeInstance = Instantiate(mazePrefab) as Maze;
+        yield return StartCoroutine(mazeInstance.Generate());
+        playerInstance = Instantiate(playerPrefab) as GameObject;
+        player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
+        player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
+        escapeTime -= escaped_count * escapeTimeReduce;
+        success_escape = escaped_count;
     }
 
     private void BeginGameR2()  //for stage 2 init
     {
         mazeInstance = R2Maze;
-        playerInstance = Instantiate(playerPrefab) as GameObject;
-        enemyInstance = Instantiate(enemyPrefab) as GameObject;
-        chestInstance = Instantiate(chestPrefab);
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
         chest = chestPrefab.GetComponent(typeof(OpenChest)) as OpenChest;
-        player.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
-        chest.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
+        //player.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
+        //chest.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
         StartCoroutine(spawnEnemy(5));
     }
 
@@ -219,43 +183,52 @@ public class GameMaster : MonoBehaviour {
 
     private void RestartGame()
     {
-        //StopAllCoroutines();
-        //Destroy(mazeInstance.gameObject);
-        string current_scene = EditorSceneManager.GetActiveScene().name;
-        EditorSceneManager.LoadScene(current_scene);
-        if (game_round == 0)
-        {
-            // game main menu
-        }
-        else if (game_round == 1)
-        {
-            BeginGameR1();
-        }
-        else if (game_round == 2)
-        {
-            BeginGameR2();
-        }
-        else if (game_round == 3)
-        {
-            StartCoroutine(BeginGameR3());
-        }
-        else
-        {
-            //game main menu
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         RestartFlag = false;
     }
 
-    public void PreviousLocation ()
+    public void goToStage(int stage_number)
     {
-        int max_size = 15;
-
-        if(previous_locations.Count >= max_size)
+        switch (stage_number)
         {
-            previous_locations.Dequeue();
+            case 1:
+                SceneManager.LoadScene(1);
+                BeginGameR1();
+                break;
+            case 2:
+                SceneManager.LoadScene(2);
+                BeginGameR2();
+                break;
+            case 3:
+                SceneManager.LoadScene(3);
+                BeginGameR3();
+                break;
+            default:
+                SceneManager.LoadScene(0);
+                break;
         }
-        if (GameObject.FindGameObjectWithTag("Player"))
-            previous_locations.Enqueue(GameObject.FindGameObjectWithTag("Player").transform);
+    }
+
+    public void nextStage()
+    {
+        int stage_number = SceneManager.GetActiveScene().buildIndex;
+        switch (stage_number)
+        {
+            case 0:
+                SceneManager.LoadScene(1);
+                break;
+            case 1:
+                SceneManager.LoadScene(2);
+                break;
+            case 2:
+                SceneManager.LoadScene(3);
+                RestartGameR3(success_escape);
+                break;
+            default:
+                SceneManager.LoadScene(0);
+                break;
+
+        }
     }
 
     IEnumerator spawnEnemy(float time)
@@ -269,7 +242,6 @@ public class GameMaster : MonoBehaviour {
 
     public void openCellDoor(IntVector2 currPos)
     {
-		//Debug.Log("Opendoor");
         if (!doorOpened) {
 
             if (game_round == 3)
@@ -313,55 +285,28 @@ public class GameMaster : MonoBehaviour {
     }
 
 	public void wallTransparentSkill(){
-		Debug.Log ("Apply trans skills");
-		//sweep all cells
-		IntVector2 currentWall;
-        //if (wall == null) 
+
         wall = mazeInstance.GetComponents<MazeWall>();
         /*
-        for (int i=0; i<19; i++)
-        {
-            wall[i] = Instantiate(wallPrefabs[i]) as MazeWall;
-        }
-        */
         for (int i=0; i<wall.Length; i++)
         {
             wall[i].transSkills();
         }
-        /*
-		for (int x = 0; x < 20; x++) {
-			for (int y = 0; y < 20; y++) {
-				currentWall.x = x;
-				currentWall.z = y;
-				transWallCell = mazeInstance.GetCell(currentWall);
-				transWallCell.transSkills();
-
-			}
-		}
         */
-
+        if(wall != null)
+            wall[1].transSkills();
     }
 
 	public void revertWallTransSkill(){
-		Debug.Log ("De-apply trans skills");
-		//sweep all cells
-		IntVector2 currentWall;
-        //if (wall == null)
         wall = mazeInstance.GetComponents<MazeWall>();
+        /*
         for (int i = 0; i < wall.Length; i++)
         {
             wall[i].revertTransSkill();
         }
-        /*
-		for (int x = 0; x < 20; x++) {
-			for (int y = 0; y < 20; y++) {
-				currentWall.x = x;
-				currentWall.z = y;
-				revertTransWall = mazeInstance.GetCell(currentWall);
-				revertTransWall.revertTransSkill();
-			}
-		}
         */
+        if (wall != null)
+            wall[1].revertTransSkill();
     }
 
     public void control_chest()
@@ -380,7 +325,6 @@ public class GameMaster : MonoBehaviour {
 
     public void mazeShow()
     {
-        //mazeInstance = GameObject.FindObjectOfType(typeof(Maze)) as Maze;
         mazeInstance.GetComponent<Maze>().enabled = true;
         mazeInstance.showAll();
         mazeInstance.enabled = true;

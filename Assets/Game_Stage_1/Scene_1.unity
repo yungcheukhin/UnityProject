@@ -91,6 +91,53 @@ NavMeshSettings:
     cellSize: 0.033333335
     accuratePlacement: 1
   m_NavMeshData: {fileID: 23800000, guid: d6f385c8d94961a4580557591f54eb06, type: 2}
+--- !u!1001 &7170717
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4190393332642190, guid: fa0834ce584ff3245af560cbae4f71e5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190393332642190, guid: fa0834ce584ff3245af560cbae4f71e5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190393332642190, guid: fa0834ce584ff3245af560cbae4f71e5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190393332642190, guid: fa0834ce584ff3245af560cbae4f71e5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190393332642190, guid: fa0834ce584ff3245af560cbae4f71e5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190393332642190, guid: fa0834ce584ff3245af560cbae4f71e5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190393332642190, guid: fa0834ce584ff3245af560cbae4f71e5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190393332642190, guid: fa0834ce584ff3245af560cbae4f71e5, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114251970557638598, guid: fa0834ce584ff3245af560cbae4f71e5,
+        type: 2}
+      propertyPath: chestPrefab
+      value: 
+      objectReference: {fileID: 770678927}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: fa0834ce584ff3245af560cbae4f71e5, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &9624518
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,6 +240,12 @@ MonoBehaviour:
     z: 18
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &10018453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +294,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &12630999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,6 +553,7 @@ MonoBehaviour:
   otherCell: {fileID: 509335544}
   direction: 1
   hinge: {fileID: 716645940}
+  isMirrored: 0
 --- !u!1 &46586350
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,6 +589,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &46586352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1539,6 +1605,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &201318336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2834,6 +2906,12 @@ MonoBehaviour:
     z: 17
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &320261055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2947,6 +3025,12 @@ MonoBehaviour:
     z: 18
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &330384541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3598,7 +3682,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &401667844
 GameObject:
@@ -3740,77 +3824,6 @@ MonoBehaviour:
   cell: {fileID: 1785737452}
   otherCell: {fileID: 46586351}
   direction: 1
---- !u!1 &426659550
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 426659553}
-  - component: {fileID: 426659551}
-  - component: {fileID: 426659552}
-  m_Layer: 0
-  m_Name: GM
-  m_TagString: GM
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &426659551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 426659550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b44945707fadb1a47babf09685c2b19b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  game_round: 1
-  doorOpenTime: 4
-  offsetY: 40
-  sizeX: 100
-  sizeY: 40
-  musicPrefab: {fileID: 4000010215273384, guid: ca555997b3da04d43aabb9212206f4f3,
-    type: 2}
-  chestPrefab: {fileID: 770678927}
-  playerPrefab: {fileID: 1733464587}
-  enemyPrefab: {fileID: 1000011176706658, guid: 6a0e2de80b4c4044897a5aeb17014e0e,
-    type: 2}
-  R1EnemyPrefab: {fileID: 1000011176706658, guid: 6a0e2de80b4c4044897a5aeb17014e0e,
-    type: 2}
-  R1Maze: {fileID: 114356632683899446, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
-  R2Maze: {fileID: 114629878161084492, guid: 9154a52428443b44cb55c1d5d5763ce2, type: 2}
-  mazePrefab: {fileID: 11400000, guid: a2395bb8a91944f21b621f2614d6db99, type: 2}
-  wallPrefabs: []
---- !u!114 &426659552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 426659550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1894a2e99f8d24949b0e75260761f6aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseclick: 0
-  wasdpress: 0
---- !u!4 &426659553
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 426659550}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &430930921
 GameObject:
   m_ObjectHideFlags: 0
@@ -3913,6 +3926,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &440134065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4250,6 +4269,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &499620678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4333,6 +4358,7 @@ MonoBehaviour:
   otherCell: {fileID: 499620677}
   direction: 3
   hinge: {fileID: 2050655410}
+  isMirrored: 0
 --- !u!1 &499976641
 GameObject:
   m_ObjectHideFlags: 0
@@ -4518,6 +4544,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &509335545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4604,6 +4636,12 @@ MonoBehaviour:
     z: 16
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &519610604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4753,7 +4791,7 @@ Transform:
   m_Children:
   - {fileID: 1394226409}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &554298774
 GameObject:
@@ -4899,6 +4937,7 @@ MonoBehaviour:
     wallMaterial: {fileID: 2100000, guid: 3302d8980be2b5742b574a2509d9e6b7, type: 2}
   - floorMaterial: {fileID: 2100000, guid: dd3948b1cc3c247e2bd57e5a859adb63, type: 2}
     wallMaterial: {fileID: 2100000, guid: 29f48cc2a8ed8f448a8579bc2c980c38, type: 2}
+  rooms: []
 --- !u!4 &559119228
 Transform:
   m_ObjectHideFlags: 0
@@ -4934,8 +4973,26 @@ Transform:
   - {fileID: 1564731237}
   - {fileID: 10018451}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &583365022 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1132875815373940, guid: fa0834ce584ff3245af560cbae4f71e5,
+    type: 2}
+  m_PrefabInternal: {fileID: 7170717}
+--- !u!114 &583365023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 583365022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1894a2e99f8d24949b0e75260761f6aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseclick: 0
+  wasd: 0
 --- !u!1 &625493461
 GameObject:
   m_ObjectHideFlags: 0
@@ -5347,6 +5404,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &654492696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6919,6 +6982,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &812947062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7656,6 +7725,12 @@ MonoBehaviour:
     z: 18
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &868818860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8112,6 +8187,12 @@ MonoBehaviour:
     z: 16
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &918088478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8876,6 +8957,12 @@ MonoBehaviour:
     z: 18
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &1047504183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10061,6 +10148,12 @@ MonoBehaviour:
     z: 18
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &1228144113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10200,7 +10293,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1250223270
 GameObject:
@@ -11911,6 +12004,12 @@ MonoBehaviour:
     z: 18
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &1527187762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12158,6 +12257,12 @@ MonoBehaviour:
     z: 18
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &1564731236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12920,6 +13025,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &1685484488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12968,6 +13079,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &1702655320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13132,11 +13249,6 @@ MonoBehaviour:
   cell: {fileID: 1702655319}
   otherCell: {fileID: 201318335}
   direction: 1
---- !u!1 &1733464587 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000013444896288, guid: 980d43d0c8a90b042a56ddf19af12af8,
-    type: 2}
-  m_PrefabInternal: {fileID: 953332822}
 --- !u!1 &1768924046
 GameObject:
   m_ObjectHideFlags: 0
@@ -13246,6 +13358,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &1785737453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13929,7 +14047,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1874432992
 GameObject:
@@ -14997,7 +15115,7 @@ RectTransform:
   m_Children:
   - {fileID: 1818084237}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -15095,6 +15213,12 @@ MonoBehaviour:
     z: 18
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &1998432112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16013,6 +16137,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &2106816237
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -54,15 +54,6 @@ public class Maze : MonoBehaviour {
 			yield return 0;
 			DoNextGenerationStep(activeCells);
 		}
-
-        /*
-        MazeWall[] wall;
-        wall = this.GetComponents<MazeWall>();
-       
-		for (int i = 0; i < rooms.Count; i++) {
-			rooms [i].transSkills();
-		}
-        */
 	}
 
 
@@ -85,10 +76,6 @@ public class Maze : MonoBehaviour {
 			MazeCell neighbor = GetCell(coordinates);
 			if (neighbor == null) {
 				neighbor = CreateCell(coordinates);
-
-				////Create doors at random probability at range 0f-1f
-				//doorProbability = Random.Range (0f, 0.1f);
-
 				CreatePassage(currentCell, neighbor, direction);
 				activeCells.Add(neighbor);
 			}
@@ -171,17 +158,13 @@ public class Maze : MonoBehaviour {
     }
 
     public void transSkills(){
-        // MazeWall wall = 
-        Debug.Log("Apply trans skills hahahaha");
         for (int i = 0; i < rooms.Count; i++)
         {
             rooms[i].transSkills();
         }
-        //yield return null;
     }
 
 	public void revertTransSkills(){
-        Debug.Log("De-apply trans skills haha");
         for (int i = 0; i < rooms.Count; i++) {
             rooms[i].reverTransSkills();
 

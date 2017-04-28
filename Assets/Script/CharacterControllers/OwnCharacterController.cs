@@ -30,22 +30,17 @@ public class OwnCharacterController : MonoBehaviour {
 	private float rotationY = 0F;
 	private float finalRotate = 0F;
 	float turn = 0F;
-	public int countKey = 0;
-
 	private static bool loggedInputInfo = false;
 	public float turnmin = -90.0f;
 	public float turnmax = 90.0f;
     private Vector3 prevMaxLocation = new Vector3(0,0,0);
-
     Vector3 leftright;
-
 	Quaternion originalRotation;
     Quaternion targetRotation;
     Rigidbody rBody;
     float forwardInput, turnInput, directionInput, horizontalInput;
 	bool flipInput;
 	bool transSkillInput;
-    bool activeInput;
     private bool canRun = false;    //store flag to determine run
     private bool haveInput = false;
     private bool isDead = false;
@@ -54,15 +49,17 @@ public class OwnCharacterController : MonoBehaviour {
 	private MazeCell currentCellPos;
 	private MazeCell cell_arr;
 	private Transform target;
-
 	private Maze mazeInstance;
 	private MazeWall wallInstance;
 	private MazeWall wall;
 	private MazeDoor door;
 	private MazeDoor doorInstance;
 	private MazeDoor doorPrefab;
-    private int countActive = 0;
-
+    /*---------------time control for transkill-----------------*/
+    private bool canUseTranSkill = true;
+    private int skillCD = 3;
+    private int skillPersist = 3;
+    /*--------------------------------*/
     float x = 0.0f;
 	float y = 0.0f;
 
@@ -73,14 +70,18 @@ public class OwnCharacterController : MonoBehaviour {
     {
         get { return targetRotation; }
     }
+
     void Start()
+    {
+
+    }
+
+    void Awake()
     {
         Cursor.visible = false;
         GM = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-    }
-    void Awake()
-    {
-
+        skillCD = GM.tranSkillCD;
+        skillPersist = GM.tranSkillPersist;
         Vector3 angles = transform.eulerAngles;
 		x = angles.y;
 		y = angles.x;
@@ -91,8 +92,7 @@ public class OwnCharacterController : MonoBehaviour {
 
 		//Get the current coordinates in 2d form and get Mazecell by 2d-position
 		//check if there is player entered and open door
-//		checkCellHvDoor(T2IntVector2());
-
+        //checkCellHvDoor(T2IntVector2());
 		//if (rooms == null) rooms = mazeInstance.GetComponentsInParent(typeof(MazeRoom)) as MazeRoom;
         if (mazeInstance == null) mazeInstance = GetComponent(typeof(Maze)) as Maze;
 		mazeInstance = GameObject.FindObjectOfType (typeof(Maze)) as Maze;
@@ -114,7 +114,6 @@ public class OwnCharacterController : MonoBehaviour {
         flipInput = Input.GetKey("space");
         mouseX = Input.GetAxis("Mouse X");
         transSkillInput = (Input.GetKey(KeyCode.E)) ? true : false;
-        activeInput = (Input.GetKey(KeyCode.F)) ? true : false;
         openDoor = (Input.GetKey(KeyCode.Q)) ? true : false;
         open_chest = (Input.GetKey(KeyCode.F)) ? true : false;
     }
@@ -122,7 +121,6 @@ public class OwnCharacterController : MonoBehaviour {
     void Update()   //dont require physic
     {
         wallTransSkill();
-        hideMaze();
 
     }
 
@@ -246,50 +244,26 @@ public class OwnCharacterController : MonoBehaviour {
 	}
 
 	public void checkCellHvDoor(IntVector2 posIntVectorVar){
-        //currentCell = mazeInstance.cells[posIntVectorVar.x,posIntVectorVar.z];
-        //		currentCellPos = cell.GetCell(posIntVectorVar);
-        //currentCellPos.transform.localPosition = transform.localPosition;
-
-        //cell.transform.position=posIntVectorVar;
-        //currentCell.GetComponent<MazeDoor>().OnPlayerEntered();
-
         GM.openCellDoor(posIntVectorVar);
 
     }
 
 
 	public void wallTransSkill(){
-		if (countKey > 100) countKey = 0;
-		if (transSkillInput) {
-			countKey += 1;
-			if (countKey % 2==1) {
-                mazeInstance.transSkills();
-            }else
-            {
-                mazeInstance.revertTransSkills();
-            }
-		}
+
+		if (transSkillInput&& canUseTranSkill) {
+            canUseTranSkill = false;
+            mazeInstance.transSkills();
+            Invoke("SkillCD", skillPersist);
+
+        }
 	}
 
-    public void endSkill()
+    private void SkillCD()
     {
-        GM.revertWallTransSkill();
+        mazeInstance.revertTransSkills();
+        canUseTranSkill = true;
     }
-
-    public void hideMaze()
-    {
-        if (activeInput) countActive++;
-        if (countActive > 100) countActive = 0;
-        if ((countActive%2)==1)
-        {
-            GM.mazeHide();
-
-        }else
-        {
-            GM.mazeShow();
-        }
-    }
-
 
 
 }
