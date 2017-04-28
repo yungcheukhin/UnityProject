@@ -188,11 +188,6 @@ MonoBehaviour:
   m_Script: {fileID: -25400194, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _serializedTags:
-  - _guid: 61393438353939382d333465322d343963392d613230302d616264306336373236663737
-    _sceneObject: {fileID: 2015137420}
-    _sceneComponents:
-    - {fileID: 2015137422}
 --- !u!4 &14098181
 Transform:
   m_ObjectHideFlags: 1
@@ -3750,6 +3745,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   game_round: 3
   doorOpenTime: 4
+  tranSkillPersist: 3
+  tranSkillCD: 5
   escapeTime: 301
   escapeTimeReduce: 25
   offsetY: 40
@@ -3757,23 +3754,17 @@ MonoBehaviour:
   sizeY: 40
   musicPrefab: {fileID: 4000010215273384, guid: ca555997b3da04d43aabb9212206f4f3,
     type: 2}
-  chestPrefab: {fileID: 0}
-  playerPrefab: {fileID: 1000013444896288, guid: 980d43d0c8a90b042a56ddf19af12af8,
+  chestPrefab: {fileID: 1000011713842796, guid: ffd3e66d4df2a554fb995d41f7ffe4c2,
     type: 2}
-  enemyPrefab: {fileID: 1000011176706658, guid: 71d043cbbfd8bb040ba53c298effa75a,
+  playerPrefab: {fileID: 1000013444896288, guid: d34c400360bb739438746b27915321be,
     type: 2}
-  R1EnemyPrefab: {fileID: 0}
-  R1Door: {fileID: 0}
-  R1Maze: {fileID: 0}
-  R2Maze: {fileID: 0}
+  R1EnemyPrefab: {fileID: 1000011176706658, guid: 71d043cbbfd8bb040ba53c298effa75a,
+    type: 2}
+  R1Maze: {fileID: 114356632683899446, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
+  R2Maze: {fileID: 114629878161084492, guid: 9154a52428443b44cb55c1d5d5763ce2, type: 2}
   mazePrefab: {fileID: 11400000, guid: a2395bb8a91944f21b621f2614d6db99, type: 2}
-  mazeInstance: {fileID: 0}
-  transMaze: {fileID: 0}
-  Maze_clone_source: {fileID: 0}
-  transWallCell: {fileID: 0}
-  revertTransWall: {fileID: 0}
-  wallPrefabs: []
-  wall: []
+  WinScreen: {fileID: 1640827531026620, guid: 4eecdae79f76bbf42aa0f8133e357a37, type: 2}
+  LoseScreen: {fileID: 1869511350057476, guid: c402edeb97285024787ecf28c318610b, type: 2}
 --- !u!4 &2015137422
 Transform:
   m_ObjectHideFlags: 0

@@ -96,44 +96,44 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000011176706658, guid: 5da324cfe545e3e40ae02dd9d022d16a,
     type: 2}
   m_PrefabInternal: {fileID: 1140724667}
---- !u!1001 &752610341
+--- !u!1001 &636062990
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4000010897164388, guid: de7e91a4dee6335499f8bbeae6969bce, type: 2}
+    - target: {fileID: 4293143423685138, guid: de7e91a4dee6335499f8bbeae6969bce, type: 2}
       propertyPath: m_LocalPosition.x
       value: -7.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010897164388, guid: de7e91a4dee6335499f8bbeae6969bce, type: 2}
+    - target: {fileID: 4293143423685138, guid: de7e91a4dee6335499f8bbeae6969bce, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010897164388, guid: de7e91a4dee6335499f8bbeae6969bce, type: 2}
+    - target: {fileID: 4293143423685138, guid: de7e91a4dee6335499f8bbeae6969bce, type: 2}
       propertyPath: m_LocalPosition.z
       value: 5.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010897164388, guid: de7e91a4dee6335499f8bbeae6969bce, type: 2}
+    - target: {fileID: 4293143423685138, guid: de7e91a4dee6335499f8bbeae6969bce, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010897164388, guid: de7e91a4dee6335499f8bbeae6969bce, type: 2}
+    - target: {fileID: 4293143423685138, guid: de7e91a4dee6335499f8bbeae6969bce, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010897164388, guid: de7e91a4dee6335499f8bbeae6969bce, type: 2}
+    - target: {fileID: 4293143423685138, guid: de7e91a4dee6335499f8bbeae6969bce, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010897164388, guid: de7e91a4dee6335499f8bbeae6969bce, type: 2}
+    - target: {fileID: 4293143423685138, guid: de7e91a4dee6335499f8bbeae6969bce, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010897164388, guid: de7e91a4dee6335499f8bbeae6969bce, type: 2}
+    - target: {fileID: 4293143423685138, guid: de7e91a4dee6335499f8bbeae6969bce, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de7e91a4dee6335499f8bbeae6969bce, type: 2}
@@ -15558,11 +15558,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 794857120}
   m_Script: {fileID: 11500000, guid: 1592517cf81484424a60f86dfcafc7eb, type: 3}
---- !u!1 &822007206 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000013444896288, guid: de7e91a4dee6335499f8bbeae6969bce,
-    type: 2}
-  m_PrefabInternal: {fileID: 752610341}
 --- !u!1001 &1140724667
 Prefab:
   m_ObjectHideFlags: 0
@@ -15600,7 +15595,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013936416908, guid: 5da324cfe545e3e40ae02dd9d022d16a, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5da324cfe545e3e40ae02dd9d022d16a, type: 2}
@@ -15745,7 +15740,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4b1205a7235860c479fc94aefe26ebf1, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 4b1205a7235860c479fc94aefe26ebf1, type: 3}
       propertyPath: m_TagString
@@ -15805,7 +15800,7 @@ MonoBehaviour:
   musicPrefab: {fileID: 4000010215273384, guid: ca555997b3da04d43aabb9212206f4f3,
     type: 2}
   chestPrefab: {fileID: 1487114553}
-  playerPrefab: {fileID: 822007206}
+  playerPrefab: {fileID: 0}
   R1EnemyPrefab: {fileID: 467428776}
   R1Maze: {fileID: 114356632683899446, guid: a2a2b3977df223b40a43a99a9a8d5483, type: 2}
   R2Maze: {fileID: 794857123}
