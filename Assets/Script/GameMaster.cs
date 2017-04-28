@@ -169,8 +169,8 @@ public class GameMaster : MonoBehaviour {
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         enemy = enemyPrefab.GetComponent(typeof(testControl)) as testControl;
         chest = chestPrefab.GetComponent(typeof(OpenChest)) as OpenChest;
-        //player.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
-        //chest.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
+        player.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
+        chest.SetLocation(R2Maze.GetCell(mazeInstance.RandomCoordinates));
         StartCoroutine(spawnEnemy(5));
     }
 
