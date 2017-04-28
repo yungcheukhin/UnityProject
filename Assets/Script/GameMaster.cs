@@ -147,10 +147,10 @@ public class GameMaster : MonoBehaviour {
         yield return StartCoroutine(mazeInstance.Generate());
         enemyPrefab = R1EnemyPrefab;
         playerInstance = Instantiate(playerPrefab) as GameObject;
-        chest = chestPrefab.GetComponent(typeof(OpenChest)) as OpenChest;
+		chestPrefab = Instantiate(chestPrefab) as GameObject;
+		chest = chestPrefab.GetComponent(typeof(OpenChest)) as OpenChest;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
-		chest = chestPrefab.GetComponent(typeof(OpenChest)) as OpenChest;
 		chest.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
     }
 
@@ -161,12 +161,12 @@ public class GameMaster : MonoBehaviour {
         yield return StartCoroutine(mazeInstance.Generate());
         enemyPrefab = R1EnemyPrefab;
         playerInstance = Instantiate(playerPrefab) as GameObject;
-        chest = chestPrefab.GetComponent(typeof(OpenChest)) as OpenChest;
+		chestPrefab = Instantiate(chestPrefab) as GameObject;
+		chest = chestPrefab.GetComponent(typeof(OpenChest)) as OpenChest;
         player = playerPrefab.GetComponent(typeof(OwnCharacterController)) as OwnCharacterController;
         player.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
         escapeTime -= escaped_count * escapeTimeReduce;
         success_escape = escaped_count;
-		chest = chestPrefab.GetComponent(typeof(OpenChest)) as OpenChest;
 		chest.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
     }
 
