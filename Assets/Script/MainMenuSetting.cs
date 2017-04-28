@@ -20,6 +20,7 @@ public class MainMenuSetting : MonoBehaviour {
     {
         settingmenu.SetActive(false);
         isShowing = false;
+        Cursor.visible = true;
     }
 
     public void openmenu()
