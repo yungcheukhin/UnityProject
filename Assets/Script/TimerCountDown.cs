@@ -7,7 +7,6 @@ public class TimerCountDown : MonoBehaviour {
 
     public float timeLeft = 300.0f;
     public Text CountTimeText;
-    public GameObject LoseCanvas;
     public GameObject GM_Prefab;
 
     void Update()

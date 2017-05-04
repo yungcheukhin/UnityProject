@@ -493,7 +493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &240024123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,7 +586,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLeft: 300
   CountTimeText: {fileID: 1547822718}
-  LoseCanvas: {fileID: 1869303499151060, guid: d8bd0ad2fa7921942b91342b0a1cd72c, type: 2}
   GM_Prefab: {fileID: 2015137420}
 --- !u!1 &244321366
 GameObject:
@@ -3950,6 +3949,7 @@ MonoBehaviour:
   sizeY: 40
   musicPrefab: {fileID: 4000010215273384, guid: ca555997b3da04d43aabb9212206f4f3,
     type: 2}
+  wallTrans: {fileID: 0}
   chestPrefab: {fileID: 1606044772243972, guid: 31386005740f1457b9516894d2499a75,
     type: 2}
   playerPrefab: {fileID: 1000013444896288, guid: d34c400360bb739438746b27915321be,
@@ -3961,6 +3961,7 @@ MonoBehaviour:
   mazePrefab: {fileID: 11400000, guid: a2395bb8a91944f21b621f2614d6db99, type: 2}
   WinScreen: {fileID: 1640827531026620, guid: 4eecdae79f76bbf42aa0f8133e357a37, type: 2}
   LoseCanvas: {fileID: 2136563295}
+  Timer: {fileID: 0}
   LoseText: {fileID: 2136563296}
 --- !u!4 &2015137422
 Transform:

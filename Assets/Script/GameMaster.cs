@@ -56,6 +56,9 @@ public class GameMaster : MonoBehaviour {
     /////////////////////////////////End///////////////////////////////
     public GameObject WinScreen;
     public GameObject LoseCanvas;
+    public GameObject Timer;
+    float timeLeft = 300.0f;
+    float timeText;
     public Text LoseText;
     // Update is called once per frame
     private void Awake()
@@ -108,6 +111,13 @@ public class GameMaster : MonoBehaviour {
                 Destroy(GameObject.Find("Loading Scene"));
                 MapCreated = true;
             }   //if maze finish generating, delete the camera
+
+            // For calculating time left
+            if (MapCreated)
+            {
+                timeLeft -= Time.deltaTime;
+                timeText = Mathf.Round(timeLeft);
+            }
         }
 
         if (RestartFlag)    // a restart is triggered
@@ -119,6 +129,7 @@ public class GameMaster : MonoBehaviour {
         {
             enemy_spawn_location = previous_locations.Dequeue();
         }
+        
     }
 
     void OnGUI()
@@ -130,6 +141,12 @@ public class GameMaster : MonoBehaviour {
             if (Max != null) current_health = Max.GetComponent<CharacterHealth>().current_health;
             else current_health = 0;
             GUI.Box(new Rect(Screen.width / 2 - sizeX / 2, offsetY, sizeX, sizeY), playerName+"\nHealth: " + current_health);
+            GUI.Box(new Rect(0, 0, sizeX, sizeY/2), "Time Left:" + timeText);
+
+            if (timeLeft < 0)
+            {
+                NoTime();
+            }
         }
     }
 
