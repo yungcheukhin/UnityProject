@@ -252,10 +252,10 @@ public class OwnCharacterController : MonoBehaviour {
 	public void wallTransSkill(){
 
 		if (transSkillInput&& canUseTranSkill) {
-			         GM.walltransAll();
+			         //GM.walltransAll();
 
-            //mazeInstance.transSkills();
-            //Invoke("SkillCD", skillPersist);
+            mazeInstance.transSkills();
+            Invoke("SkillCD", skillPersist);
             canUseTranSkill = false;
         }
 	}

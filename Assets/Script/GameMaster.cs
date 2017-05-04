@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+//#if UNITY_EDITOR
 using UnityEditor.SceneManagement;
+//#endif
+//using UnityEditor.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
@@ -20,7 +23,7 @@ public class GameMaster : MonoBehaviour {
     public float sizeY = 40;
     public Transform musicPrefab;
 	public GameObject wallTrans;
-	private loopWall wallTransAll;
+	private loopWall wallT;
     private int current_health;
     bool RestartFlag = false;   //true if the game needa restart
     Queue <Transform> previous_locations = new Queue<Transform>();
@@ -345,12 +348,12 @@ public class GameMaster : MonoBehaviour {
     }
 
 	public void walltransAll(){
-		wallTransAll.GetComponent<loopWall>().transAll();
+		wallT.GetComponent<loopWall>().transAll();
 		Invoke("wallRevertTrans", skillPersist);
 	}
 
 	public void wallRevertTrans(){
-		wallTransAll.GetComponent<loopWall>().unTransAll();
+		wallT.GetComponent<loopWall>().unTransAll();
 	}
 
     public void mazeShow()
