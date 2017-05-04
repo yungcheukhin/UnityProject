@@ -731,7 +731,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 263354288}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2015137421}
+        m_MethodName: goToStage
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &263354288
@@ -2136,12 +2147,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2015137421}
-        m_MethodName: restartLevel
-        m_Mode: 1
+        m_MethodName: goToStage
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3950,6 +3961,7 @@ MonoBehaviour:
   sizeY: 40
   musicPrefab: {fileID: 4000010215273384, guid: ca555997b3da04d43aabb9212206f4f3,
     type: 2}
+  wallTrans: {fileID: 0}
   chestPrefab: {fileID: 1606044772243972, guid: 31386005740f1457b9516894d2499a75,
     type: 2}
   playerPrefab: {fileID: 1000013444896288, guid: d34c400360bb739438746b27915321be,
