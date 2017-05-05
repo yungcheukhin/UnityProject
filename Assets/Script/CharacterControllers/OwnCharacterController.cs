@@ -150,9 +150,7 @@ public class OwnCharacterController : MonoBehaviour {
 
             //Rotate the player centering at it's Y-axis
             targetRotation *= Quaternion.AngleAxis(turn, Vector3.up);
-            targetRotation *= Quaternion.AngleAxis(0, Vector3.right);
-            targetRotation *= Quaternion.AngleAxis(0, Vector3.forward);
-            transform.rotation = targetRotation;
+            transform.rotation = targetRotation *Quaternion.Euler(0, 1, 0);
             //Flip animation Input
             if (flipInput) anim.CrossFade(flip_animation);
             if (openDoor) checkCellHvDoor(T2IntVector2());

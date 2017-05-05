@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.13534862, g: 0.14974752, b: 0.16240728, a: 1}
+  m_IndirectSpecularColor: {r: 0.13524064, g: 0.14975873, b: 0.16231737, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -9974,6 +9974,22 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4079610858884956, guid: 980d43d0c8a90b042a56ddf19af12af8, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841521064785550, guid: 980d43d0c8a90b042a56ddf19af12af8, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207529982963116, guid: 980d43d0c8a90b042a56ddf19af12af8, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307078267837730, guid: 980d43d0c8a90b042a56ddf19af12af8, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 980d43d0c8a90b042a56ddf19af12af8, type: 2}
   m_IsPrefabParent: 0
@@ -10246,7 +10262,7 @@ GameObject:
   - component: {fileID: 1241762551}
   - component: {fileID: 1241762550}
   m_Layer: 0
-  m_Name: Directional light
+  m_Name: little sun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10260,14 +10276,14 @@ Light:
   m_GameObject: {fileID: 1241762549}
   m_Enabled: 1
   serializedVersion: 7
-  m_Type: 1
+  m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.5
-  m_Range: 1000
+  m_Intensity: 0.8
+  m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -10283,7 +10299,7 @@ Light:
     m_Bits: 4294967295
   m_Lightmapping: 2
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1.5
+  m_BounceIntensity: 0.6
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1241762551
@@ -10292,8 +10308,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1241762549}
-  m_LocalRotation: {x: -0.36599815, y: -0.45315394, z: 0.21130912, w: -0.7848856}
-  m_LocalPosition: {x: -8.880004, y: 20.28, z: -26}
+  m_LocalRotation: {x: -0.36599815, y: -0.45315394, z: 0.2113091, w: -0.7848856}
+  m_LocalPosition: {x: -0, y: 2, z: -2}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 1193595008}
