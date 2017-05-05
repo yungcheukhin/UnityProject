@@ -12,7 +12,7 @@ public class DayNightCycle : MonoBehaviour {
     public Light Sun;
     public int days;
 
-    public float intensity;
+    //public float intensity;
     public Material midnight;
     public Material morning;
     public Material noon;
@@ -40,11 +40,11 @@ public class DayNightCycle : MonoBehaviour {
         SunLocation.rotation = Quaternion.Euler(new Vector3((time - 21600) / 86400 * 360, 0, 0));
         if (time < 43200)
         {
-            intensity = 1 - (43200 - time) / 43200;
+            //intensity = 1 - (43200 - time) / 43200;
         }
         else
         {
-            intensity = 1 - (43200 - time) / 43200*-1;
+            //intensity = 1 - (43200 - time) / 43200*-1;
         }
 
         //Sky at different time periods
@@ -73,6 +73,6 @@ public class DayNightCycle : MonoBehaviour {
             RenderSettings.skybox = night;
         }
         
-        Sun.intensity = intensity;
+        //Sun.intensity = intensity;
     }
 }

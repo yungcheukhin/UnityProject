@@ -6738,7 +6738,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 100
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -6758,7 +6758,7 @@ Light:
     m_Bits: 4294967295
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0.6
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &747246262
@@ -6768,7 +6768,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 747246260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.572962, y: 0.87632513, z: 9.80486}
+  m_LocalPosition: {x: -9.9, y: 4.83, z: 8.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -9968,7 +9968,7 @@ Prefab:
     - target: {fileID: 114448160008223384, guid: 980d43d0c8a90b042a56ddf19af12af8,
         type: 2}
       propertyPath: time
-      value: 20000
+      value: 25000
       objectReference: {fileID: 0}
     - target: {fileID: 1285199397215734, guid: 980d43d0c8a90b042a56ddf19af12af8, type: 2}
       propertyPath: m_IsActive
@@ -9988,6 +9988,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4307078267837730, guid: 980d43d0c8a90b042a56ddf19af12af8, type: 2}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114448160008223384, guid: 980d43d0c8a90b042a56ddf19af12af8,
+        type: 2}
+      propertyPath: intensity
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -10278,8 +10283,8 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.8
-  m_Range: 2
+  m_Intensity: 1.5
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
