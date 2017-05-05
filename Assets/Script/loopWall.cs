@@ -6,9 +6,6 @@ public class loopWall : MonoBehaviour {
 
 	Color trans_color = new Color(1.0f, 1.0f, 1.0f, 0.09f);
 	Color revertTransColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-    public static int size = 1;
-    public Material[] Mat = new Material[size];
-
 	public static int size = 31;
 	public Material[] Mat = new Material[size];
 
