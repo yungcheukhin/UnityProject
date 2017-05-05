@@ -25,6 +25,7 @@ public class GameMaster : MonoBehaviour {
     Queue <Transform> previous_locations = new Queue<Transform>();
     Transform enemy_spawn_location;
     public GameObject chestPrefab;
+    public GameObject open_chest_prefab;
     bool chest_opened = false;
     public GameObject playerPrefab;
     private GameObject enemyPrefab;
@@ -177,6 +178,10 @@ public class GameMaster : MonoBehaviour {
 
     private IEnumerator RestartGameR3(int escaped_count)   
     {
+        foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
+        {
+            Destroy(o);
+        }
         StartCoroutine(Delay(3));
         mazeInstance = Instantiate(mazePrefab) as Maze;
         yield return StartCoroutine(mazeInstance.Generate());
@@ -260,6 +265,7 @@ public class GameMaster : MonoBehaviour {
                 success_escape = 0;
                 break;
             case 3:
+                int temp = success_escape;
                 StartCoroutine(RestartGameR3(success_escape));
                 break;
             default:
