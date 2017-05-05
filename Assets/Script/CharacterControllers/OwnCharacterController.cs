@@ -7,7 +7,6 @@ using System.Linq;
 
 public class OwnCharacterController : MonoBehaviour {
     private GameMaster GM;
-    private CharacterMotor motor;
     public float inputDelay = 0.1f; //perform better control with delay in input
     public float forwardVel = 0.8f;
     public float runVel = 1.6f;
