@@ -9,20 +9,23 @@ public class loopWall : MonoBehaviour {
     public static int size = 1;
     public Material[] Mat = new Material[size];
 
+	public static int size = 31;
+	public Material[] Mat = new Material[size];
+
 	public void transAll () {
 		for(int i = 0; i<size; i++)
-        {
-            if (Mat[i] != null)
-                Mat[i].color = trans_color;
-        }
+		{
+			if (Mat[i] != null)
+				Mat[i].color = trans_color;
+		}
 
 	}
 
 	public void unTransAll () {
-        for (int i = 0; i < size; i++)
-        {
-            if (Mat[i] != null)
-                Mat[i].color = revertTransColor;
-        }
-    }
+		for (int i = 0; i < size; i++)
+		{
+			if (Mat[i] != null)
+				Mat[i].color = revertTransColor;
+		}
+	}
 }
