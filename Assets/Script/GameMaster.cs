@@ -178,10 +178,6 @@ public class GameMaster : MonoBehaviour {
 
     private IEnumerator RestartGameR3(int escaped_count)   
     {
-        foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
-        {
-            Destroy(o);
-        }
         StartCoroutine(Delay(3));
         mazeInstance = Instantiate(mazePrefab) as Maze;
         yield return StartCoroutine(mazeInstance.Generate());
@@ -266,7 +262,8 @@ public class GameMaster : MonoBehaviour {
                 break;
             case 3:
                 int temp = success_escape;
-                StartCoroutine(RestartGameR3(success_escape));
+                SceneManager.LoadScene(3);
+                StartCoroutine(RestartGameR3(temp));
                 break;
             default:
                 SceneManager.LoadScene(0);
