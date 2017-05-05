@@ -1,9 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-//#if UNITY_EDITOR
-using UnityEditor.SceneManagement;
-//#endif
-//using UnityEditor.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
@@ -143,8 +139,9 @@ public class GameMaster : MonoBehaviour {
 
     public void restartLevel()
     {
-        string current_scene = EditorSceneManager.GetActiveScene().name;
-        EditorSceneManager.LoadScene(current_scene);
+
+        string current_scene = Application.loadedLevelName;
+        Application.LoadLevel(current_scene);
     }
 
     private IEnumerator BeginGameR3()   //for stage 3 init
@@ -376,6 +373,7 @@ public class GameMaster : MonoBehaviour {
 
     public void NoTime()
     {
+
         LoseText.text = "You Lose :(\n" + success_escape;
         LoseCanvas.SetActive(true);
     }

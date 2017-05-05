@@ -88,12 +88,6 @@ public class OwnCharacterController : MonoBehaviour {
 		originalRotation = transform.localRotation;
         targetRotation = transform.rotation;
 		mazeInstance = FindObjectOfType (typeof(Maze)) as Maze;
-
-
-		//Get the current coordinates in 2d form and get Mazecell by 2d-position
-		//check if there is player entered and open door
-        //checkCellHvDoor(T2IntVector2());
-		//if (rooms == null) rooms = mazeInstance.GetComponentsInParent(typeof(MazeRoom)) as MazeRoom;
         if (mazeInstance == null) mazeInstance = GetComponent(typeof(Maze)) as Maze;
 		mazeInstance = GameObject.FindObjectOfType (typeof(Maze)) as Maze;
 		if (wall == null) wall = GameObject.FindObjectOfType(typeof(MazeWall)) as MazeWall;
@@ -101,7 +95,6 @@ public class OwnCharacterController : MonoBehaviour {
             rBody = GetComponent<Rigidbody>();
         else
             Debug.LogError("The Character dont have any rigidbody");
-
         forwardInput = turnInput  = horizontalInput = 0;
     }
 
