@@ -249,8 +249,8 @@ public class OwnCharacterController : MonoBehaviour {
     }
 
 
+	//Apply wall transparent skills for 3 seconds
 	public void wallTransSkill(){
-
 		if (transSkillInput&& canUseTranSkill) {
 			if (SceneManager.GetActiveScene ().buildIndex == 3) {
 				mazeInstance.transSkills ();
@@ -271,12 +271,14 @@ public class OwnCharacterController : MonoBehaviour {
 		}
 	}
 
+	//De-apply wall skill for stage 3
     private void SkillCD()
     {
         mazeInstance.revertTransSkills();
         canUseTranSkill = true;
     }
 
+	//De-apply wall skill for stage 1 and 2
 	public void HardSkill(){
 		for (int i = 0; i < AllMat.Length; i++)
 		{
