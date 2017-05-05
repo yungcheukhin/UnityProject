@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class OwnCharacterController : MonoBehaviour {
     private GameMaster GM;
@@ -21,6 +23,8 @@ public class OwnCharacterController : MonoBehaviour {
         run_animation = "run",
         walk_animation = "walk";
     Vector3 Stand = new Vector3(0,0,0);
+
+	public Material[] AllMat;
 
 	public float sensitivityX = 100f;
 	private float rotationX = 0F;
@@ -65,6 +69,9 @@ public class OwnCharacterController : MonoBehaviour {
 
     private bool open_chest = false;
 
+	private Color trans_color = new Color(1.0f, 1.0f, 1.0f, 0.001f);
+	private Color revertTransColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+
 
     public Quaternion TargetRotation
     {
@@ -96,6 +103,8 @@ public class OwnCharacterController : MonoBehaviour {
         else
             Debug.LogError("The Character dont have any rigidbody");
         forwardInput = turnInput  = horizontalInput = 0;
+
+		AllMat = Resources.LoadAll("walls_texture", typeof(Material)).Cast<Material>().ToArray();
     }
 
     void GetInput()
@@ -245,12 +254,23 @@ public class OwnCharacterController : MonoBehaviour {
 	public void wallTransSkill(){
 
 		if (transSkillInput&& canUseTranSkill) {
-			         //GM.walltransAll();
-
-            mazeInstance.transSkills();
-            Invoke("SkillCD", skillPersist);
-            canUseTranSkill = false;
-        }
+			if (SceneManager.GetActiveScene ().buildIndex == 3) {
+				mazeInstance.transSkills ();
+				Invoke ("SkillCD", skillPersist);
+				canUseTranSkill = false;
+			} else if (SceneManager.GetActiveScene ().buildIndex == 2 || SceneManager.GetActiveScene ().buildIndex == 1) {
+				for (int i = 0; i < AllMat.Length; i++) {
+					if (AllMat [i] != null)
+						AllMat [i].color = trans_color;
+					else
+						Debug.LogError ("All Mat NULL");
+				}
+				Invoke ("HardSkill", skillPersist);
+				canUseTranSkill = false;
+			} else {
+				Debug.LogError ("No active scene loaded");
+			}
+		}
 	}
 
     private void SkillCD()
@@ -258,6 +278,19 @@ public class OwnCharacterController : MonoBehaviour {
         mazeInstance.revertTransSkills();
         canUseTranSkill = true;
     }
+
+	public void HardSkill(){
+		for (int i = 0; i < AllMat.Length; i++)
+		{
+			if (AllMat[i] != null)
+				AllMat[i].color = revertTransColor;
+			else
+				Debug.LogError ("All Mat NULL");
+		}
+
+		canUseTranSkill = true;
+
+	}
 
 
 }
