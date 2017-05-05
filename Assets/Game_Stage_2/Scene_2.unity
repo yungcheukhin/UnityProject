@@ -18567,6 +18567,7 @@ MonoBehaviour:
   sizeY: 40
   musicPrefab: {fileID: 4000010215273384, guid: ca555997b3da04d43aabb9212206f4f3,
     type: 2}
+  wallTrans: {fileID: 1940276563268440, guid: 798f4bb6166e94cd095782fa382a7ca3, type: 2}
   chestPrefab: {fileID: 269790895}
   playerPrefab: {fileID: 752610342}
   R1EnemyPrefab: {fileID: 467428776}
@@ -18574,7 +18575,8 @@ MonoBehaviour:
   R2Maze: {fileID: 794857123}
   mazePrefab: {fileID: 11400000, guid: a2395bb8a91944f21b621f2614d6db99, type: 2}
   WinScreen: {fileID: 1640827531026620, guid: 4eecdae79f76bbf42aa0f8133e357a37, type: 2}
-  LoseScreen: {fileID: 1869511350057476, guid: c402edeb97285024787ecf28c318610b, type: 2}
+  LoseCanvas: {fileID: 0}
+  LoseText: {fileID: 0}
 --- !u!4 &1511193661
 Transform:
   m_ObjectHideFlags: 0

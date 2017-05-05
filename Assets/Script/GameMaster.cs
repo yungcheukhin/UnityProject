@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
@@ -20,7 +19,7 @@ public class GameMaster : MonoBehaviour {
     public float sizeY = 40;
     public Transform musicPrefab;
 	public GameObject wallTrans;
-	private loopWall wallTransAll;
+	private loopWall wallT;
     private int current_health;
     bool RestartFlag = false;   //true if the game needa restart
     Queue <Transform> previous_locations = new Queue<Transform>();
@@ -157,8 +156,9 @@ public class GameMaster : MonoBehaviour {
 
     public void restartLevel()
     {
-        string current_scene = EditorSceneManager.GetActiveScene().name;
-        EditorSceneManager.LoadScene(current_scene);
+
+        string current_scene = Application.loadedLevelName;
+        Application.LoadLevel(current_scene);
     }
 
     private IEnumerator BeginGameR3()   //for stage 3 init
@@ -362,12 +362,12 @@ public class GameMaster : MonoBehaviour {
     }
 
 	public void walltransAll(){
-		wallTransAll.GetComponent<loopWall>().transAll();
+		wallT.GetComponent<loopWall>().transAll();
 		Invoke("wallRevertTrans", skillPersist);
 	}
 
 	public void wallRevertTrans(){
-		wallTransAll.GetComponent<loopWall>().unTransAll();
+		wallT.GetComponent<loopWall>().unTransAll();
 	}
 
     public void mazeShow()
@@ -390,6 +390,7 @@ public class GameMaster : MonoBehaviour {
 
     public void NoTime()
     {
+
         LoseText.text = "You Lose :(\n" + success_escape;
         LoseCanvas.SetActive(true);
     }

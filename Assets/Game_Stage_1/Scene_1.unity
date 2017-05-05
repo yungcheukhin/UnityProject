@@ -140,6 +140,12 @@ Prefab:
       propertyPath: playerPrefab
       value: 
       objectReference: {fileID: 1193595000}
+    - target: {fileID: 114251970557638598, guid: fa0834ce584ff3245af560cbae4f71e5,
+        type: 2}
+      propertyPath: wallTrans
+      value: 
+      objectReference: {fileID: 1940276563268440, guid: 798f4bb6166e94cd095782fa382a7ca3,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa0834ce584ff3245af560cbae4f71e5, type: 2}
   m_IsPrefabParent: 0
