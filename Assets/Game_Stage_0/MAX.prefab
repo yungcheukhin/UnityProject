@@ -2316,8 +2316,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound1: {fileID: 8300000, guid: f8925ff95288bee4086486f3f79497d3, type: 3}
-  starting_health: 100
-  current_health: 100
+  starting_health: 200
+  current_health: 200
   anim: {fileID: 111249146756807194}
 --- !u!114 &114458115555670942
 MonoBehaviour:
