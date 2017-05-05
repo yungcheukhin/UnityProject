@@ -10054,6 +10054,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114033751025008798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10155,6 +10161,12 @@ MonoBehaviour:
     z: 17
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114078754374699716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10201,6 +10213,12 @@ MonoBehaviour:
     z: 16
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114091062840742260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10217,6 +10235,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114094747969464808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10233,6 +10257,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114095939655172168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10305,6 +10335,7 @@ MonoBehaviour:
   otherCell: {fileID: 114091062840742260}
   direction: 1
   hinge: {fileID: 4587843454111698}
+  isMirrored: 0
 --- !u!114 &114123389189814192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10321,6 +10352,12 @@ MonoBehaviour:
     z: 18
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114136586351593466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10393,6 +10430,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114155182838888036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10489,6 +10532,7 @@ MonoBehaviour:
   otherCell: {fileID: 114682373312965976}
   direction: 3
   hinge: {fileID: 4295997752501160}
+  isMirrored: 0
 --- !u!114 &114230054781573614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10619,6 +10663,12 @@ MonoBehaviour:
     z: 18
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114298992527345276
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10649,6 +10699,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114305781993753814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10692,6 +10748,12 @@ MonoBehaviour:
     z: 18
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114318079639203300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10747,18 +10809,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2970089c471ef4c599835c1992954af5, type: 2}
   - {fileID: 11400000, guid: 2970089c471ef4c599835c1992954af5, type: 2}
   - {fileID: 11400000, guid: 2970089c471ef4c599835c1992954af5, type: 2}
-  - {fileID: 11400000, guid: 057b7e231030049f9a3f3e033926ab42, type: 2}
-  - {fileID: 11400000, guid: d61d85f53c9da4244986893237736493, type: 2}
-  - {fileID: 11400000, guid: f489487ab599f45b181d62c31aa46aa7, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   roomSettings:
   - floorMaterial: {fileID: 2100000, guid: 5f73475cf0cad364b9800b85c2a229fc, type: 2}
     wallMaterial: {fileID: 2100000, guid: 92f575e356de5d64e9346ceddb75dee5, type: 2}
   - floorMaterial: {fileID: 2100000, guid: 883f217f3feae4b858262a0ba5f54738, type: 2}
-    wallMaterial: {fileID: 2100000, guid: 2e396b6df87a3c94e8e20e922295ec69, type: 2}
+    wallMaterial: {fileID: 2100000, guid: 1e23b2d236a58f040968acd05c361bce, type: 2}
   - floorMaterial: {fileID: 2100000, guid: 3e8a9f4f5633b45678c0464613984944, type: 2}
     wallMaterial: {fileID: 2100000, guid: 3302d8980be2b5742b574a2509d9e6b7, type: 2}
   - floorMaterial: {fileID: 2100000, guid: dd3948b1cc3c247e2bd57e5a859adb63, type: 2}
-    wallMaterial: {fileID: 2100000, guid: 29f48cc2a8ed8f448a8579bc2c980c38, type: 2}
+    wallMaterial: {fileID: 2100000, guid: 101773f6372afc54b82c2867326d2bbe, type: 2}
+  rooms: []
 --- !u!114 &114366541957160558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10869,6 +10932,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114434761290290214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11035,6 +11104,12 @@ MonoBehaviour:
     z: 16
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114507560307036348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11136,6 +11211,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114552187504905674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11280,6 +11361,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114638007418783866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11310,6 +11397,12 @@ MonoBehaviour:
     z: 18
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114641946469110946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11383,6 +11476,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114669152604275298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11413,6 +11512,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114695024983104716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11429,6 +11534,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114699969539068826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11583,6 +11694,12 @@ MonoBehaviour:
     z: 18
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114786283041457458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11772,6 +11889,12 @@ MonoBehaviour:
     z: 18
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114860562323802116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11856,6 +11979,12 @@ MonoBehaviour:
     z: 19
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114923889630334094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11973,6 +12102,12 @@ MonoBehaviour:
     z: 18
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!114 &114994906327181206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11989,6 +12124,12 @@ MonoBehaviour:
     z: 18
   room: {fileID: 0}
   wall: {fileID: 0}
+  edges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initializedEdgeCount: 0
 --- !u!154 &154008487729134970
 TerrainCollider:
   m_ObjectHideFlags: 1

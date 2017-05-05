@@ -98,4 +98,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanceToActivate: 10
   setOpenCloseTimer: 0
-  open_chest_prefab: {fileID: 100000, guid: 5cbd4cd0f328ce74fa83b47cc196ac12, type: 3}
+  open_chest_prefab: {fileID: 1000014099110386, guid: 0df1ade2b60ee5e40b13ea73239ec9a6,
+    type: 2}
